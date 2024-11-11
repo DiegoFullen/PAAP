@@ -1,0 +1,63 @@
+#cardLogin {
+    width: 90%;
+}
+
+#recovery{
+    font-size: 1.4rem;
+    color: black;
+    text-decoration-color: black;
+}
+#recovery:hover{
+    font-size: 1.4rem;
+    color: #010eff;
+    text-decoration:none;
+}
+
+.cajaLimite {
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    /*text-align: end !important;*/
+    text-align: left;
+}
+
+.form-floating {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    right: .0rem;
+    width: 12%;
+    height: 100%;
+    font-size: x-large;
+    text-align: center;
+
+    /*background-image: conic-gradient(from 38.42deg at 50% 50%, #E2E3ED 0deg, #3F48CC 180deg, #E2E3ED 360deg);*/
+    background-image: conic-gradient(from 38.42deg at 50% 50%, #E2E3ED 0deg, #979efd 180deg, #E2E3ED 360deg);
+    border-radius: 7px;
+}
+
+.form-floating label, .form-floating .form-control{
+    left: .5rem;
+}
+
+.form-floating .form-control{
+    font-size: 1.4rem !important;
+}
+
+.form-floating label{
+    font-size: 1.4rem;
+    color: #B3B3B3;
+}
+
+.toplabel{
+    font-size: 1.4rem !important;
+}
+
+.btn-outline-light{
+    min-height: 30px !important;
+    font-size: 1.4rem !important;
+    background-color: #F3F3F3 !important;
+    color: black !important;
+}
+

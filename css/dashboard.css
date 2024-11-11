@@ -1,0 +1,23 @@
+.custom-nav{
+    background-image: linear-gradient(180deg, #d0daff 10%, #d0daff 100%) !important;
+    background-size: cover;
+}
+
+.nav-link{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 12rem !important;
+    color: #273240;
+}
+
+.nav-link:hover{
+    color: #5A6ACF !important;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 4px 5px gray;
+}
+
+#content{
+    background-color: white;
+}
+
