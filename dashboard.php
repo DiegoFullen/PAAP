@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="css/dashboard.css">
@@ -17,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="resources/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,12 +29,12 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class=""></i>
+                <img src="resources/img/logotipoColor.png" class="img-fluid" id="logoDash" alt="Responsive logo">
+                <div class="sidebar-brand-text mx-3"  style="font-family: 'Post No Bills Jaffna SemiBold', sans-serif; font-size: 1.8rem; color: #2E3EA5;">
+                    PAAP
                 </div>
-                <div class="sidebar-brand-text mx-3">PAAP</div>
                 <div class="text-center d-none d-md-inline mt-3">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    <button class="border-0" id="sidebarToggle"></button>
                 </div>
             </a>
 
@@ -44,7 +42,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Heading -->
-            <div class="sidebar-heading mt-4 ml-2">
+            <div class="sidebar-heading mt-4 opacity-50">
                 MENU
             </div>
 
@@ -65,54 +63,55 @@
              <!-- Nav Item - Tables -->
             <li class="nav-item ml-2">
                 <a class="nav-link" href="#">
-                    <i class=""></i>
+                    <i class="fas fa-book"></i>
                     <span>Recursos</span></a>
             </li>
 
             <!-- Heading -->
-            <div class="sidebar-heading mt-5 ml-2">
+            <div class="sidebar-heading mt-5">
                 OTHER
             </div>
 
             <!-- Nav Item - Ajustes -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+            <li class="nav-item">       
+                <a class="nav-link ml-2">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Ajustes</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Pagos</a>
-                        <a class="collapse-item" href="cards.html">Cuenta</a>
-                    </div>
-                </div>
             </li>
-
+            
             <!-- Nav Item - Pagos -->
-            <li class="nav-item ml-5 ml-2">
-                <a class="nav-link" href="#">
-                    <i class=""></i>
+            <li class="nav-item">
+                <a class="nav-link pl-5 pl-1 especial" href="#">
+                    <i class="fas fa-solid fa-wallet"></i>
                     <span>Pagos</span></a>
             </li>
 
              <!-- Nav Item - Cuenta -->
-            <li class="nav-item ml-5 ml-2">
-                <a class="nav-link" href="#">
-                    <i class=""></i>
+            <li class="nav-item">
+                <a class="nav-link pl-5 pl-1 especial" href="#">
+                    <i class="fas fa-solid fa-user"></i>
                     <span>Cuenta</span></a>
             </li>
-
+             
             <!-- Nav Item - Manual -->
-            <li class="nav-item ml-2 mb-5">
+            <li class="nav-item ml-2">
                 <a class="nav-link" href="#">
-                    <i class=""></i>
+                    <i class="fas fa-solid fa-info"></i>
                     <span>Manual</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block mt-2">
+            <hr class="sidebar-divider d-none d-md-block mt-5">
+            <hr class="sidebar-divider d-none d-md-block mt-5">
+            <hr class="sidebar-divider d-none d-md-block mt-5">
+            <hr class="sidebar-divider d-md-block mt-5" style="border-top: 3px solid #bbb;">
+
+            <!-- Nav Item - Salir -->
+            <li class="nav-item ml-2">
+                <a class="nav-link" id="btnSalir" href="">
+                    <span>Cerrar Sesión</span></a>
+            </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
 
@@ -176,6 +175,7 @@
     <script src="js/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
+     
     <script src="js/dashboard.min.js"></script>
 
 </body>
