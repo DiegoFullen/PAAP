@@ -1,5 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/post-no-bills-jaffna');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 
 .custom-nav{
     /*#d0daff*/
@@ -23,7 +24,7 @@
     width: 95% !important;
 }
 .nav-link:hover span, i{
-    color: #5A6ACF !important;
+    color: #5A6ACF;
     opacity: 100%;
 }
 
@@ -65,4 +66,86 @@
     width: 95%;
     background-color: white;
     border-radius: 8px;
+    cursor: pointer;
 }
+
+#infoSet{
+    border: solid;
+    /*background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 8px, transparent 8px) 0% 0%/10px 10px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 8px, transparent 8px) 100% 0%/10px 10px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 8px, transparent 8px) 0% 100%/10px 10px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 8px, transparent 8px) 100% 100%/10px 10px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 20px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 20px) calc(100% - 4px) no-repeat,
+            linear-gradient(298deg, #f0efef 0%, #78a7e5 35%, 005FDB 69%) !important;*/
+    border-color: mediumblue    ;
+    border-radius: 10px;
+    padding: calc(2px + 0.5rem);
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    min-width: 30%;
+    align-items: center;
+    text-align: end;
+}
+
+#btn-download{
+    background-color: #E6E0E9;
+    border: transparent;
+}
+#btn-download i{
+    color: black;
+}
+
+dialog {
+    font-family: "Inter", sans-serif;
+    animation: fade-out 0.7s ease-out;
+    border-radius: 12px;
+  }
+  
+  dialog[open] {
+    animation: fade-in 0.7s ease-out;
+  }
+  
+  dialog[open]::backdrop {
+    animation: backdrop-fade-in 0.7s ease-out forwards;
+  }
+  
+  /* Animation keyframes */
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: scaleY(0);
+      display: none;
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scaleY(1);
+      display: block;
+    }
+  }
+  
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+      transform: scaleY(1);
+      display: block;
+    }
+  
+    100% {
+      opacity: 0;
+      transform: scaleY(0);
+      display: none;
+    }
+  }
+  
+  @keyframes backdrop-fade-in {
+    0% {
+      background-color: rgb(0 0 0 / 0%);
+    }
+  
+    100% {
+      background-color: rgb(0 0 0 / 25%);
+    }
+  }

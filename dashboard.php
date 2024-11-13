@@ -109,8 +109,8 @@
 
             <!-- Nav Item - Salir -->
             <li class="nav-item ml-2">
-                <a class="nav-link" id="btnSalir" href="">
-                    <span>Cerrar Sesión</span></a>
+                <btn class="nav-link" id="btnSalir">
+                    <span>Cerrar Sesión</span></btn>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -128,7 +128,55 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">placeholder algo algo sjdiasd</h1>
+                     <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
+                    <div class="container mt-5"  id="infoSet">
+                        <div class="row justify-content-md-end">  
+
+                            <div class="col-md-auto">
+                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem; ">Modelo #<span>placeholder</span> </span> 
+                            </div>
+                            <div class="col-md-auto">
+                                <span style="font-weight: 400; font-size: 1.1rem;">placeholderEntrenamiento</span>
+                            </div>
+                            <div class="col">
+                                <button class="btn-circle" id ="btn-download"><i class="fas fa-solid fa-download"></i></button>
+                            </div>
+                        </div>   
+
+                        <div class="row pr-5 justify-content-md-center">
+                            <div class="col-md-auto">
+                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Dataset de Entrenamiento</span> <br>
+                                <span>Placeholder-archivo</span>
+                            </div>
+                            <div class="col-md-auto ml-5">
+                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span> <br>
+                                <span>Placeholder-horas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <dialog id="dialog">
+                        <p>¿Está seguro de querer cerrar sesión?</p>
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="optAccept">Aceptar</button>
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
+                    </dialog>
+
+                    <div class="row mt-5">
+                        <div class="col-lg-6">
+                            <!-- Default Card Example -->
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                                sed do eiusmod tempor incididunt ut labore et dolore magna 
+                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -142,30 +190,6 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="js/vendor/jquery/jquery.min.js"></script>

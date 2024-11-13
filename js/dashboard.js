@@ -54,3 +54,22 @@
   });
 
 })(jQuery); // End of use strict
+
+const btnSalir = document.getElementById("btnSalir");
+const dialogElem = document.querySelector("dialog");
+const btnAceptar = document.getElementById("optAccept");
+const btnCancelar = document.getElementById("optCancel");
+
+btnSalir.addEventListener("click", () => {
+  dialogElem.showModal();
+});
+
+btnAceptar.addEventListener("click", ()=> {
+    window.location.href = 'about:blank';
+    window.location.href = '/gitPAAP/PAAP/';
+});
+
+
+btnCancelar.addEventListener("click", () => {
+  dialogElem.close();
+});
