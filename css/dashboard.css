@@ -1,6 +1,16 @@
 @import url('https://fonts.cdnfonts.com/css/post-no-bills-jaffna');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
+
+.montserrat{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.0rem;
+  color: black;
+}
 
 .custom-nav{
     /*#d0daff*/
@@ -23,7 +33,7 @@
     box-shadow:  0px 1px gray;
     width: 95% !important;
 }
-.nav-link:hover span, i{
+.nav-link:hover span{
     color: #5A6ACF;
     opacity: 100%;
 }
@@ -71,13 +81,6 @@
 
 #infoSet{
     border: solid;
-    /*background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 8px, transparent 8px) 0% 0%/10px 10px no-repeat,
-            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 8px, transparent 8px) 100% 0%/10px 10px no-repeat,
-            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 8px, transparent 8px) 0% 100%/10px 10px no-repeat,
-            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 8px, transparent 8px) 100% 100%/10px 10px no-repeat,
-            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 20px) no-repeat,
-            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 20px) calc(100% - 4px) no-repeat,
-            linear-gradient(298deg, #f0efef 0%, #78a7e5 35%, 005FDB 69%) !important;*/
     border-color: mediumblue    ;
     border-radius: 10px;
     padding: calc(2px + 0.5rem);

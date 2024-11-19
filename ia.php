@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Dashboard</title>
+    <title>IA</title>
 
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/ia.css">
     <!-- Custom fonts for this template-->
     <link href="js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -48,14 +49,14 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <!-- Nav Item - Entrenamiento -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="ia.php">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Entrenamiento</span></a>
             </li>
@@ -132,51 +133,66 @@
                     <div class="container mt-5"  id="infoSet">
                         <div class="row justify-content-md-end">  
 
-                            <div class="col-md-auto">
-                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem; ">Modelo #<span>placeholder</span> </span> 
+                            <div class="col-md-auto pl-5">
+                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem; ">Modelo</span> 
                             </div>
                             <div class="col-md-auto">
                                 <span style="font-weight: 400; font-size: 1.1rem;">placeholderEntrenamiento</span>
                             </div>
                             <div class="col">
-                                <button class="btn-circle" id ="btn-download"><i class="fas fa-solid fa-download"></i></button>
                             </div>
                         </div>   
-
-                        <div class="row pr-5 justify-content-md-center">
-                            <div class="col-md-auto">
-                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Dataset de Entrenamiento</span> <br>
-                                <span>Placeholder-archivo</span>
-                            </div>
-                            <div class="col-md-auto ml-5">
-                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span> <br>
-                                <span>Placeholder-horas</span>
-                            </div>
-                        </div>
                     </div>
 
+                    <!-- Alert para cerrar sesión -->
                     <dialog id="dialog">
                         <p>¿Está seguro de querer cerrar sesión?</p>
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optAccept">Aceptar</button>
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
 
-                    <div class="row mt-5">
-                        <div class="col-lg-6">
-                            <!-- Default Card Example -->
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col text-center main">
+
+                                <div class="card">
+                                    <h5 class="header pt-3 pb-1">Subir Archivo de Entrenamiento</h5>
+                                    <div class="card-body pt-3 dropZone">
+                                        <i class='fas fa-cloud-upload-alt pb-5' style="font-size: 3.5rem; color:#483EA8"></i>
+                                        <h5 class="card-title">Arrastra, suelta archivos o <a href="" id="linknav">Navega</a></h5>
+                                        <p class="card-text">Extensión de Formato Aceptada: CSV</p>
+                                    </div>
+
+
+                                    <main>
+
+                                    </main>
+
+                                    <div class="alert alert-light pt-4" role="alert">
+                                        <input type="file" name="file" id="file" accept=".csv"/>
+                                        <span id="fileInfo">No se ha seleccionado ningun archivo</span>
+                                    </div>
                                 </div>
                             </div>
 
+                            <div class="col">
+                                <form action="" id="selectionAlgorithm">
+                                    <div class="form-group">
+                                        <label for="selectAlgorithm" class="montserrat">ALGORITMO</label>
+                                        <select class="form-control" id="selectAlgorithm">
+                                            <option>Forma de Entrenamiento</option>
+                                            <option>Arboles de Decisión</option>
+                                            <option>K-Nearest Neighbors</option>
+                                            <option>Random Forest</option>
+                                        </select>
+                                    </div> 
+                                </form>
+                                <button type="submit" form="selectionAlgorithm" class="btn btn-outline-primary" style="width: 100%; margin-top: 48%;"> <span>Configuración</span> </button>
+                            </div>
                         </div>
-
                     </div>
+
+
 
                 </div>
                 <!-- /.container-fluid -->
@@ -198,9 +214,9 @@
     <!-- Core plugin JavaScript-->
     <script src="js/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-     
     <script src="js/dashboard.min.js"></script>
+    <script src="js/ia.js"></script>
+
 
 </body>
 

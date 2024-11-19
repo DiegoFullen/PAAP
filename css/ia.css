@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap');
+
+.header{
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: black;
+    font-size: 1.22rem;
+}
+
+.card-body{
+    background-color: #F8F8FF;
+    border: dashed #7200cf;
+}
+.card-title{
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: black;
+    font-size: 1.0rem;
+}
+
+input[type=file]{
+    position: absolute;
+    visibility: hidden;
+    z-index: -9999;
+    width: 0;
+}
