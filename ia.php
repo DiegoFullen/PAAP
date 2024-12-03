@@ -137,7 +137,7 @@
                                 <span style="color: #082431; font-weight: 500; font-size: 1.2rem; ">Modelo</span> 
                             </div>
                             <div class="col-md-auto">
-                                <span style="font-weight: 400; font-size: 1.1rem;">placeholderEntrenamiento</span>
+                                <input type="text" name="modelName" id="modelName" placeholder="placeholderName">
                             </div>
                             <div class="col">
                             </div>
@@ -157,7 +157,7 @@
 
                                 <div class="card">
                                     <h5 class="header pt-3 pb-1">Subir Archivo de Entrenamiento</h5>
-                                    <div class="card-body pt-3 dropZone">
+                                    <div class="card-body-file pt-3 dropZone">
                                         <i class='fas fa-cloud-upload-alt pb-5' style="font-size: 3.5rem; color:#483EA8"></i>
                                         <h5 class="card-title">Arrastra, suelta archivos o <a href="" id="linknav">Navega</a></h5>
                                         <p class="card-text">Extensión de Formato Aceptada: CSV</p>
@@ -179,19 +179,321 @@
                                 <form action="" id="selectionAlgorithm">
                                     <div class="form-group">
                                         <label for="selectAlgorithm" class="montserrat">ALGORITMO</label>
-                                        <select class="form-control" id="selectAlgorithm">
+                                        <select class="form-control" id="selectAlgorithm" onchange="showHyper()">
                                             <option>Forma de Entrenamiento</option>
-                                            <option>Arboles de Decisión</option>
-                                            <option>K-Nearest Neighbors</option>
-                                            <option>Random Forest</option>
+                                            <option value="arbolDesicion">Arboles de Decisión</option>
+                                            <option value="kNeighbors">K-Nearest Neighbors</option>
+                                            <option value="randomForest">Random Forest</option>
                                         </select>
                                     </div> 
                                 </form>
-                                <button type="submit" form="selectionAlgorithm" class="btn btn-outline-primary" style="width: 100%; margin-top: 48%;"> <span>Configuración</span> </button>
+                                <button type="submit" form="selectionAlgorithm" class="btn btn-outline-primary" style="width: 100%;"> <span>Guardar Configuración</span> </button>
                             </div>
                         </div>
                     </div>
 
+                    <div class="container hiper hidden mt-4" id="arbolDesicion">
+                        <form action="">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card pr-3">
+                                    <h5 class="header" style="font-size: 1rem;">Criterio</h5>
+                                    <div class="card-body pt-1">
+
+                                    <input class="form-check-input" type="radio" name="criterioRadio" id="entropyRadio">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Entropia
+                                    </label>
+                                    <br>
+                                    <input class="form-check-input" type="radio" name="criterioRadio" id="giniRadio" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Indice Gini (Default)
+                                    </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Profundida Máxima (<span id="nodosValue">Nodos</span>)</h5>
+                                    <div class="card-body pt-3">
+                                        <span>1</span>
+                                        <input type="range" class="form-range" id="nodosRange" min="1" max="100">
+                                        <span>100</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Máximo de nodos hoja <span id="max-hojasValue"></span></h5>
+                                    <div class="card-body">
+                                        <span>2</span>
+                                        <input type="range" class="form-range" id="max-hojasRange" min="2" max="500">
+                                        <span>500</span>
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+                            <div class="col">
+                                <div class="card pr-4">
+                                    <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un Nodo <span id="divisorValue"></span></h5>
+                                    <div class="card-body">
+                                        <span>2</span>
+                                        <input type="range" class="form-range" id="divisorRange" min="2" max="50">
+                                        <span>50</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-4 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras en un Nodo Hoja <span id="hojasValue"></span></h5>
+                                    <div class="card-body">
+                                        <span>1</span>
+                                        <input type="range" class="form-range" id="hojasRange" min="1" max="50">
+                                        <span>50</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Reducción mínima de impureza para dividir <span id="reduccionValue"></span></h5>
+                                    <div class="card-body">
+                                        <span>0</span>
+                                        <input type="range" class="form-range" id="reduccionRange" min="0" max="0.1" value="0.05" step="0.001">
+                                        <span>0.1</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card">
+                                    <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
+                                    <div class="card-body pt-1">
+
+                                    <input class="form-check-input" type="radio" value="" name="semillaRadio" id="semillaRadio">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Mejor
+                                    </label>
+                                    <br>
+                                    <input class="form-check-input" type="radio" value="" name="semillaRadio" id="aleatorioRadio" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Aleatorio
+                                    </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Parámetro de poda <br>costo-complejidad <span id="ccpValue"></span></h5>
+                                    <div class="card-body">
+                                        <span>0</span>
+                                        <input type="range" class="form-range" id="ccpRange" min="0" max="0.1" value="0.05" step="0.001">
+                                        <span>0.1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="container hiper hidden mt-4" id="kNeighbors">
+                        <form action="">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card pr-3">
+                                    <h5 class="header" style="font-size: 1rem;">Criterio</h5>
+                                    <div class="card-body pt-1">
+
+                                    <input class="form-check-input" type="radio" name="criterioRadio" id="entropyRadio-KNN">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Entropia
+                                    </label>
+                                    <br>
+                                    <input class="form-check-input" type="radio" name="criterioRadio" id="giniRadio-KNN" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Indice Gini (Default)
+                                    </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Profundida Máxima (<span id="nodosValue-KNN">Nodos</span>)</h5>
+                                    <div class="card-body pt-3">
+                                        <span>1</span>
+                                        <input type="range" class="form-range" id="nodosRange-KNN" min="1" max="100">
+                                        <span>100</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Máximo de nodos hoja <span id="max-hojasValue-KNN"></span></h5>
+                                    <div class="card-body">
+                                        <span>2</span>
+                                        <input type="range" class="form-range" id="max-hojasRange-KNN" min="2" max="500" step="1">
+                                        <span>500</span>
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+                            <div class="col">
+                                <div class="card pr-4">
+                                    <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un Nodo <span id="divisorValue-KNN"></span></h5>
+                                    <div class="card-body">
+                                        <span>2</span>
+                                        <input type="range" class="form-range" id="divisorRange-KNN" min="2" max="50">
+                                        <span>50</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-4 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras en un Nodo Hoja <span id="hojasValue-KNN"></span></h5>
+                                    <div class="card-body">
+                                        <span>1</span>
+                                        <input type="range" class="form-range" id="hojasRange-KNN" min="1" max="50">
+                                        <span>50</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Reducción mínima de impureza para dividir <span id="reduccionValue-KNN"></span></h5>
+                                    <div class="card-body">
+                                        <span>0</span>
+                                        <input type="range" class="form-range" id="reduccionRange-KNN" min="0" max="0.1" value="0.05" step="0.001">
+                                        <span>0.1</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card">
+                                    <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
+                                    <div class="card-body pt-1">
+
+                                    <input class="form-check-input" type="radio" value="" name="semillaRadio" id="semillaRadio-KNN">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Mejor
+                                    </label>
+                                    <br>
+                                    <input class="form-check-input" type="radio" value="" name="semillaRadio" id="aleatorioRadio-KNN" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Aleatorio
+                                    </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Parámetro de poda <br>costo-complejidad <span id="ccpValue-KNN"></span></h5>
+                                    <div class="card-body">
+                                        <span>0</span>
+                                        <input type="range" class="form-range" id="ccpRange-KNN" min="0" max="0.1" value="0.05" step="0.001">
+                                        <span>0.1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="container hiper hidden mt-4" id="randomForest">
+                        <form action="">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card pr-3">
+                                    <h5 class="header" style="font-size: 1rem;">Criterio</h5>
+                                    <div class="card-body pt-1">
+
+                                    <input class="form-check-input" type="radio" name="criterioRadio" value="" id="entropyRadio-RF">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Entropia
+                                    </label>
+                                    <br>
+                                    <input class="form-check-input" type="radio" name="criterioRadio" value="" id="giniRadio-RF" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Indice Gini (Default)
+                                    </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Profundida Máxima (<span id="nodosValue-RF">Nodos</span>)</h5>
+                                    <div class="card-body pt-3">
+                                        <span>1</span>
+                                        <input type="range" class="form-range" id="nodosRange-RF" min="1" max="100">
+                                        <span>100</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Máximo de nodos hoja <span id="max-hojasValue-RF"></span></h5>
+                                    <div class="card-body">
+                                        <span>2</span>
+                                        <input type="range" class="form-range" id="max-hojasRange-RF" min="2" max="500">
+                                        <span>500</span>
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+                            <div class="col">
+                                <div class="card pr-4">
+                                    <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un Nodo <span id="divisorValue-RF"></span></h5>
+                                    <div class="card-body">
+                                        <span>2</span>
+                                        <input type="range" class="form-range" id="divisorRange-RF" min="2" max="50">
+                                        <span>50</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-4 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras en un Nodo Hoja <span id="hojasValue-RF"></span></h5>
+                                    <div class="card-body">
+                                        <span>1</span>
+                                        <input type="range" class="form-range" id="hojasRange-RF" min="1" max="50">
+                                        <span>50</span>
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Reducción mínima de impureza para dividir <span id="reduccionValue-RF"></span></h5>
+                                    <div class="card-body">
+                                        <span>0</span>
+                                        <input type="range" class="form-range" id="reduccionRange-RF" min="0" max="0.1" value="0.05" step="0.001">
+                                        <span>0.1</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card">
+                                    <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
+                                    <div class="card-body pt-1">
+
+                                    <input class="form-check-input" type="radio" value="" name="semillaRadio" id="semillaRadio-RF">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Mejor
+                                    </label>
+                                    <br>
+                                    <input class="form-check-input"type="radio" value="" name="semillaRadio" id="aleatorioRadio-RF" checked>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Aleatorio
+                                    </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="card pr-3 mt-4">
+                                    <h5 class="header" style="font-size: 1rem;">Parámetro de poda <br>costo-complejidad <span id="ccpValue-RF"></span></h5>
+                                    <div class="card-body">
+                                        <span>0</span>
+                                        <input type="range" class="form-range" id="ccpRange-RF" min="0" max="0.1" value="0.05" step="0.001">
+                                        <span>0.1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
 
 
                 </div>
