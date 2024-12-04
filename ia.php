@@ -90,7 +90,7 @@
 
              <!-- Nav Item - Cuenta -->
             <li class="nav-item">
-                <a class="nav-link pl-5 pl-1 especial" href="#">
+                <a class="nav-link pl-5 pl-1 especial" href="account.php">
                     <i class="fas fa-solid fa-user"></i>
                     <span>Cuenta</span></a>
             </li>

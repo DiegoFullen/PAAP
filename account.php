@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Dashboard</title>
+    <title>Cuenta</title>
 
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/account.css">
     <!-- Custom fonts for this template-->
     <link href="js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -129,28 +130,25 @@
 
                     <!-- Page Heading -->
                      <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
-                    <div class="container mt-5"  id="infoSet">
-                        <div class="row justify-content-md-end">  
-
+                    <div class="container mt-5"  id="accountSet">
+                        <div class="row justify-content-md">  
                             <div class="col-md-auto">
-                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem; ">Modelo #<span>placeholder</span> </span> 
-                            </div>
-                            <div class="col-md-auto">
-                                <span style="font-weight: 400; font-size: 1.1rem;">placeholderEntrenamiento</span>
-                            </div>
-                            <div class="col">
-                                <button class="btn-circle" id ="btn-download"><i class="fas fa-solid fa-download"></i></button>
+                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Mi Perfil </span> 
+                                <a href="accountEdit.php" class="btn btn-light ml-4" role="button" aria-disabled="true">Editar</a>
                             </div>
                         </div>   
 
-                        <div class="row pr-5 justify-content-md-center">
-                            <div class="col-md-auto">
-                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Dataset de Entrenamiento</span> <br>
-                                <span>Placeholder-archivo</span>
+                        <div class="row ml-3 mt-4">
+                            <div class="col-2">
+                                <img src="resources/img/usuario.png" alt="usuarioPerfil" class="imgPlaceholder">
                             </div>
-                            <div class="col-md-auto ml-5">
-                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span> <br>
-                                <span>Placeholder-horas</span>
+                            <div class="col-3 ml-5" style="text-align: start;">
+                                <label for="userName" class="col-form-label">Nombre Usuario</label>
+                                <input type="text" readonly class="form-control-plaintext" id="userName" placeholder="Usuario1234" value="Placeholder">
+                            </div>
+                            <div class="col-3 ml-5" style="text-align: start;">   
+                                <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
+                                <input type="text"  readonly class="form-control-plaintext" id="accountType" placeholder="Usuario1234" value="Premium">
                             </div>
                         </div>
                     </div>
@@ -161,21 +159,44 @@
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
 
-                    <div class="row mt-5">
-                        <div class="col-lg-6">
-                            <!-- Default Card Example -->
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit
+                    <div class="row" style="margin-top: 5rem;">
+                        <!-- Default Card Example -->
+                        <div class="card mb-4 border" id="accountInfo">
+                            <div class="card-body">
+                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Información del Perfil </span>
+
+                                <div class="row mt-4 ml-5">
+                                    
+                                    <div class="col-md-auto">
+                                        <label for="accountName" class="col-form-label">Nombre</label>
+                                        <input type="text" readonly class="form-control-plaintext ml-3" id="accountName" placeholder="Héctor Mariano" value="">
+                                    </div>
+
+                                    <div class="col-md-auto">
+                                        <label for="accountFLast" class="col-form-label">Primer Apellido</label>
+                                        <input type="text" readonly class="form-control-plaintext ml-3" id="accountFLast" placeholder="Padilla" value="">
+                                    </div>
+
+                                    <div class="col-md-auto">
+                                        <label for="accountSLast" class="col-form-label">Segundo Apellido</label>
+                                        <input type="text" readonly class="form-control-plaintext ml-3" id="accountSLast" placeholder="Rodríguez" value="">
+                                    </div>
                                 </div>
+
+                                <div class="row mt-2 ml-5">
+                                    <div class="col">
+                                        <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
+                                        <input type="email" readonly class="form-control-plaintext ml-3" id="accountEmail" placeholder="alumnoCeti@ceti.mx" value="">
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="accountPassword" class="col-form-label">Contraseña</label><i class="fas fa-solid fa-eye pl-3" style="color: black;" id="clearPassword"></i>
+                                        <input type="password" readonly class="form-control-plaintext ml-3" id="accountPassword" placeholder="**********">
+                                    </div>
+                                </div>
+
                             </div>
-
                         </div>
-
                     </div>
 
                 </div>
