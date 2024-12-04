@@ -21,7 +21,7 @@ def login_view(request):
 
         with connection.cursor() as cursor:
             cursor.execute(
-                "SELECT * FROM gestion_usuarios_user WHERE email=%s AND password=%s",
+                "SELECT * FROM gestion_usuarios_user WHERE email=%s AND password=%s AND status=1",
                 [email, password]
             )
             user = cursor.fetchone()
@@ -36,3 +36,5 @@ def dashboard_view(reques):
     return render(reques, 'dashboard.html')
 def ia_view(request):
     return render(request, 'ia.html')
+
+
