@@ -20,25 +20,25 @@ body{
 }
 
 nav{
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    justify-content: space-between;
-    min-height: 6vh;
-    background-color: #FFFFFF;
-    vertical-align: middle;
+    display: flex !important;
+    align-items: center !important;
+    padding: 5px !important;
+    justify-content: space-between !important;
+    min-height: 6vh !important;
+    background-color: #FFFFFF !important;
+    vertical-align: middle !important;
 }
 
 .enlaces-menu{
-    display: flex;
-    padding: 0;
+    display: flex !important;
+    padding: 0 !important;
 }
 
 .enlaces-menu li{
-    margin-top: auto;
-    margin-bottom: auto;
-    padding:0.2em 1.2em;
-    list-style: none;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    padding:0.2em 1.2em !important;
+    list-style: none !important;
 }
 
 .enlaces-menu li a{

@@ -18,7 +18,7 @@
                 </ul>
                 <ul class="enlaces-menu">
                     <li><a href="login.php" id="linkLogin">Login</a></li>
-                    <li><a href="#" id="btnSign" id="linkSign">Sign Up</a></li>
+                    <li><a href="register.php" id="btnSign" id="linkSign">Sign Up</a></li>
                 </ul>
             </nav>
         </header>
