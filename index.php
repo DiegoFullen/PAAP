@@ -14,7 +14,7 @@
                 <ul class="enlaces-menu">
                     <li><a href="#" class="roboto-bold" id="linkPAAP">PAAP</a></li>
                     <li><a href="index.php" id="linkInicio">Inicio</a></li>
-                    <li><a href="#" id="linkPlanes">Planes</a></li>
+                    <li><a href="pricing.php" id="linkPlanes">Planes</a></li>
                 </ul>
                 <ul class="enlaces-menu">
                     <li><a href="login.php" id="linkLogin">Login</a></li>

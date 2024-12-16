@@ -83,7 +83,7 @@
             
             <!-- Nav Item - Pagos -->
             <li class="nav-item">
-                <a class="nav-link pl-5 pl-1 especial" href="#">
+                <a class="nav-link pl-5 pl-1 especial" href="payment.php">
                     <i class="fas fa-solid fa-wallet"></i>
                     <span>Pagos</span></a>
             </li>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="col-3 ml-5" style="text-align: start;">
                                 <label for="userName" class="col-form-label">Nombre Usuario</label>
-                                <input type="text" class="form-control" id="userName" placeholder="Usuario1234" value="">
+                                <input type="text" class="form-control" id="userName" name="userName" placeholder="Usuario1234" value="" required>
                             </div>
                             <div class="col-3 ml-5" style="text-align: start;">   
                                 <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
@@ -169,41 +169,41 @@
                                     
                                     <div class="col-md-auto">
                                         <label for="accountName" class="col-form-label">Nombre*</label>
-                                        <input type="text" class="form-control ml-3" id="accountName" placeholder="Héctor Mariano" value="">
+                                        <input type="text" class="form-control ml-3" id="accountName" placeholder="Héctor Mariano" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
                                     </div>
 
                                     <div class="col-md-auto">
                                         <label for="accountFLast" class="col-form-label">Primer Apellido*</label>
-                                        <input type="text" class="form-control ml-3" id="accountFLast" placeholder="Padilla" value="">
+                                        <input type="text" class="form-control ml-3" id="accountFLast" placeholder="Padilla" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
                                     </div>
 
                                     <div class="col-md-auto">
                                         <label for="accountSLast" class="col-form-label">Segundo Apellido*</label>
-                                        <input type="text" class="form-control ml-3" id="accountSLast" placeholder="Rodríguez" value="">
+                                        <input type="text" class="form-control ml-3" id="accountSLast" placeholder="Rodríguez" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
                                     </div>
                                 </div>
 
                                 <div class="row mt-3 ml-5">
                                     <div class="col">
-                                        <label for="accountEmail" class="col-form-label">Correo Electrónico*</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%;">
+                                        <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
+                                        <input type="email" readonly class="form-control-plaintext ml-3" id="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%; cursor:default;" required>
                                     </div>
 
                                     <div class="col-5">
                                         <label for="accountPassword" class="col-form-label">Contraseña*</label><i class="fas fa-solid fa-eye pl-3" style="color: black;" id="clearPassword"></i>
-                                        <input type="password" class="form-control ml-3" id="accountPassword" placeholder="**********">
+                                        <input type="password" class="form-control ml-3" id="accountPassword" placeholder="**********" required>
                                     </div>
                                 </div>
 
                                 <div class="row mt-3 ml-5">
                                     <div class="col">
                                         <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%;">
+                                        <input type="email" class="form-control ml-3" id="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%;" required>
                                     </div>
 
                                     <div class="col-5">
                                         <label for="passwordCon" class="col-form-label">Confirmación*</label>
-                                        <input type="password" class="form-control ml-3" id="passwordCon" placeholder="**********">
+                                        <input type="password" class="form-control ml-3" id="passwordCon" placeholder="**********" required>
                                     </div>
                                 </div>
 

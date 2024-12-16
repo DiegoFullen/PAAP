@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
 #accountSet{
-    border: none;
+    border: solid;
     border-color: rgb(0, 0, 155)    ;
     border-radius: 10px;
     padding: calc(2px + 0.5rem);
@@ -9,11 +11,13 @@
     align-items: center;
     text-align: end;
 }
-#accountSet .infoSet label{
+#accountSet label{
     color: black;
+    font-family: "Inter", sans-serif;
 }
 #accountSet .infoSet input{
     cursor: default;
+    font-family: "Inter", sans-serif;
 }
 
 #accountInfo{
@@ -31,8 +35,12 @@
     min-width: 4rem;
 }
 
-#clearPassword{
-    cursor: pointer;
+#paycheck{
+    background-color: #FBFBFB;
+    font-size: 1rem;
+}
+#paycheck label{
+    color: black;
 }
 
 .imgPlaceholder{

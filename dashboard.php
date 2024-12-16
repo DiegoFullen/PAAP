@@ -82,7 +82,7 @@
             
             <!-- Nav Item - Pagos -->
             <li class="nav-item">
-                <a class="nav-link pl-5 pl-1 especial" href="#">
+                <a class="nav-link pl-5 pl-1 especial" href="payment.php">
                     <i class="fas fa-solid fa-wallet"></i>
                     <span>Pagos</span></a>
             </li>

@@ -10,7 +10,7 @@
     <title>Cuenta</title>
 
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="css/paymentUpgrade.css">
     <!-- Custom fonts for this template-->
     <link href="js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -83,7 +83,7 @@
             
             <!-- Nav Item - Pagos -->
             <li class="nav-item">
-                <a class="nav-link pl-5 pl-1 especial" href="payment.php">
+                <a class="nav-link pl-5 pl-1 especial" href="#">
                     <i class="fas fa-solid fa-wallet"></i>
                     <span>Pagos</span></a>
             </li>
@@ -134,7 +134,7 @@
                         <div class="row justify-content-md">  
                             <div class="col-md-auto">
                                 <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Mi Perfil </span> 
-                                <a href="accountEdit.php" class="btn btn-light ml-4" role="button" aria-disabled="true">Editar</a>
+                                <a href="" class="btn btn-light ml-4 disabled" role="button" aria-disabled="true">Editar</a>
                             </div>
                         </div>   
 
@@ -159,43 +159,32 @@
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
 
-                    <div class="row" style="margin-top: 5rem;">
-                        <!-- Default Card Example -->
-                        <div class="card mb-4 border" id="accountInfo">
-                            <div class="card-body">
-                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Información del Perfil </span>
+                    <div class="row mt-5 ml-5">
+                        <div class="col-3">
 
-                                <div class="row mt-4 ml-5">
-                                    
-                                    <div class="col-md-auto">
-                                        <label for="accountName" class="col-form-label">Nombre</label>
-                                        <input type="text" readonly class="form-control-plaintext ml-3" id="accountName" placeholder="Héctor Mariano" value="">
-                                    </div>
+                            <div class="card" id="paycheck">
+                                <div class="card-body">
+                                <div class="col">
+                                    <form>
+                                        <div class="form-group mb-5">
+                                            <label for="selectCategory" class="montserrat">ALGORITMO</label>
+                                            <select class="form-control" id="selectCategory">
+                                                <option>Tipo de Cuenta</option>
+                                                <option value="arbolDesicion">Integrado</option>
+                                                <option value="kNeighbors">CETI</option>
+                                                <option value="randomForest">Premium</option>
+                                            </select>
+                                        </div> 
 
-                                    <div class="col-md-auto">
-                                        <label for="accountFLast" class="col-form-label">Primer Apellido</label>
-                                        <input type="text" readonly class="form-control-plaintext ml-3" id="accountFLast" placeholder="Padilla" value="">
-                                    </div>
-
-                                    <div class="col-md-auto">
-                                        <label for="accountSLast" class="col-form-label">Segundo Apellido</label>
-                                        <input type="text" readonly class="form-control-plaintext ml-3" id="accountSLast" placeholder="Rodríguez" value="">
-                                    </div>
-                                </div>
-
-                                <div class="row mt-2 ml-5">
-                                    <div class="col">
-                                        <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
-                                        <input type="email" readonly class="form-control-plaintext ml-3" id="accountEmail" placeholder="alumnoCeti@ceti.mx" value="">
-                                    </div>
-
-                                    <div class="col">
-                                        <label for="accountPassword" class="col-form-label">Contraseña</label><i class="fas fa-solid fa-eye pl-3" style="color: black;" id="clearPassword"></i>
-                                        <input type="password" readonly class="form-control-plaintext ml-3" id="accountPassword" placeholder="**********">
-                                    </div>
-                                </div>
-
+                                        <button type="submit" form="selectionAlgorithm" class="btn btn-outline-primary" style="width: 100%;"> <span>Actualizar</span> </button>
+                                    </form>
                             </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+
                         </div>
                     </div>
 
@@ -222,7 +211,7 @@
     <!-- Custom scripts for all pages-->
      
     <script src="js/dashboard.min.js"></script>
-
+    <script src="js/paymentUpgrade.js"></script>
 </body>
 
 </html>

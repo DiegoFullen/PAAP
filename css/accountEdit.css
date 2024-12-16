@@ -23,7 +23,6 @@
     color: black;
 }
 #accountInfo input{
-    cursor: default;
     width: fit-content;
     min-width: 4rem;
 }

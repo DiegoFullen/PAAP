@@ -83,7 +83,7 @@
             
             <!-- Nav Item - Pagos -->
             <li class="nav-item">
-                <a class="nav-link pl-5 pl-1 especial" href="#">
+                <a class="nav-link pl-5 pl-1 especial" href="payment.php">
                     <i class="fas fa-solid fa-wallet"></i>
                     <span>Pagos</span></a>
             </li>
@@ -179,12 +179,24 @@
                                 <form action="" id="selectionAlgorithm">
                                     <div class="form-group">
                                         <label for="selectAlgorithm" class="montserrat">ALGORITMO</label>
-                                        <select class="form-control" id="selectAlgorithm" onchange="showHyper()">
-                                            <option>Forma de Entrenamiento</option>
+                                        <select class="form-control" id="selectAlgorithm" onchange="showHyper()" required>
+                                            <option value="">Forma de Entrenamiento</option>
                                             <option value="arbolDesicion">Arboles de Decisión</option>
                                             <option value="kNeighbors">K-Nearest Neighbors</option>
                                             <option value="randomForest">Random Forest</option>
                                         </select>
+                                        
+                                        <div class="ml-5 mt-3">
+                                            <input class="form-check-input" type="radio" name="algoritmoType" id="typeRegresion" required>
+                                            <label class="form-check-label mr-5" for="flexCheckDefault">
+                                                Regresión
+                                            </label>
+                                            
+                                            <input class="form-check-input" type="radio" name="algoritmoType" id="typeClasificación">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Clasificación
+                                            </label>
+                                        </div>
                                     </div> 
                                 </form>
                                 <button type="submit" form="selectionAlgorithm" class="btn btn-outline-primary" style="width: 100%;"> <span>Guardar Configuración</span> </button>
