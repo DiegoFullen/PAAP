@@ -4,7 +4,9 @@ from django.contrib.auth.hashers import make_password
 class User(models.Model):
     email = models.EmailField(primary_key=True) 
     username = models.CharField(max_length=20)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
+    firstlastname = models.CharField(max_length=50)
+    secondlastname = models.CharField(max_length=50)
     password = models.CharField(max_length=128) 
     email_recover = models.EmailField()
     status = models.BooleanField()

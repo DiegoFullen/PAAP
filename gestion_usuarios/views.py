@@ -81,7 +81,6 @@ def delete_user(request, email):
     return redirect('user-list')
 
 
-
 # Eliminar Usuario
 def delete_user2(request, email):
     with connection.cursor() as cursor:

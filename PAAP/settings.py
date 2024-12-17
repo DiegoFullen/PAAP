@@ -100,6 +100,14 @@ STATICFILES_DIRS = [
 
 WSGI_APPLICATION = 'PAAP.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'angelohaziel2002l@gmail.com'
+EMAIL_HOST_PASSWORD = 'ljokavhgxwaxmykd'  # Puede ser una clave de aplicación
+DEFAULT_FROM_EMAIL = 'angelohaziel2002l@gmail.com'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
