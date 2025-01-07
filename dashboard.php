@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -62,7 +62,7 @@
 
              <!-- Nav Item - Tables -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="resources.php">
                     <i class="fas fa-book"></i>
                     <span>Recursos</span></a>
             </li>
@@ -96,7 +96,7 @@
              
             <!-- Nav Item - Manual -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="manual.php">
                     <i class="fas fa-solid fa-info"></i>
                     <span>Manual</span></a>
             </li>

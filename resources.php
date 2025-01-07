@@ -97,7 +97,7 @@
              
             <!-- Nav Item - Manual -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="manual.php">
                     <i class="fas fa-solid fa-info"></i>
                     <span>Manual</span></a>
             </li>
