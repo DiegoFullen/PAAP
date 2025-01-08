@@ -30,7 +30,7 @@
                 </ul>
                 <ul class="enlaces-menu">
                     <li><a href="#" id="linkLogin" class="disabled">Login</a></li>
-                    <li><a href="#" id="btnSign" id="linkSign">Sign Up</a></li>
+                    <li><a href="register.php" id="btnSign" id="linkSign">Sign Up</a></li>
                 </ul>
             </nav>
         </header>

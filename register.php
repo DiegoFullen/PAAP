@@ -29,7 +29,7 @@
             </ul>
             <ul class="enlaces-menu">
                 <li><a href="login.php" id="linkLogin">Login</a></li>
-                <li><a class="" href="" id="btnSign" id="linkSign">Sign Up</a></li>
+                <li><a class="" href="#" id="btnSign" id="linkSign">Sign Up</a></li>
             </ul>
         </nav>
     </header>
