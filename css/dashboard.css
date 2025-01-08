@@ -99,17 +99,17 @@
     color: black;
 }
 
-dialog {
+#dialog {
     font-family: "Inter", sans-serif;
     animation: fade-out 0.7s ease-out;
     border-radius: 12px;
   }
   
-  dialog[open] {
+  #dialog[open] {
     animation: fade-in 0.7s ease-out;
   }
   
-  dialog[open]::backdrop {
+  #dialog[open]::backdrop {
     animation: backdrop-fade-in 0.7s ease-out forwards;
   }
   

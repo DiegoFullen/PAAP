@@ -159,6 +159,26 @@
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
 
+                    <dialog id="ms-confirm">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title faustina-regular">Confirmación</h5>
+                                <p class="card-text roboto-regular">Se actualizarán los datos conforme a la nueva información registrada. <br>¿Está seguro de continuar?</p>
+                                <button class="btn btn-primary mr-3" id="optConfirmar" type="button">Confirmar Cambios</button> <a href="account.php" id="optCancelar" class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
+                            </div>
+                        </div>
+                    </dialog>
+
+                    <dialog id="ms-correct">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title faustina-regular">Operación Exitosa</h5>
+                                <p class="card-text roboto-regular">Los cambios han sido realizados con éxito</p>
+                                <button class="btn btn-primary mr-3" id="optCerrar">Continuar</button>
+                            </div>
+                        </div>
+                    </dialog>
+
                     <div class="row" style="margin-top: 5rem;">
                         <!-- Default Card Example -->
                         <div class="card mb-4 border" id="accountInfo">
@@ -212,7 +232,7 @@
                     </div>
                     
                     <div class="row justify-content-md-end">
-                        <button class="btn btn-primary mr-3">Confirmar Cambios</button> <a href="account.php" class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
+                        <button class="btn btn-primary mr-3" id="btnConfirmar" type="button">Confirmar Cambios</button> <a href="account.php" id="btnCancelar" class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
                     </div>
 
                     </form>
@@ -239,6 +259,7 @@
     <!-- Custom scripts for all pages-->
      
     <script src="js/dashboard.min.js"></script>
+    <script src="js/accountEdit.js"></script>
 
 </body>
 
