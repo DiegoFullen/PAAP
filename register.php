@@ -32,8 +32,9 @@
                 <li><a class="" href="" id="btnSign" id="linkSign">Sign Up</a></li>
             </ul>
         </nav>
+    </header>
 
-        <div class="content">
+    <div class="content">
             <div class="container-fluid">
                 <div class="row" id="title">
                     <div class="col"></div>
@@ -118,8 +119,6 @@
                 </div>
             </div>
         </div>
-
-    </header>
 
 
     <script src="js/main.js"></script>
