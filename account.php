@@ -63,7 +63,7 @@
 
              <!-- Nav Item - Tables -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="resources.php">
                     <i class="fas fa-book"></i>
                     <span>Recursos</span></a>
             </li>
