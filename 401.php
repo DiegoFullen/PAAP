@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>404</title>
+        <title>401</title>
 
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/404.css">
+        <link rel="stylesheet" href="css/401.css">
         <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 
         <script src="https://kit.fontawesome.com/2cdb583688.js" crossorigin="anonymous"></script>
@@ -39,10 +39,10 @@
         <div class="contents">
 
             <div id="tittle">
-                <h4 class="gupter-regular" style="margin-left: auto; margin-right: auto;">ERROR 404</h4><br>
-                <h4 class="gupter-regular">La "X" no siempre marca el lugar después de todo</h4>
-                <p class="inter-regular">Parece que intentas acceder a recursos que ya no tenemos disponibles o nunca existieron.
-                                        Regresa al <a href="index.php">Menu de Inicio</a> para buscar nuevamente el contenido</p>
+                <h4 class="gupter-regular" style="margin-left: auto; margin-right: auto;">ERROR 401</h4><br>
+                <h4 class="gupter-regular">Esta región esta prohibida para personas como tu</h4>
+                <p class="inter-regular">Parece que intentas acceder a recursos a los cuales no tienes autorización.
+                                        Regresa al <a href="index.php">Menu de Inicio</a> e intenta acceder a tu cuenta</p>
             </div>
 
             <div id="image">

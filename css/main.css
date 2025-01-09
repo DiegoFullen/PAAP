@@ -33,6 +33,14 @@ nav{
     vertical-align: middle !important;
 }
 
+footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
 .enlaces-menu{
     display: flex !important;
     padding: 0 !important;
