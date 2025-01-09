@@ -125,7 +125,7 @@
                 <a class="text-body" href="#">PAAP.com</a>
             </div>
             <!-- Copyright -->
-            </footer>
+        </footer>
 
         <script src="js/404.js"></script>
         <script src="resources/bootstrap/js/bootstrap.min.js"></script>

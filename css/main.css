@@ -122,6 +122,16 @@ footer{
     font-weight: 400;
     font-style: normal;
 }
+.gupter-medium {
+    font-family: "Gupter", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.gupter-bold {
+    font-family: "Gupter", serif;
+    font-weight: 600;
+    font-style:normal;
+}
 
 .inter-regular {
     font-family: "Inter", serif;
@@ -130,10 +140,24 @@ footer{
     font-style: normal;
   }
 
+  .inter-italic {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+  }
+
 .faustina-regular {
     font-family: "Faustina", serif;
     font-optical-sizing: auto;
     font-weight: 400;
+    font-style: normal;
+  }
+
+  .faustina-bold {
+    font-family: "Faustina", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
     font-style: normal;
   }
 
