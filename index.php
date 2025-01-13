@@ -251,10 +251,10 @@
             <!-- Copyright -->
         </footer>
 
-        <script scr="js/main.js"></script>
+        <script src="js/main.js"></script>
         <script src="resources/bootstrap/js/bootstrap.min.js"></script>
 
-        <script scr="js/index.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
 
