@@ -97,9 +97,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'htdocs/static'),
 ]
 
-
 WSGI_APPLICATION = 'PAAP.wsgi.application'
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
