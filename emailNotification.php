@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recuperación de Contraseña</title>
+
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/emailNotification.css">
+        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+
+        <script src="https://kit.fontawesome.com/2cdb583688.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        
+    </head>
+
+    <style>
+        body{
+            background:url('resources/img/fondo.png') repeat center center fixed;
+        }
+    </style>
+
+    <body>
+        <header>
+        </header>
+
+        <section class="vh-80 gradient-custom">
+            <div class="container py-5 h-80">
+                <div class="row d-flex justify-content-center align-items-center h-90">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-4" id="content">
+                    <div class="card bg-white text-black" style="border-radius: 1rem;">
+                        <div class="card-body text-center mx-auto" id="cardLogin">
+
+                            <img src="resources/img/logotipoColor.png" class="img-fluid rounded" style="max-width: 50%;" alt="...">
+                            <p class="mt-3">Se ha enviado un correo con intrucciones al correo: <br> <span id="emailRetrieve">placeholder</span> <br>Puede cerrar esta ventana</a></p>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="js/emailNotification.js"></script>
+        <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

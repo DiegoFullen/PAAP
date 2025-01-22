@@ -144,7 +144,7 @@
                             </div>
                             <div class="col-3 ml-5" style="text-align: start;">
                                 <label for="userName" class="col-form-label">Nombre Usuario</label>
-                                <input type="text" class="form-control" id="userName" name="userName" placeholder="Usuario1234" value="" required>
+                                <input type="text" class="form-control" id="userName" name="userName" placeholder="Usuario1234" value="">
                             </div>
                             <div class="col-3 ml-5" style="text-align: start;">   
                                 <label for="accountType" class="col-form-label">Tipo de Cuenta</label>

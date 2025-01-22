@@ -61,7 +61,7 @@
                                     <button type="button" class="btn btn-outline-light w-100 mt-4 mb-3">Iniciar Sesión</button>
                                 </form>
                                 
-                                <a href="#" id="recovery">¿Olvidaste tu contraseña?</a>
+                                <a href="emailRetrieve.php" id="recovery">¿Olvidaste tu contraseña?</a>
                                 <hr class="w-100 mb-5">
 
                                 <script src="https://accounts.google.com/gsi/client" async></script>
