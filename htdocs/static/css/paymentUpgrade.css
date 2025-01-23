@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+#accountSet{
+    border: solid;
+    border-color: rgb(0, 0, 155)    ;
+    border-radius: 10px;
+    padding: calc(2px + 0.5rem);
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    min-width: 440px;
+    align-items: center;
+    text-align: end;
+}
+#accountSet label{
+    color: black;
+    font-family: "Inter", sans-serif;
+}
+#accountSet .infoSet input{
+    cursor: default;
+    font-family: "Inter", sans-serif;
+}
+
+#accountInfo{
+    padding: calc(2px + 0.5rem);
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    min-width: 440px;
+}
+#accountInfo label{
+    color: black;
+}
+#accountInfo input{
+    cursor: default;
+    width: fit-content;
+    min-width: 4rem;
+}
+
+#paycheck{
+    background-color: #FBFBFB;
+    font-size: 1rem;
+}
+#paycheck label{
+    color: black;
+}
+
+.imgPlaceholder{
+    min-width: 50px;
+    width: 50%;
+    height: auto;
+}
+
+.border {
+    border-width: 4px;
+    border-style: solid;
+    border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+  }

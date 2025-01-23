@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Gupter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faustina&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Imprima&display=swap');
+
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    line-height: 1.6;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+nav{
+    display: flex !important;
+    align-items: center !important;
+    padding: 5px !important;
+    justify-content: space-between !important;
+    min-height: 6vh !important;
+    background-color: #FFFFFF !important;
+    vertical-align: middle !important;
+}
+
+footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.enlaces-menu{
+    display: flex !important;
+    padding: 0 !important;
+}
+
+.enlaces-menu li{
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    padding:0.2em 1.2em !important;
+    list-style: none !important;
+}
+
+.enlaces-menu li a{
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: black;
+    font-weight: 500;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.enlaces-menu li a:hover{
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #9F9F9F;
+    font-weight: 500;
+}
+
+
+.roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+.roboto-bold {
+    font-family: "Roboto", serif !important;
+    font-weight: 700 !important;
+    font-style: normal !important;
+}
+
+.disabled{
+    text-decoration: none !important;
+    font-size: 1.4rem !important;
+    color: #9F9F9F !important;
+    font-weight: 500 !important;
+    pointer-events: none;
+    cursor: default;
+}
+
+.no-link{
+    pointer-events: none;
+    cursor: default;
+}
+
+#btnSign{
+    display:inline-block;
+    padding:0.1em 2.1em;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    background-color: #1e0096;
+    text-align:center;
+}
+
+#linkPAAP{
+    pointer-events: none;
+    font-size: 2rem;
+}
+
+
+.gupter-regular {
+    font-family: "Gupter", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.gupter-medium {
+    font-family: "Gupter", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.gupter-bold {
+    font-family: "Gupter", serif;
+    font-weight: 600;
+    font-style:normal;
+}
+
+.inter-regular {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .inter-italic {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+.faustina-regular {
+    font-family: "Faustina", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .faustina-bold {
+    font-family: "Faustina", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .imprima-regular {
+    font-family: "Imprima", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }

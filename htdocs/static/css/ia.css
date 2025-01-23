@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@700&display=swap');
+
+.header{
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: black;
+    font-size: 1.22rem;
+}
+
+.card-body-file{
+    background-color: #F8F8FF;
+    border: dashed #7200cf;
+}
+.card-title{
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: black;
+    font-size: 1.0rem;
+}
+
+.hidden{
+    display: none;
+}
+
+.hiper{
+    overflow: auto;
+    height: 18rem !important;
+}
+
+.hiper .card    {
+    background-color: #FBFBFB;
+    border-radius: 12px;
+    border-color: transparent;
+    box-shadow: 0px 2px 2px gray;
+    padding: 10px 50px 0px 30px;
+    min-height: 8em;
+}
+
+#modelName{
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+input[type=file]{
+    position: absolute;
+    visibility: hidden;
+    z-index: -9999;
+    width: 0;
+}

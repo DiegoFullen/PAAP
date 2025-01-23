@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>500</title>
+
+        <link rel="stylesheet" href="{% static 'css/main.css'%}">
+        <link rel="stylesheet" href="{% static 'css/500.css'%}">
+        <link rel="stylesheet" href="{% static 'resources/bootstrap/css/bootstrap.min.css'%}">
+
+        <script src="https://kit.fontawesome.com/2cdb583688.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        
+    </head>
+
+    <style>
+        #image{
+            opacity: 0.5;
+            background: center / contain no-repeat url("{% static 'resources/img/recompecabezas_deconstruido_1.png'%}");
+        }
+    </style>
+
+    <body>
+        <header>
+            <nav id="links">
+                <ul class="enlaces-menu">
+                    <li><a href="#" class="roboto-bold" id="linkPAAP">PAAP</a></li>
+                    <li><a href="{% url 'index'%}" id="linkInicio">Inicio</a></li>
+                    <li><a href="{% url 'pricing'%}" id="linkPlanes" >Planes</a></li>
+                </ul>
+                <ul class="enlaces-menu">
+                    <li><a href="{% url 'login'%}" id="linkLogin">Ingresar</a></li>
+                    <li><a href="{% url 'register'%}" id="btnSign">Registrar</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="contents">
+
+            <div id="tittle">
+                <h4 class="gupter-regular" style="margin-left: auto; margin-right: auto;">ERROR 500</h4><br>
+                <h4 class="gupter-regular">Creo que no tenía que mover eso... ups</h4>
+                <p class="inter-regular">Parece que uno de los becarios movió algo que no tenía y el servidor no puede procesar la solicitud.
+                                        Regresa al <a href="{% url 'index'%}">Menu de Inicio</a> e intenta nuevamente</p>
+            </div>
+
+            <div id="image">
+
+            </div>
+
+        </div>
+
+        <footer class="bg-body-tertiary text-center">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                <!-- Facebook -->
+                <a
+                data-mdb-ripple-init
+                    class="btn text-white btn-floating m-1"
+                    style="background-color: #3b5998;"
+                    href="#!"
+                    role="button"
+                    ><i class="fab fa-facebook-f"></i
+                ></a>
+
+                <!-- Twitter -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn text-white btn-floating m-1"
+                    style="background-color: #55acee;"
+                    href="#!"
+                    role="button"
+                    ><i class="fab fa-twitter"></i
+                ></a>
+
+                <!-- Google -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn text-white btn-floating m-1"
+                    style="background-color: #dd4b39;"
+                    href="#!"
+                    role="button"
+                    ><i class="fab fa-google"></i
+                ></a>
+
+                <!-- Instagram -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn text-white btn-floating m-1"
+                    style="background-color: #ac2bac;"
+                    href="#!"
+                    role="button"
+                    ><i class="fab fa-instagram"></i
+                ></a>
+
+                <!-- Linkedin -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn text-white btn-floating m-1"
+                    style="background-color: #0082ca;"
+                    href="#!"
+                    role="button"
+                    ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <!-- Github -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn text-white btn-floating m-1"
+                    style="background-color: #333333;"
+                    href="#!"
+                    role="button"
+                    ><i class="fab fa-github"></i
+                ></a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+                © 2025 PAAP:
+                <a class="text-body" href="#">PAAP.com</a>
+            </div>
+            <!-- Copyright -->
+            </footer>
+
+        <script src="{% static 'js/404.js'%}"></script>
+        <script src="{% static 'resources/bootstrap/js/bootstrap.min.js'%}"></script>
+    </body>
+</html>

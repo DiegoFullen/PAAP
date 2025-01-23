@@ -1,0 +1,48 @@
+#accountSet{
+    border: none;
+    border-color: rgb(0, 0, 155)    ;
+    border-radius: 10px;
+    padding: calc(2px + 0.5rem);
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    min-width: 440px;
+    align-items: center;
+    text-align: end;
+}
+#accountSet .infoSet label{
+    color: black;
+}
+#accountSet .infoSet input{
+    cursor: default;
+}
+
+#accountInfo{
+    padding: calc(2px + 0.5rem);
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    min-width: 440px;
+}
+#accountInfo label{
+    color: black;
+}
+#accountInfo input{
+    cursor: default;
+    width: fit-content;
+    min-width: 4rem;
+}
+
+#clearPassword{
+    cursor: pointer;
+}
+
+.imgPlaceholder{
+    min-width: 50px;
+    width: 50%;
+    height: auto;
+}
+
+.border {
+    border-width: 4px;
+    border-style: solid;
+    border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+  }
