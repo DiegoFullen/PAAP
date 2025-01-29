@@ -57,7 +57,7 @@
 
                                     <div class="col-6">
                                         <label for="accountName" class="col-form-label">Nombre/s*</label>
-                                        <input type="text" class="form-control ml-3" id="accountName" name="accountName"  style="width: 100%;" placeholder="Héctor Mariano" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
+                                        <input type="text" class="form-control ml-3" id="accountName" name="accountName"  style="width: 100%;" placeholder="Héctor Mariano" value="" required pattern="[A-Za-z\s]+" title="Solo se permiten carácteres">
                                     </div>
 
                                     <div class="col">
@@ -74,35 +74,58 @@
                                 <div class="row mt-5 ml-4">
                                     <div class="col">
                                         <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%; cursor:default;" required>
+                                        <input type="email" class="form-control ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" style="width: 80%;" required>
                                     </div>
 
                                     <div class="col">
                                         <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%;" required>
+                                        <input type="email" class="form-control ml-3" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" style="width: 80%;" required>
                                     </div>
-
-                                </div>
-
-                                <div class="row mt-5 ml-4">
 
                                     <div class="col">
                                         <label for="accountUsername" class="col-form-label">Nombre Usuario*</label>
                                         <input type="text" class="form-control ml-3" id="accountUsername" name="accountUsername" placeholder="User123" required minlength="6">
                                     </div>
+                                </div>
 
-                                    <div class="col">
+                                <div class="row mt-5 ml-5">
+
+                                    <div class="col" style="margin-left: 10%;">
                                         <label for="accountPassword" class="col-form-label">Contraseña*</label>
                                         <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword"></i>
                                         <input type="password" class="form-control ml-3" 
-                                               id="accountPassword" name="accountPassword" placeholder="**********" value="{{ password }}">
-                                    </div>
+                                               id="accountPassword" name="accountPassword" placeholder="**********" value="{{ password }}" required>
 
-                                    <div class="col">
-                                        <label for="accountPassword" class="col-form-label">Confirmar Contraseña*</label>
+                                               <label for="accountPassword" class="col-form-label">Confirmar Contraseña*</label>
                                         <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword2"></i>
                                         <input type="password" class="form-control ml-3" 
-                                               id="accountPassword2" name="accountPassword2" placeholder="**********" value="{{ password }}">
+                                               id="accountPassword2" name="accountPassword2" placeholder="**********" value="{{ password }}" required>
+                                    </div>
+
+                                    <div class="col" id="parameters">
+                                        <p>La contraseña debe tener</p>
+                                        <ul class="requirements">
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 8 caracteres</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1 número (0...9)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1 minúscula (a...z)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1 mayúscula (A...Z)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1  carácter especial (!...$)</span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
 
@@ -110,7 +133,7 @@
                                     <div class="col-md-auto"><span>Campos Obligatorios*</span></div>
                                     <div class="col-6"></div>
                                     <div class="col-md-auto">
-                                        <button class="btn btn-primary mr-3">Confirmar</button>
+                                        <button class="btn btn-primary mr-3" id="btnValidate">Confirmar</button>
                                     </div>
                                 </div>
 
@@ -146,6 +169,7 @@
         });
     </script>
     <script src="{% static 'js/main.js'%}"></script>
+    <script src="{% static 'js/register.js'%}"></script>
     <script src="{% static 'resources/bootstrap/js/bootstrap.min.js'%}"></script>
 
     <script src="{% static 'js/vendor/jquery/jquery.min.js'%}"></script>

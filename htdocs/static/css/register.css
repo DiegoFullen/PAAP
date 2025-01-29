@@ -67,6 +67,34 @@
     font-style: normal;
 }
 
+#parameters p{
+    font-size: 1.7rem;
+}
+.requirements li{
+   list-style: none;
+   font-size: 1.5rem;
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px; 
+}
+.requirements li i{
+    width: 20px;
+    font-size: 0.5rem;
+    color: #aaa;
+}
+.requirements li span{
+    margin-left: 12px;
+}
+
+.requirements li.valid i{
+    font-size: 1.2rem;
+    color: green;
+}
+
+.requirements li.valid span{
+    color: #aaa;
+}
+
 /* Media Queries para Responsividad */
 /* Ajustes para pantallas menores a 768px (tablets y smartphones grandes) */
 @media (max-width: 768px) {
