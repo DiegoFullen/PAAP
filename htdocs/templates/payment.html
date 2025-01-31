@@ -134,7 +134,7 @@
                         <div class="row justify-content-md">  
                             <div class="col-md-auto">
                                 <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Mi Perfil </span> 
-                                <a href="{% url 'paymentUpgrade' %}" class="btn btn-light ml-4" role="button" aria-disabled="true">Editar</a>
+                                <!--<a href="{% url 'paymentUpgrade' %}" class="btn btn-light ml-4" role="button" aria-disabled="true">Editar</a>-->
                             </div>
                         </div>   
 
@@ -159,17 +159,45 @@
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
 
-                    <div class="row mt-5 ml-5">
+                    <div class="row mt-5 ml-5" id="paymentInfo">
+
+                        <div class="col">
+                            <div class="card" id="savedHours">
+                                <div class="card-body">
+                                    <form>
+                                        <p>En nuestra base de datos se ha registrado que usted cuenta con las siguientes horas disponibles para 
+                                            hacer uso de los sistemas de la platafoma
+                                        </p>
+                                        <br>
+                                        <input type="text" readonly class="form-control-plaintext" id="hoursLeft" name="hoursLeft" placeholder="placeholder Horas"> 
+                                        
+                                         <!--<div class="mt-5"><button type="submit" class="btn btn-outline-dark btn-sm w-100 mt-5" id="placeholderPaypal">PayPal Placeholder</button>
+                                        </div>-->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col">
 
                             <div class="card" id="paycheck">
                                 <div class="card-body">
                                     <form>
-                                        <label for="horasAlquiler" class="col-form-label">Horas de Alquiler</label>
-                                        <input type="text" pattern="\d+" required title="Ingrese solo números" class="form-control mb-3" id="horasAlquiler" name="horasAlquiler" placeholder="12">
+                                        <label for="horasAlquiler" class="col-form-label">Horas de Alquiler</label><br>
+                                        <select name="horasAlquiler" id="horasAlquiler">
+                                            <option value="">Seleccione una opción</option>
+                                            <option value="30">30 minutos</option>
+                                            <option value="60">1 hora</option>
+                                            <option value="120">2 horas</option>
+                                            <option value="180">3 horas</option>
+                                            <option value="240">4 horas</option>
+                                            <option value="300">5 horas</option>
+                                        </select>
+                                        <br>
                                         
                                         <label for="presupuesto" class="col-form-label">Total</label>
-                                        <input type="text" readonly required class="form-control-plaintext mb-5" id="presupuesto" name="presupuesto" placeholder="Ingrese un número de horas"> 
+                                        <input type="text" readonly required class="form-control-plaintext" id="presupuesto" name="presupuesto" placeholder="Ingrese un número de horas"> 
                                         
                                          <!--<div class="mt-5"><button type="submit" class="btn btn-outline-dark btn-sm w-100 mt-5" id="placeholderPaypal">PayPal Placeholder</button>
                                         </div>-->

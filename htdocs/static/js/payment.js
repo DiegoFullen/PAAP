@@ -2,9 +2,17 @@ const $inputHoras = document.getElementById("horasAlquiler");
 const $inputAlquiler = document.getElementById("presupuesto");
 
 $inputHoras.addEventListener("input", () => {
-    const horas = $inputHoras.value || 0;
+    var horas = $inputHoras.value || 0;
+    horas = horas/60;
     const total = horas * 80;
+
+    $inputAlquiler.style.fontSize = "1.4rem";
     $inputAlquiler.value = '$' + total + ' MXN';
+
+    if(horas === 0){
+        $inputAlquiler.style.fontSize = "1rem";
+        $inputAlquiler.value = "";
+    }
 });
 
 if (typeof paypal !== 'undefined') {

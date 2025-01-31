@@ -160,6 +160,16 @@
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
 
+                    <dialog id="ms-confirm">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title faustina-regular">Confirmación</h5>
+                                <p class="card-text roboto-regular">Se actualizarán los datos conforme a la nueva información registrada. <br>¿Está seguro de continuar?</p>
+                                <button class="btn btn-primary mr-3" id="optConfirmar" type="button">Confirmar Cambios</button> <a href="account.php" id="optCancelar" class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
+                            </div>
+                        </div>
+                    </dialog>
+
                     <div class="row" style="margin-top: 5rem;">
                         <!-- Default Card Example -->
                         <div class="card mb-4 border" id="accountInfo">
@@ -190,6 +200,8 @@
                                         <input type="email" readonly class="form-control-plaintext ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="{{email}}" style="width: 100%; cursor:default;" required>
                                     </div>
 
+                                    <div class="col"></div>
+
                                     <div class="col-5">
                                         <label for="accountPassword" class="col-form-label">Contraseña*</label>
                                         <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword"></i>
@@ -201,11 +213,11 @@
                                 <div class="row mt-3 ml-5">
                                     <div class="col">
                                         <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="{{email_recover}}" style="width: 100%;" required>
+                                        <input type="email" class="form-control ml-3" id="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="{{email_recover}}" style="width: 60%;" required>
                                     </div>
 
                                     <div class="col-5">
-                                        <label for="accountPassword" class="col-form-label">Contraseña*</label>
+                                        <label for="accountPassword" class="col-form-label">Confirmación*</label>
                                         <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword2"></i>
                                         <input type="password" class="form-control-plaintext ml-3" 
                                                id="accountPassword2" name="accountPassword2" placeholder="**********" value="{{ password }}">
@@ -216,9 +228,9 @@
                         </div>
                     </div>
                     
-                    <div class="row justify-content-md-end">
-                        <button type="submit" class="btn btn-primary mr-3" id="confirmButton">Confirmar Cambios</button>
-                        <a href="{% url 'account' %}" class="btn btn-danger btn mr-5">Cancelar</a>
+                    <div class="row">
+                        <button type="submit" class="btn btn-light mr-3 ml-3" id="confirmButton" style="width: 40%;">Confirmar Cambios</button>
+                        <a href="{% url 'account' %}" class="btn btn-light btn" style="width: 40%;">Cancelar</a>
                     </div>
 
                     </form>

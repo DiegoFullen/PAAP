@@ -43,6 +43,37 @@
     color: black;
 }
 
+#presupuesto{
+    text-align: center;
+    font-size: 1rem;
+}
+
+#horasAlquiler{
+    margin-top: 5%;
+    margin-bottom: 10%;
+
+    font-size: 1.1rem;
+    background-color: white;
+    text-align: center;
+    width: 100%;
+    border: solid;
+    border-color: lightgray;
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+#savedHours{
+    color: black;
+    text-align: center;
+}
+#savedHours .card-body input{
+    text-align: center;
+}
+
+#paymentInfo .card-body{
+    min-height: 240px;
+}
+
 .imgPlaceholder{
     min-width: 50px;
     width: 50%;

@@ -3,6 +3,8 @@ const labelEmail = document.getElementById("labelEmail");
 const inputPassword = document.getElementById("password")
 const labelPassword = document.getElementById("labelPassword");
 
+const passwordClear = document.getElementById("passwordClear");
+
 inputEmail.addEventListener("input", function(){
     /*labelEmail.style.color = "blue";*/
     if (inputEmail.value.trim() !== "") {
@@ -22,4 +24,7 @@ inputPassword.addEventListener("input", function(){
     }
 });
 
+passwordClear.addEventListener("click", () => {
+    inputPassword.type = inputPassword.type === "password" ? "text" : "password";
+});
     
