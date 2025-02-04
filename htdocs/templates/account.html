@@ -143,13 +143,17 @@
                             <div class="col-2">
                                 <img src="{% static 'resources/img/usuario.png'%}" alt="usuarioPerfil" class="imgPlaceholder">
                             </div>
-                            <div class="col-3 ml-5" style="text-align: start;">
+                            <div class="col-md-auto ml-3" style="text-align: start;">
                                 <label for="userName" class="col-form-label">Nombre Usuario</label>
                                 <input type="text" readonly class="form-control-plaintext" id="userName" placeholder="Usuario1234" value="{{username}}">
                             </div>
-                            <div class="col-3 ml-5" style="text-align: start;">   
+                            <div class="col-md-auto ml-3" style="text-align: start;">   
                                 <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
                                 <input type="text"  readonly class="form-control-plaintext" id="accountType" placeholder="Usuario1234" value="Premium">
+                            </div>
+                            <div class="col-md-auto" style="text-align: start;">   
+                                <label for="accountTime" class="col-form-label">Tiempo de Entrenamiento Disponible</label>
+                                <input type="text"  readonly class="form-control-plaintext" id="accountTime" placeholder="6 horas">
                             </div>
                         </div>
                     </div>

@@ -24,8 +24,13 @@
     display: none;
 }
 
+.all{
+    min-height: 90vh !important;
+}
+
 .hiper{
     overflow: auto;
+    padding: 2px;
     height: 18rem !important;
 }
 
@@ -36,11 +41,21 @@
     box-shadow: 0px 2px 2px gray;
     padding: 10px 50px 0px 30px;
     min-height: 8em;
+    max-height: 8.1em;
+}
+
+.form-group input{
+    border: solid;
+    border-color: lightgray;
 }
 
 #modelName{
     border-radius: 5px;
-    border-width: 1px;
+    border-width: .1px;
+    width: 100%;
+    margin-bottom: 5%;
+    height: 38px;
+    
 }
 
 input[type=file]{
@@ -48,4 +63,14 @@ input[type=file]{
     visibility: hidden;
     z-index: -9999;
     width: 0;
+}
+
+@media (max-width: 1300px) {
+    #col3{
+        margin-top: 5%;
+    }
+
+    .row .card{
+        min-width: 262px;
+    }
 }
