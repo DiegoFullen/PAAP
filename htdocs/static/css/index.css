@@ -73,6 +73,10 @@ footer a{
 #card .card .card-body .espaciado{
     margin-left: 15px;
 }
+#card #img1{
+    width: 500px; 
+    height: 500px;
+}
 
 #info{
     margin-left: auto;
@@ -86,6 +90,8 @@ footer a{
     padding: 2rem;
     background-color: #F5F5F4;
     border-radius: 5px;
+
+    min-width: 670px;
 }
 
 #info .title{
@@ -265,7 +271,6 @@ footer a{
     font-size: 1.6rem;
 }
 
-
 .content{
     width: 100%;
     height: fit-content;
@@ -277,4 +282,156 @@ footer a{
     margin-left: auto;
     margin-right: auto;
     background: center / contain no-repeat;
+}
+
+@media (max-width: 1270px){
+    #card{
+        gap: 3rem;
+    }
+    #card .card .card-body .card-title{
+        font-size: 2.5rem;
+    }
+    #card .card .card-body .card-subtitle{
+        font-size: 1.5rem;
+    }
+    #card .card .card-body p{
+        margin-top: 2rem;
+        font-size: 1.5rem;
+    }
+    #card .card .card-body .price{
+        font-size: 2.7rem;
+    }
+    #card #img1{
+        width: 400px;
+        height: 400px;
+    }
+
+    #info{
+        gap: 3rem;
+    }
+    
+    #info .title .card-title{
+        font-size: 4.5rem;
+    }
+    #info .title .card-subtitle{
+        font-size: 1.8rem;
+        margin-bottom: 1rem !important;
+    }
+    #info .title p{
+        margin-top: 2rem;
+        font-size: 1.5rem;
+    }
+
+    #info .title2 .card-title{
+        font-size: 4.5rem;
+    }
+    #info .title2 .card-subtitle{
+        font-size: 1.8rem;
+        margin-bottom: 1rem !important;
+    }
+    #info .title2 p{
+        margin-top: 2rem;
+        font-size: 1.5rem;
+    }
+
+    #info .card .card-body .card-title{
+        font-size: 2rem;
+    }
+    #info .card .card-body .card-subtitle{
+        font-size: 1rem;
+    }
+    
+    .topics{
+        font-size: 2.5rem;
+        color: black;
+        background: transparent;
+    }
+    .topics .title{
+        font-size: 1.8rem;
+    }
+    .topics i{
+        padding: 0 10px 0 5px;
+    }
+    .topics p{
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    #info{
+        width: 90%;
+        margin-top: 8rem;
+    }
+
+    #info .card{
+        height: 100%;
+    }
+
+    #info .card .card-body .card-title{
+        font-size: 1.8rem;
+    }
+    #info .card .card-body .card-subtitle{
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 1030px){
+    #card{
+        grid-template-columns: minmax(100px, auto);
+    }
+    #card #img1{
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 300px;
+        height: 300px;
+    }
+
+    #info{
+        gap: 2rem;
+    }
+    
+    #info .title .card-title{
+        font-size: 4rem;
+    }
+
+
+    #topic1{
+        grid-column: 1;
+        grid-row: 2;
+    }
+    #topic2{
+        grid-column: 2;
+        grid-row: 2;
+    }
+    #topic3{
+        grid-column: 1;
+        grid-row: 3;
+    }
+    #topic4{
+        grid-column: 2;
+        grid-row: 3;
+    }
+    #topic5{
+        grid-column: 1;
+        grid-row: 4;
+    }
+    #topic6{
+        grid-column: 2;
+        grid-row: 4;
+    }
+}
+
+@media (max-width: 780px) {
+    .content{
+        min-width: 710px;
+    }
+
+    #card{
+        width: 90%;
+    }
+
+    #card #img1{
+        width: 0px;
+        height: 0px;
+    }
 }
