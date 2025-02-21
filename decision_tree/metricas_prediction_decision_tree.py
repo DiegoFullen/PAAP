@@ -11,6 +11,12 @@ from sklearn.metrics import precision_recall_curve, average_precision_score
 from sklearn.model_selection import learning_curve
 from sklearn.model_selection import validation_curve
 
+# ---------------- Paths --------------------------
+path_dataset = 'PAAP/dataset/random_forest_examples/Aprobados_Reprobados.csv'
+path_model = 'PAAP/models/decision_tree_regression.pkl'
+objective = 'Calificacion'
+# ------------------------------------------------
+
 # ------------------------------------------------------------------------
 # -------------------- Pre-procesamiento de datos ------------------------
 # ------------------------------------------------------------------------
@@ -37,10 +43,10 @@ class Preprocesador:
 
 # ------------------ Cargar Recursos ------------------
 # Cargar modelo entrenado
-model = joblib.load('../Algoritmos/Models/decision_tree_regression.pkl')
+model = joblib.load(path_model)
 
 # ------------------ Preprocesar Datos ----------------
-pre = Preprocesador("../Algoritmos/dataset/random_forest_examples/Aprobados_Reprobados.csv", "Calificacion")
+pre = Preprocesador(path_dataset, objective)
 data = pre.cargar_datos() # Cargar datos
 
 data_encoded = pre.codificar_datos(data)
@@ -54,9 +60,8 @@ for column in data_encoded.select_dtypes(include='object').columns:
     data_encoded[column] = LabelEncoder().fit_transform(data_encoded[column])
 
 # Columna objetivo
-objetivo = "Calificacion"
-X = data_encoded.drop(columns=[objetivo])
-y = data_encoded[objetivo]
+X = data_encoded.drop(columns=[objective])
+y = data_encoded[objective]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 

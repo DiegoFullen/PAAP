@@ -8,8 +8,13 @@ import pandas as pd
 import joblib
 import os
 
+# ---------------- Paths --------------------------
+path_dataset = 'PAAP/dataset/desicion_tree_examples/consumo_gas.csv'
+path_model = 'PAAP/models/decision_tree_consumo_gas.pkl'
+# ------------------------------------------------
+
 # ---------------- Dataset -----------------------
-data = pd.read_csv('../Algoritmos/dataset/desicion_tree_examples/consumo_gas.csv')
+data = pd.read_csv(path_dataset)
 
 # Codificar variables categóricas (si aplica)
 data_encoded = data.copy()
@@ -59,4 +64,4 @@ plt.show()
 
 # ---------------- Guardar Modelo ----------------
 os.makedirs('models', exist_ok=True)
-joblib.dump(reg, '../Algoritmos/models/decision_tree_consumo_gas.pkl')
+joblib.dump(reg, path_model)

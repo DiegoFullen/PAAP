@@ -8,15 +8,21 @@ import pandas as pd
 import joblib
 import os
 
+# ---------------- Paths --------------------------
+path_dataset = 'PAAP/dataset/random_forest_examples/Aprobados_Reprobados.csv'
+path_model = 'PAAP/models/decision_tree_aprobados_reprobados.pkl'
+# ------------------------------------------------
+
 # ---------------- Dataset -----------------------
-data = pd.read_csv('../Algoritmos/dataset/random_forest_examples/Aprobados_Reprobados.csv')
+data = pd.read_csv(path_dataset)
+objective = 'Calificacion'
 
 data_encoded = data.copy()
 for column in data_encoded.select_dtypes(include='object').columns:
     data_encoded[column] = LabelEncoder().fit_transform(data_encoded[column])
 
-X = data_encoded.drop(columns=['Calificacion'])
-y = data_encoded['Calificacion']
+X = data_encoded.drop(columns=[objective])
+y = data_encoded[objective]
 
 feature_names = X.columns
 class_names = sorted(map(str, set(y)))
@@ -54,4 +60,4 @@ plt.show()
 
 # ---------------- Guardar Modelo ----------------
 os.makedirs('Models', exist_ok=True)
-joblib.dump(clf, '../Algoritmos/Models/decision_tree_aprobados_reprobados.pkl')
+joblib.dump(clf, path_model)
