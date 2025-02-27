@@ -220,24 +220,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            // Seleccionar el campo de contraseña
-            var passwordField = document.getElementById('accountPassword');
-            var icon = this; // El ícono del ojo
-            
-            // Alternar entre type="password" y type="text"
-            if (passwordField.type === "password") {
-                passwordField.type = "text"; // Mostrar la contraseña
-                icon.classList.remove('fa-eye'); // Cambiar ícono a "ojo tachado"
-                icon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = "password"; // Ocultar la contraseña
-                icon.classList.remove('fa-eye-slash'); // Cambiar ícono a "ojo normal"
-                icon.classList.add('fa-eye');
-            }
-        });
-    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'js/vendor/jquery/jquery.min.js'%}"></script>
@@ -249,6 +231,7 @@
     <!-- Custom scripts for all pages-->
      
     <script src="{% static 'js/dashboard.min.js'%}"></script>
+    <script src="{% static 'js/account.js'%}"></script>
 
 </body>
 

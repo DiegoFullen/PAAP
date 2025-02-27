@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="row mt-5">
-                    <div class="col-1"></div>
+
                     <div class="col">
 
                         <div class="card mb-4 border-box" id="accountInfo">
@@ -55,34 +55,34 @@
                                 {% csrf_token %}
                                 <div class="row mt-4 ml-4">
 
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <label for="accountName" class="col-form-label">Nombre/s*</label>
                                         <input type="text" class="form-control ml-3" id="accountName" name="accountName"  style="width: 100%;" placeholder="Héctor Mariano" value="" required pattern="[A-Za-z\s]+" title="Solo se permiten carácteres">
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col-md-auto">
                                         <label for="accountFLast" class="col-form-label">Primer Apellido*</label>
                                         <input type="text" class="form-control ml-3" id="accountFLast" name="accountFLast" placeholder="Padilla" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col-md-auto">
                                         <label for="accountSLast" class="col-form-label">Segundo Apellido*</label>
                                         <input type="text" class="form-control ml-3" id="accountSLast" name="accountSLast" placeholder="Rodríguez" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
                                     </div>
                                 </div>
 
                                 <div class="row mt-5 ml-4">
-                                    <div class="col">
+                                    <div class="col-5">
                                         <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" style="width: 80%;" required>
+                                        <input type="email" class="form-control ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%;" required>
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col-md-auto">
                                         <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" style="width: 80%;" required>
+                                        <input type="email" class="form-control ml-3" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" required>
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col-md-auto">
                                         <label for="accountUsername" class="col-form-label">Nombre Usuario*</label>
                                         <input type="text" class="form-control ml-3" id="accountUsername" name="accountUsername" placeholder="User123" required minlength="6">
                                     </div>
@@ -131,9 +131,9 @@
 
                                 <div class="row justify-content-md-end" style="margin-top: 8rem;">
                                     <div class="col-md-auto"><span>Campos Obligatorios*</span></div>
-                                    <div class="col-6"></div>
+                                    <div class="col"></div>
                                     <div class="col-md-auto">
-                                        <button class="btn btn-primary mr-3" id="btnValidate">Confirmar</button>
+                                        <button class="btn btn-primary" id="btnValidate">Confirmar</button>
                                     </div>
                                 </div>
 
@@ -142,32 +142,13 @@
                         </div>
 
                     </div>
-                    <div class="col-1"></div>
+
                 </div>
             </div>
         </div>
 
     </header>
 
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function() {
-        var passwordField = document.getElementById('accountPassword');
-        var icon = this;
-        passwordField.type = passwordField.type === "password" ? "text" : "password";
-        icon.classList.toggle('fa-eye-slash', passwordField.type === "text");
-        icon.classList.toggle('fa-eye', passwordField.type === "password");
-        });
-    </script>
-    
-    <script>
-        document.getElementById('togglePassword2').addEventListener('click', function() {
-        var passwordField = document.getElementById('accountPassword2');
-        var icon = this;
-        passwordField.type = passwordField.type === "password" ? "text" : "password";
-        icon.classList.toggle('fa-eye-slash', passwordField.type === "text");
-        icon.classList.toggle('fa-eye', passwordField.type === "password");
-        });
-    </script>
     <script src="{% static 'js/main.js'%}"></script>
     <script src="{% static 'js/register.js'%}"></script>
     <script src="{% static 'resources/bootstrap/js/bootstrap.min.js'%}"></script>

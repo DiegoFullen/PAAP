@@ -17,3 +17,21 @@ btnCancel.addEventListener("click", () => {
     dialogElement.close();
 });
 
+
+// Funcionalidades para visulización y censura de la contraseña
+document.getElementById('togglePassword').addEventListener('click', function() {
+    var passwordField = document.getElementById('accountPassword');
+    var icon = this;
+    passwordField.type = passwordField.type === "password" ? "text" : "password";
+    icon.classList.toggle('fa-eye-slash', passwordField.type === "text");
+    icon.classList.toggle('fa-eye', passwordField.type === "password");
+});
+
+
+document.getElementById('togglePassword2').addEventListener('click', function() {
+    var passwordField = document.getElementById('accountPassword2');
+    var icon = this;
+    passwordField.type = passwordField.type === "password" ? "text" : "password";
+    icon.classList.toggle('fa-eye-slash', passwordField.type === "text");
+    icon.classList.toggle('fa-eye', passwordField.type === "password");
+});

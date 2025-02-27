@@ -143,11 +143,11 @@
                             <div class="col-2">
                                 <img src="{% static 'resources/img/usuario.png'%}" alt="usuarioPerfil" class="imgPlaceholder">
                             </div>
-                            <div class="col-3 ml-5" style="text-align: start;">
+                            <div class="col-4 ml-5" style="text-align: start;">
                                 <label for="userName" class="col-form-label">Nombre Usuario</label>
                                 <input type="text" class="form-control ml-3" id="userName" name="userName" placeholder="Usuario1234" value="{{username}}" required>
                             </div>
-                            <div class="col-3 ml-5" style="text-align: start;">   
+                            <div class="col-4 ml-5" style="text-align: start;">   
                                 <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
                                 <input type="text"  readonly class="form-control-plaintext" id="accountType" name="accountType" placeholder="Usuario1234" value="Premium">
                             </div>
@@ -170,7 +170,7 @@
                         </div>
                     </dialog>
 
-                    <div class="row" style="margin-top: 5rem;">
+                    <div class="row" style="margin-top: 5rem; width: 100%;">
                         <!-- Default Card Example -->
                         <div class="card mb-4 border" id="accountInfo">
                             <div class="card-body">
@@ -200,8 +200,6 @@
                                         <input type="email" readonly class="form-control-plaintext ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="{{email}}" style="width: 100%; cursor:default;" required>
                                     </div>
 
-                                    <div class="col"></div>
-
                                     <div class="col-5">
                                         <label for="accountPassword" class="col-form-label">Contraseña*</label>
                                         <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword"></i>
@@ -228,9 +226,9 @@
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <button type="submit" class="btn btn-light mr-3 ml-3" id="confirmButton" style="width: 40%;">Confirmar Cambios</button>
-                        <a href="{% url 'account' %}" class="btn btn-light btn" style="width: 40%;">Cancelar</a>
+                    <div class="row" id="controlPanel">
+                        <button type="submit" class="btn btn-light" id="confirmButton">Confirmar Cambios</button>
+                        <a href="{% url 'account' %}" class="btn btn-light btn">Cancelar</a>
                     </div>
 
                     </form>
@@ -246,25 +244,6 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function() {
-        var passwordField = document.getElementById('accountPassword');
-        var icon = this;
-        passwordField.type = passwordField.type === "password" ? "text" : "password";
-        icon.classList.toggle('fa-eye-slash', passwordField.type === "text");
-        icon.classList.toggle('fa-eye', passwordField.type === "password");
-        });
-    </script>
-    
-    <script>
-        document.getElementById('togglePassword2').addEventListener('click', function() {
-        var passwordField = document.getElementById('accountPassword2');
-        var icon = this;
-        passwordField.type = passwordField.type === "password" ? "text" : "password";
-        icon.classList.toggle('fa-eye-slash', passwordField.type === "text");
-        icon.classList.toggle('fa-eye', passwordField.type === "password");
-        });
-    </script>
      <!-- Bootstrap core JavaScript-->
      <script src="{% static 'js/vendor/jquery/jquery.min.js'%}"></script>
      <script src="{% static 'js/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>

@@ -17,7 +17,8 @@
 
     <style>
         #img1{
-            background: center / contain no-repeat url("{% static 'resources/img/9af2eb6c-9779-405c-8aa4-90a8d6ddf2bd.jpeg'%}");
+            
+            background: center / contain no-repeat url("{% static 'resources/img/logotipoColor.png'%}");
             grid-column: 2;
             grid-row: 1;
         }
@@ -130,7 +131,7 @@
                         <div class="card-body">
                             <img class="imgHolder" id="info_png" src="{% static 'resources/img/info.png'%}" alt=" information.png">
                             <h5 class="card-title faustina-bold">Manejo de Datos</h5>
-                            <p class="card-text roboto-regular">Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
+                            <p class="card-text roboto-regular">Usted solo se encarga de proporcionarnos un dataset apropiado y nosotros verificamos su validez para poder garantizar un proceso adecuado de entrenamiento</p>
                         </div>
                     </div>
                 </div>
@@ -140,7 +141,7 @@
                         <div class="card-body">
                             <img class="imgHolder" id="brain_png" src="{% static 'resources/img/brain.png'%}" alt="brain.png">
                             <h5 class="card-title faustina-bold">Entrenamiento</h5>
-                            <p class="card-text roboto-regular">Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
+                            <p class="card-text roboto-regular">Seleccione alguno de los algoritmos de entrenamiento disponibles y personalice el aprendizaje con una gamma de parametros específicos de cada algoritmo</p>
                         </div>
                     </div>
                 </div>
@@ -150,7 +151,7 @@
                         <div class="card-body">
                             <img class="imgHolder" id="goals_png" src="{% static 'resources/img/goals.png'%}" alt="goals.png">
                             <h5 class="card-title faustina-bold">Evaluación</h5>
-                            <p class="card-text roboto-regular">Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
+                            <p class="card-text roboto-regular">Tomamos métricas y evaluaciones del proceso de entrenamiento para garantizar un producto de calidad y que usted puede disfrutar de su recién IA</p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +172,7 @@
                         <p class="card-text inter-regular">Si te interesa saber haz click a continuación para poder Registrarte o para Iniciar Sesión dentro
                                                             de nuestra plataforma y empezar a experimentar con las herramientas que tenemos preparadas para ti</p>                                   
                         
-                        <button type="button" class="btn btn-primary">Registrarme</button>
+                        <a class="btn btn-primary" id="btnRegister" href="{% url 'register'%}">Registrarme</a>
                     </div>
                 </div>
                 <div class="imgHolder" id="img2"></div>

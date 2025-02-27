@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gupter&display=swap');
 
+body{
+    min-width: 830px;
+}
+
 #links {
     background: rgb(205,231,252);
     background: linear-gradient(180deg, rgba(237,247,255,1) 0%, rgba(234,245,254,1) 17%, rgba(229,242,252,1) 37%, rgba(223,238,250,1) 56%, rgba(212,231,246,1) 67%, rgba(170,212,245,1) 100%);
@@ -35,7 +39,7 @@
     font-style: normal;
     font-weight: 300;
     font-size: 1.6em;
-    min-width: 572px;
+    min-width: 676px;
     margin: auto;
 }
 
@@ -52,6 +56,10 @@
 #accountInfo button {
     font-size: .9em;
     width: 18rem;
+}
+
+#btnValidate{
+    margin-right: 10%;
 }
 
 .border-box {
@@ -93,53 +101,4 @@
 
 .requirements li.valid span{
     color: #aaa;
-}
-
-/* Media Queries para Responsividad */
-/* Ajustes para pantallas menores a 768px (tablets y smartphones grandes) */
-@media (max-width: 768px) {
-    #title p1 {
-        font-size: 2em;
-    }
-    #title p {
-        font-size: 1.5em;
-    }
-    #accountInfo {
-        font-size: 1.2em;
-        min-width: 420px;
-    }
-    #accountInfo input {
-        width: 100%;
-        min-width: auto;
-    }
-    #accountInfo button {
-        width: 14rem;
-        font-size: 0.8em;
-    }
-}
-
-/* Ajustes para pantallas menores a 480px (smartphones pequeños) */
-@media (max-width: 480px) {
-    #title {
-        margin-top: 2rem;
-    }
-    #title p1 {
-        font-size: 1.8em;
-    }
-    #title p {
-        font-size: 1.2em;
-    }
-    #accountInfo {
-        font-size: 1em;
-        min-width: auto;
-        padding: 1rem;
-    }
-    #accountInfo button {
-        width: 12rem;
-        font-size: 0.8em;
-    }
-    #accountInfo input {
-        font-size: 0.9em;
-        width: 100%;
-    }
 }
