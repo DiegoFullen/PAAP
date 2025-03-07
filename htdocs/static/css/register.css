@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gupter&display=swap');
 
-body{
-    min-width: 830px;
+body {
+    min-width: 750px;
 }
 
 #links {
-    background: rgb(205,231,252);
-    background: linear-gradient(180deg, rgba(237,247,255,1) 0%, rgba(234,245,254,1) 17%, rgba(229,242,252,1) 37%, rgba(223,238,250,1) 56%, rgba(212,231,246,1) 67%, rgba(170,212,245,1) 100%);
+    background: rgb(205, 231, 252);
+    background: linear-gradient(180deg, rgba(237, 247, 255, 1) 0%, rgba(234, 245, 254, 1) 17%, rgba(229, 242, 252, 1) 37%, rgba(223, 238, 250, 1) 56%, rgba(212, 231, 246, 1) 67%, rgba(170, 212, 245, 1) 100%);
 }
 
 #title {
@@ -32,36 +32,6 @@ body{
     color: #757575;
 }
 
-#accountInfo {
-    padding: calc(2px + 0.5rem);
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 1.6em;
-    min-width: 676px;
-    margin: auto;
-}
-
-#accountInfo label {
-    color: black;
-}
-
-#accountInfo input {
-    font-size: 1em;
-    width: fit-content;
-    min-width: 4rem;
-}
-
-#accountInfo button {
-    font-size: .9em;
-    width: 18rem;
-}
-
-#btnValidate{
-    margin-right: 10%;
-}
-
 .border-box {
     border-width: 2px;
     border-style: solid;
@@ -75,30 +45,161 @@ body{
     font-style: normal;
 }
 
-#parameters p{
+
+.formRegister {
+    width: 85%;
+    height: fit-content;
+    padding: 10px;
+
+    margin-top: 3.5em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formRegister #form_control {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3em;
+    grid-template-rows: minmax(50px, auto);
+    width: 100%;
+    height: max-content;
+    background-color: white;
+    color: #000;
+}
+
+.formRegister #form_control input {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.6em;
+    margin-left: 7%;
+    width: 85%;
+}
+
+.formRegister #form_control label {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.6em;
+    margin-left: 5%;
+}
+
+.formRegister #form_control .row1_1 {
+    grid-column: 1/3;
+    grid-row: 1;
+}
+
+.formRegister #form_control .row1_2 {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.formRegister #form_control .row1_3 {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.formRegister #form_control .row2_1 {
+    grid-column: 1/3;
+    grid-row: 2;
+}
+
+.formRegister #form_control .row2_2 {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.formRegister #form_control .row2_3 {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+.formRegister #form_control .row3_1 {
+    grid-column: span 2;
+    grid-row: 3;
+}
+
+.formRegister #form_control .row3_1 input {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.formRegister #form_control .row3_1 label {
+    margin-left: 30%;
+}
+
+.formRegister #form_control .row3_1 i{
+    color: black;
+    cursor: pointer; 
+    font-size: medium;
+}
+
+.formRegister #form_control .row3_2 {
+    grid-column: 3/5;
+    grid-row: 3;
+}
+
+.formRegister #form_control .row3_2 #parameters {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.formRegister #form_control .row3_2 #parameters p {
     font-size: 1.7rem;
+
 }
-.requirements li{
-   list-style: none;
-   font-size: 1.5rem;
-   display: flex;
-   align-items: center;
-   margin-bottom: 10px; 
+
+.formRegister #form_control .row3_2 #parameters .requirements li {
+    list-style: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
-.requirements li i{
+
+.formRegister #form_control .row3_2 #parameters .requirements li i {
     width: 20px;
     font-size: 0.5rem;
     color: #aaa;
 }
-.requirements li span{
+
+.formRegister #form_control .row3_2 #parameters .requirements li span {
     margin-left: 12px;
 }
 
-.requirements li.valid i{
+.formRegister #form_control .row3_2 #parameters .requirements li.valid i {
     font-size: 1.2rem;
     color: green;
 }
 
-.requirements li.valid span{
+.formRegister #form_control .row3_2 #parameters .requirements li.valid span {
     color: #aaa;
+}
+
+.formRegister #form_control #message {
+    grid-column: 1/2;
+    grid-row: 5;
+
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.6em;
+}
+
+.formRegister #form_control #btnValidate {
+    grid-column: 4;
+    grid-row: 5;
+
+    font-size: .9em;
+    height: 30px;
+    width: 100%;
+
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5em;
 }
