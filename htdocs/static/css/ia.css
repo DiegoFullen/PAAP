@@ -8,16 +8,8 @@
     font-size: 1.22rem;
 }
 
-.card-body-file{
-    background-color: #F8F8FF;
-    border: dashed #7200cf;
-}
-.card-title{
-    font-family: "Mulish", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    color: black;
-    font-size: 1.0rem;
+body{
+    min-width: 860px;
 }
 
 .hidden{
@@ -42,6 +34,31 @@
     padding: 10px 50px 0px 30px;
     min-height: 8em;
     max-height: 8.1em;
+}
+
+.hiper .card-body-file{
+    background-color: #F8F8FF;
+    border: dashed #7200cf;
+}
+.hiper .card-title{
+    font-family: "Mulish", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: black;
+    font-size: 1.0rem;
+}
+
+.hiper .card-body {
+    padding: 10px 0px 10px 0 !important;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+}
+
+.hiper input[type="range"]{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-group input{
@@ -71,6 +88,47 @@ input[type=file]{
     }
 
     .row .card{
-        min-width: 262px;
+        min-width: 270px;
+    }
+
+}
+
+@media (max-width: 1130px) {
+
+    #col2{
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .row .card{
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+
+    .hiper .card-body {
+        width: 100%;
+    }
+    .hiper input[type="range"]{
+        width: 60%;
+    }
+}
+
+
+@media (max-width: 1115px) {
+
+    .row .card{
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .hiper .card-body {
+        width: 100%;
+    }
+    .hiper input[type="range"]{
+        width: 70%;
     }
 }

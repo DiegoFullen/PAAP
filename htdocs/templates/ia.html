@@ -135,7 +135,7 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <form action="{% url 'save_parameters' %}" method="POST" enctype="multipart/form-data"
-                id="selectionAlgorithm">
+                id="selectionAlgorithm" style="background-color: white;">
                 {% csrf_token %}
                 <!-- Main Content -->
                 <div id="content">
@@ -305,7 +305,7 @@
             </div>
 
             <div class="col" id="col3">
-                <div class="card">
+                <div class="card" id="semilla">
                     <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
                     <div class="card-body pt-1">
 
@@ -341,7 +341,7 @@
     <div class="container hiper hidden mt-4" id="kNeighbors">
 
         <div class="row">
-            <div class="col">
+            <div class="col" id="col1">
                 <div class="card pr-3">
                     <h5 class="header" style="font-size: 1rem;">Criterio</h5>
                     <div class="card-body pt-1">
@@ -385,8 +385,8 @@
 
             </div>
 
-            <div class="col">
-                <div class="card pr-4">
+            <div class="col" id="col2">
+                <div class="card pr-4" id="divisorCard-KNN">
                     <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un Nodo <span
                             id="divisorValue-KNN"></span></h5>
                     <div class="card-body">
@@ -420,7 +420,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" id="col3">
                 <div class="card">
                     <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
                     <div class="card-body pt-1">
@@ -459,7 +459,7 @@
 
 
         <div class="row">
-            <div class="col">
+            <div class="col" id="col1">
                 <div class="card pr-3">
                     <h5 class="header" style="font-size: 1rem;">Criterio</h5>
                     <div class="card-body pt-1">
@@ -503,7 +503,7 @@
 
             </div>
 
-            <div class="col">
+            <div class="col" id="col2">
                 <div class="card pr-4">
                     <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un Nodo <span
                             id="divisorValue-RF"></span></h5>
@@ -537,7 +537,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" id="col3">
                 <div class="card">
                     <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
                     <div class="card-body pt-1">
