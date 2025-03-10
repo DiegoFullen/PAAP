@@ -40,8 +40,7 @@ function sendMail(){
     if(isNotEmpty(inputEmail) && isNotEmpty(inputRetrieve)){
 
         if(isValidEmail(inputEmail) && isValidEmail(inputRetrieve)){
-            alert("Simulación de envio de correo");
-            window.location = '/emailNotification/';
+            window.location = '/gestion_usuarios/emailRetrieve/recoverPassword/';
         }else{
             window.alert("Ingrese un correo valido");
         }
