@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="{% static 'resources/bootstrap/css/bootstrap.min.css'%}">
 
     <link href="{% static 'js/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">
 </head>
 
@@ -39,110 +41,108 @@
                     <div class="col"></div>
                     <div class="col">
                         <p1>Registre su información</p1><br>
-                        <p>Complete el siguiente formulario para empezar a disfrutar los beneficios de nuestra plataforma </p>
+                        <p>Complete el siguiente formulario para empezar a disfrutar los beneficios de nuestra
+                            plataforma </p>
                     </div>
                     <div class="col"></div>
                 </div>
+                
+                <div class="formRegister border-box">
+                    <form method="POST" action="{% url 'add_user' %}">
+                        {% csrf_token %}
+                        <div id="form_control" class="border-box">
 
-                <div class="row mt-5">
+                            <div class="row1_1">
+                                <label for="accountName" class="col-form-label">Nombre/s*</label>
+                                <input type="text" class="form-control" id="accountName" name="accountName"
+                                    placeholder="Héctor Mariano" value="" required pattern="[A-Za-z\s]+"
+                                    title="Solo se permiten carácteres">
+                            </div>
 
-                    <div class="col">
+                            <div class="row1_2">
+                                <label for="accountFLast" class="col-form-label">Primer Apellido*</label>
+                                <input type="text" class="form-control" id="accountFLast" name="accountFLast"
+                                    placeholder="Padilla" value="" required pattern="[A-Za-z]+"
+                                    title="Solo se permiten carácteres">
+                            </div>
 
-                        <div class="card mb-4 border-box" id="accountInfo">
-                            <div class="card-body border-box">
-                                
-                                <form method="POST" action="{% url 'add_user' %}">
-                                {% csrf_token %}
-                                <div class="row mt-4 ml-4">
+                            <div class="row1_3">
+                                <label for="accountSLast" class="col-form-label">Segundo Apellido*</label>
+                                <input type="text" class="form-control" id="accountSLast" name="accountSLast"
+                                    placeholder="Rodríguez" value="" required pattern="[A-Za-z]+"
+                                    title="Solo se permiten carácteres">
+                            </div>
 
-                                    <div class="col-5">
-                                        <label for="accountName" class="col-form-label">Nombre/s*</label>
-                                        <input type="text" class="form-control ml-3" id="accountName" name="accountName"  style="width: 100%;" placeholder="Héctor Mariano" value="" required pattern="[A-Za-z\s]+" title="Solo se permiten carácteres">
-                                    </div>
+                            <div class="row2_1">
+                                <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" required>
+                            </div>
 
-                                    <div class="col-md-auto">
-                                        <label for="accountFLast" class="col-form-label">Primer Apellido*</label>
-                                        <input type="text" class="form-control ml-3" id="accountFLast" name="accountFLast" placeholder="Padilla" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
-                                    </div>
+                            <div class="row2_2">
+                                <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
+                                <input type="email" class="form-control" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" required>
+                            </div>
 
-                                    <div class="col-md-auto">
-                                        <label for="accountSLast" class="col-form-label">Segundo Apellido*</label>
-                                        <input type="text" class="form-control ml-3" id="accountSLast" name="accountSLast" placeholder="Rodríguez" value="" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
-                                    </div>
-                                </div>
+                            <div class="row2_3">
+                                <label for="accountUsername" class="col-form-label">Nombre Usuario*</label>
+                                <input type="text" class="form-control" id="accountUsername" name="accountUsername" placeholder="User123" required minlength="6">
+                            </div>
 
-                                <div class="row mt-5 ml-4">
-                                    <div class="col-5">
-                                        <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" style="width: 100%;" required>
-                                    </div>
+                            <div class="row3_1">
 
-                                    <div class="col-md-auto">
-                                        <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" required>
-                                    </div>
+                                <div>
+                                    <label for="accountPassword" class="col-form-label">Contraseña*</label>
+                                    <i class="fas fa-solid fa-eye pl-3"
+                                        id="togglePassword"></i>
+                                    <input type="password" class="form-control" id="accountPassword"
+                                        name="accountPassword" placeholder="**********" value="{{ password }}"
+                                        required>
 
-                                    <div class="col-md-auto">
-                                        <label for="accountUsername" class="col-form-label">Nombre Usuario*</label>
-                                        <input type="text" class="form-control ml-3" id="accountUsername" name="accountUsername" placeholder="User123" required minlength="6">
-                                    </div>
-                                </div>
-
-                                <div class="row mt-5 ml-5">
-
-                                    <div class="col" style="margin-left: 10%;">
-                                        <label for="accountPassword" class="col-form-label">Contraseña*</label>
-                                        <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword"></i>
-                                        <input type="password" class="form-control ml-3" 
-                                               id="accountPassword" name="accountPassword" placeholder="**********" value="{{ password }}" required>
-
-                                               <label for="accountPassword" class="col-form-label">Confirmar Contraseña*</label>
-                                        <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword2"></i>
-                                        <input type="password" class="form-control ml-3" 
-                                               id="accountPassword2" name="accountPassword2" placeholder="**********" value="{{ password }}" required>
-                                    </div>
-
-                                    <div class="col" id="parameters">
-                                        <p>La contraseña debe tener</p>
-                                        <ul class="requirements">
-                                            <li>
-                                                <i class="fas fa-solid fa-circle"></i>
-                                                <span>Al menos 8 caracteres</span>
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-solid fa-circle"></i>
-                                                <span>Al menos 1 número (0...9)</span>
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-solid fa-circle"></i>
-                                                <span>Al menos 1 minúscula (a...z)</span>
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-solid fa-circle"></i>
-                                                <span>Al menos 1 mayúscula (A...Z)</span>
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-solid fa-circle"></i>
-                                                <span>Al menos 1  carácter especial (!...$)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="row justify-content-md-end" style="margin-top: 8rem;">
-                                    <div class="col-md-auto"><span>Campos Obligatorios*</span></div>
-                                    <div class="col"></div>
-                                    <div class="col-md-auto">
-                                        <button class="btn btn-primary" id="btnValidate">Confirmar</button>
-                                    </div>
+                                    <label for="accountPassword" class="col-form-label">Confirmar
+                                        Contraseña*</label>
+                                    <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;"
+                                        id="togglePassword2"></i>
+                                    <input type="password" class="form-control" id="accountPassword2"
+                                        name="accountPassword2" placeholder="**********" value="{{ password }}"
+                                        required>
                                 </div>
 
                             </div>
-                            </form>
+
+                            <div class="row3_2">
+                                <div id="parameters">
+                                    <p>La contraseña debe tener</p>
+                                    <ul class="requirements">
+                                        <li>
+                                            <i class="fas fa-solid fa-circle"></i>
+                                            <span>Al menos 8 caracteres</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-solid fa-circle"></i>
+                                            <span>Al menos 1 número (0...9)</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-solid fa-circle"></i>
+                                            <span>Al menos 1 minúscula (a...z)</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-solid fa-circle"></i>
+                                            <span>Al menos 1 mayúscula (A...Z)</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-solid fa-circle"></i>
+                                            <span>Al menos 1 carácter especial (!...$)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <span id="message">Campos Obligatorios*</span>
+                            <button class="btn btn-primary" id="btnValidate">Confirmar</button>
+                            
                         </div>
 
-                    </div>
-
+                    </form>
                 </div>
             </div>
         </div>

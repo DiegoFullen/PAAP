@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="{% static 'css/accountEdit.css' %}">
     <!-- Custom fonts for this template-->
     <link href="{% static 'js/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static ' https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' %}" rel="stylesheet">
+    <link
+        href="{% static ' https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' %}"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
@@ -30,8 +32,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <img src="{% static 'resources/img/logotipoColor.png'%}" class="img-fluid" id="logoDash" alt="Responsive logo">
-                <div class="sidebar-brand-text mx-3"  style="font-family: 'Post No Bills Jaffna SemiBold', sans-serif; font-size: 1.8rem; color: #2E3EA5;">
+                <img src="{% static 'resources/img/logotipoColor.png'%}" class="img-fluid" id="logoDash"
+                    alt="Responsive logo">
+                <div class="sidebar-brand-text mx-3"
+                    style="font-family: 'Post No Bills Jaffna SemiBold', sans-serif; font-size: 1.8rem; color: #2E3EA5;">
                     PAAP
                 </div>
                 <div class="text-center d-none d-md-inline mt-3">
@@ -61,7 +65,7 @@
                     <span>Entrenamiento</span></a>
             </li>
 
-             <!-- Nav Item - Tables -->
+            <!-- Nav Item - Tables -->
             <li class="nav-item ml-2">
                 <a class="nav-link" href="{% url 'resources'%}">
                     <i class="fas fa-book"></i>
@@ -74,13 +78,13 @@
             </div>
 
             <!-- Nav Item - Ajustes -->
-            <li class="nav-item">       
+            <li class="nav-item">
                 <a class="nav-link ml-2">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Ajustes</span>
                 </a>
             </li>
-            
+
             <!-- Nav Item - Pagos -->
             <li class="nav-item">
                 <a class="nav-link pl-5 pl-1 especial" href="{% url 'payment'%}">
@@ -88,13 +92,13 @@
                     <span>Pagos</span></a>
             </li>
 
-             <!-- Nav Item - Cuenta -->
+            <!-- Nav Item - Cuenta -->
             <li class="nav-item">
                 <a class="nav-link pl-5 pl-1 especial" href="{% url 'account'%}">
                     <i class="fas fa-solid fa-user"></i>
                     <span>Cuenta</span></a>
             </li>
-             
+
             <!-- Nav Item - Manual -->
             <li class="nav-item ml-2">
                 <a class="nav-link" href="#">
@@ -111,7 +115,8 @@
             <!-- Nav Item - Salir -->
             <li class="nav-item ml-2">
                 <btn class="nav-link" id="btnSalir">
-                    <span>Cerrar Sesión</span></btn>
+                    <span>Cerrar Sesión</span>
+                </btn>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -128,108 +133,148 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <form method="POST" action="{% url 'update_profile' %}">
-                    {% csrf_token %}
-                    <!-- Page Heading -->
-                     <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
-                    <div class="container mt-5"  id="accountSet">
-                        <div class="row justify-content-md">  
-                            <div class="col-md-auto">
-                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Mi Perfil </span> 
-                                <a href="" class="btn btn-primary btn ml-4 disabled" role="button" style="background-color: rgb(240, 240, 240); border-color: lightgray; color:gray" aria-disabled="true">Editar</a>
+                        {% csrf_token %}
+                        <!-- Page Heading -->
+                        <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
+                        <div class="container mt-5" id="accountSet">
+                            <div class="row justify-content-md">
+                                <div class="col-md-auto">
+                                    <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Mi
+                                        Perfil </span>
+                                    <a href="" class="btn btn-primary btn ml-4 disabled" role="button"
+                                        style="background-color: rgb(240, 240, 240); border-color: lightgray; color:gray"
+                                        aria-disabled="true">Editar</a>
+                                </div>
                             </div>
-                        </div>   
 
-                        <div class="row ml-3 mt-4 infoSet">
-                            <div class="col-2">
-                                <img src="{% static 'resources/img/usuario.png'%}" alt="usuarioPerfil" class="imgPlaceholder">
-                            </div>
-                            <div class="col-4 ml-5" style="text-align: start;">
-                                <label for="userName" class="col-form-label">Nombre Usuario</label>
-                                <input type="text" class="form-control ml-3" id="userName" name="userName" placeholder="Usuario1234" value="{{username}}" required>
-                            </div>
-                            <div class="col-4 ml-5" style="text-align: start;">   
-                                <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
-                                <input type="text"  readonly class="form-control-plaintext" id="accountType" name="accountType" placeholder="Usuario1234" value="Premium">
-                            </div>
-                        </div>
-                    </div>
-
-                    <dialog id="dialog">
-                        <p>¿Está seguro de querer cerrar sesión?</p>
-                        <button type="button" class="btn btn-outline-dark btn-sm" id="optAccept">Aceptar</button>
-                        <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
-                    </dialog>
-
-                    <dialog id="ms-confirm">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title faustina-regular">Confirmación</h5>
-                                <p class="card-text roboto-regular">Se actualizarán los datos conforme a la nueva información registrada. <br>¿Está seguro de continuar?</p>
-                                <button class="btn btn-primary mr-3" id="optConfirmar" type="button">Confirmar Cambios</button> <a href="account.php" id="optCancelar" class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
+                            <div class="row ml-3 mt-4 infoSet">
+                                <div class="col-2">
+                                    <img src="{% static 'resources/img/usuario.png'%}" alt="usuarioPerfil"
+                                        class="imgPlaceholder">
+                                </div>
+                                <div class="col-4 ml-5" style="text-align: start;">
+                                    <label for="userName" class="col-form-label">Nombre Usuario</label>
+                                    <input type="text" class="form-control ml-3" id="userName" name="userName"
+                                        placeholder="Usuario1234" value="{{username}}" required>
+                                </div>
+                                <div class="col-4 ml-5" style="text-align: start;">
+                                    <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
+                                    <input type="text" readonly class="form-control-plaintext" id="accountType"
+                                        name="accountType" placeholder="Usuario1234" value="Premium">
+                                </div>
                             </div>
                         </div>
-                    </dialog>
 
-                    <div class="row" style="margin-top: 5rem; width: 100%;">
-                        <!-- Default Card Example -->
-                        <div class="card mb-4 border" id="accountInfo">
-                            <div class="card-body">
-                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Información del Perfil </span>
+                        <dialog id="dialog">
+                            <p>¿Está seguro de querer cerrar sesión?</p>
+                            <button type="button" class="btn btn-outline-dark btn-sm" id="optAccept">Aceptar</button>
+                            <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
+                        </dialog>
 
-                                <div class="row mt-4 ml-5">
-                                    
-                                    <div class="col-md-auto">
-                                        <label for="accountName" class="col-form-label">Nombre*</label>
-                                        <input type="text" class="form-control ml-3" id="accountName" name="accountName" placeholder="Héctor Mariano" value="{{name}}" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
-                                    </div>
+                        <dialog id="ms-confirm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title faustina-regular">Confirmación</h5>
+                                    <p class="card-text roboto-regular">Se actualizarán los datos conforme a la nueva
+                                        información registrada. <br>¿Está seguro de continuar?</p>
+                                    <button class="btn btn-primary mr-3" id="optConfirmar" type="button">Confirmar
+                                        Cambios</button> <a href="account.php" id="optCancelar"
+                                        class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
+                                </div>
+                            </div>
+                        </dialog>
 
-                                    <div class="col-md-auto">
-                                        <label for="accountFLast" class="col-form-label">Primer Apellido*</label>
-                                        <input type="text" class="form-control ml-3" id="accountFLast" name="accountFLast" placeholder="Padilla" value="{{firstlastname}}" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
-                                    </div>
+                        <div class="formUpdate border">
 
-                                    <div class="col-md-auto">
-                                        <label for="accountSLast" class="col-form-label">Segundo Apellido*</label>
-                                        <input type="text" class="form-control ml-3" id="accountSLast" name="accountSLast" placeholder="Rodríguez" value="{{secondlastname}}" required pattern="[A-Za-z]+" title="Solo se permiten carácteres">
-                                    </div>
+                            <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Información
+                                del Perfil </span> <span id="message">Campos Obligatorios*</span>
+                            <div id="form_control" class="">
+
+                                <div class="row1_1">
+                                    <label for="accountName" class="col-form-label">Nombre/s*</label>
+                                    <input type="text" class="form-control" id="accountName" name="accountName"
+                                        placeholder="Héctor Mariano" required pattern="[A-Za-z\s]+" 
+                                        title="Solo se permiten carácteres"  value="{{name}}">
                                 </div>
 
-                                <div class="row mt-3 ml-5">
-                                    <div class="col">
-                                        <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
-                                        <input type="email" readonly class="form-control-plaintext ml-3" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="{{email}}" style="width: 100%; cursor:default;" required>
-                                    </div>
+                                <div class="row1_2">
+                                    <label for="accountFLast" class="col-form-label">Primer Apellido*</label>
+                                    <input type="text" class="form-control" id="accountFLast" name="accountFLast"
+                                        placeholder="Padilla" required pattern="[A-Za-z]+"
+                                        title="Solo se permiten carácteres" value="{{firstlastname}}">
+                                </div>
 
-                                    <div class="col-5">
+                                <div class="row1_3">
+                                    <label for="accountSLast" class="col-form-label">Segundo Apellido*</label>
+                                    <input type="text" class="form-control" id="accountSLast" name="accountSLast"
+                                        placeholder="Rodríguez" required pattern="[A-Za-z]+"
+                                        title="Solo se permiten carácteres" value="{{secondlastname}}">
+                                </div>
+
+                                <div class="row2_1">
+                                    <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="accountEmail" name="accountEmail"
+                                        placeholder="alumnoCeti@ceti.mx" value="{{email}}" required>
+                                </div>
+
+                                <div class="row2_2">
+                                    <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
+                                    <input type="email" class="form-control" id="accountEmailBack"
+                                        name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="{{email_recover}}" required>
+                                </div>
+
+                                <div class="row3_1">
+
+                                    <div>
                                         <label for="accountPassword" class="col-form-label">Contraseña*</label>
-                                        <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword"></i>
-                                        <input type="password" class="form-control-plaintext ml-3" 
-                                               id="accountPassword" name="accountPassword" placeholder="**********" value="{{ password }}">
+                                        <i class="fas fa-solid fa-eye pl-3" id="togglePassword"></i>
+                                        <input type="password" class="form-control" id="accountPassword"
+                                            name="accountPassword" placeholder="**********" value="{{ password }}"
+                                            required>
+
+                                        <label for="accountPassword" class="col-form-label">Confirmar
+                                            Contraseña*</label>
+                                        <input type="password" class="form-control" id="accountPassword2"
+                                            name="accountPassword2" placeholder="**********" value="{{ password }}"
+                                            required>
                                     </div>
+
                                 </div>
 
-                                <div class="row mt-3 ml-5">
-                                    <div class="col">
-                                        <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
-                                        <input type="email" class="form-control ml-3" id="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="{{email_recover}}" style="width: 60%;" required>
-                                    </div>
-
-                                    <div class="col-5">
-                                        <label for="accountPassword" class="col-form-label">Confirmación*</label>
-                                        <i class="fas fa-solid fa-eye pl-3" style="color: black; cursor: pointer;" id="togglePassword2"></i>
-                                        <input type="password" class="form-control-plaintext ml-3" 
-                                               id="accountPassword2" name="accountPassword2" placeholder="**********" value="{{ password }}">
+                                <div class="row3_2">
+                                    <div id="parameters">
+                                        <p>La contraseña debe tener</p>
+                                        <ul class="requirements">
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 8 caracteres</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1 número (0...9)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1 minúscula (a...z)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1 mayúscula (A...Z)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-solid fa-circle"></i>
+                                                <span>Al menos 1 carácter especial (!...$)</span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="row" id="controlPanel">
-                        <button type="submit" class="btn btn-light" id="confirmButton">Confirmar Cambios</button>
-                        <a href="{% url 'account' %}" class="btn btn-light btn">Cancelar</a>
-                    </div>
+
+                        <div class="row" id="controlPanel">
+                            <button type="submit" class="btn btn-light" id="confirmButton">Confirmar Cambios</button>
+                            <a href="{% url 'account' %}" class="btn btn-light btn">Cancelar</a>
+                        </div>
 
                     </form>
                 </div>
@@ -244,17 +289,17 @@
     </div>
     <!-- End of Page Wrapper -->
 
-     <!-- Bootstrap core JavaScript-->
-     <script src="{% static 'js/vendor/jquery/jquery.min.js'%}"></script>
-     <script src="{% static 'js/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
- 
-     <!-- Core plugin JavaScript-->
-     <script src="{% static 'js/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
- 
-     <!-- Custom scripts for all pages-->
-      
-     <script src="{% static 'js/dashboard.min.js'%}"></script>
-     <script src="{% static 'js/accountEdit.js' %}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'js/vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'js/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'js/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+    <!-- Custom scripts for all pages-->
+
+    <script src="{% static 'js/dashboard.min.js'%}"></script>
+    <script src="{% static 'js/accountEdit.js' %}"></script>
 
 </body>
 
