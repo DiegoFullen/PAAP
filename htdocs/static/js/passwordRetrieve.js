@@ -35,8 +35,8 @@ inputPassword.addEventListener("keyup", (e) => {
 
 //Validación de Contraseña
 btnValidate.addEventListener("click", function (event) {
-    const valuePassword = $d.getElementById("accountPassword").value;
-    const valueRepeat = $d.getElementById("accountPassword2").value;
+    const valuePassword = $d.getElementById("newPassword").value;
+    const valueRepeat = $d.getElementById("newPasswordCon").value;
 
     //const newEmail = sanitizeInput(inputEmail);
     //const newRetrieve = sanitizeInput(inputRetrieve);
@@ -44,7 +44,8 @@ btnValidate.addEventListener("click", function (event) {
 
         if (isValidPassword(valuePassword)) {
             if (valuePassword === valueRepeat) {
-
+                alert("La contraseña se cambio con exito");
+                //window.location = '/login/';
             } else {
                 event.preventDefault();
                 alert("Las contraseñas no son las mismas. Favor de revisar las contraseñas");

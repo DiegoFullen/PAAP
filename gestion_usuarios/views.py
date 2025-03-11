@@ -44,7 +44,7 @@ def recover_password_email(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         retrieveEmail = request.POST.get('retrieveEmail')
-        respuesta = Email.send_email_recover(request, email,retrieveEmail)
+        respuesta = Email.send_email_recover(request, email, retrieveEmail)
         if respuesta:
             return redirect('emailNotification')    
         else:
@@ -59,10 +59,10 @@ def recover_password(request, token):
         if password == newPasswordCon:
             respuesta = Email.verify_token(token,2,password)
             if respuesta:
-                messages.success(request, "Su contraseña a sido cambiada con exito")
                 return redirect('login')
+            else:
+                return redirect('passwordRetrive', token = token)
         else:
-            messages.success(request, "Las contraseñas no coinciden")
             return redirect('passwordRetrive', token = token)
 
 
