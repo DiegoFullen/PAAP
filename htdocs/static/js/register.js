@@ -1,7 +1,7 @@
 const $d = document;
 const btnValidate = $d.getElementById("btnValidate");
 const inputPassword = $d.getElementById("accountPassword");
-const requiertList = $d.querySelectorAll(".requirements li")
+const requiertList = $d.querySelectorAll(".requirements li");
 
 const requirments = [
     { regex: /.{8,}/, index: 0 },

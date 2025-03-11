@@ -27,11 +27,7 @@ inputRetrieve.addEventListener("input", function(){
     }
 });
 
-function goBack(){
-    window.location = '/login/';
-}
-
-function sendMail(){
+document.getElementById("btnSendMail").addEventListener("click", function(){
     const inputEmail = $d.getElementById("email").value;
     const inputRetrieve = $d.getElementById("retrieveEmail").value;
 
@@ -47,6 +43,13 @@ function sendMail(){
     }else{
         window.alert("No deje campos vacios");
     }
+});
+
+document.getElementById("btnCancel").addEventListener("click", function(){
+    window.location = '/login/';
+});
+
+function sendMail(){
 }
 
 
