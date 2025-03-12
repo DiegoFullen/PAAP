@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from gestion_usuarios import Login
+from gestion_usuarios import Login,Email,CRUD
+from django.http import Http404
 from django.db import connection
 from django.contrib import messages
 
@@ -16,6 +17,10 @@ def login_view(request):
         password = request.POST.get('password')
         user = Login.login_user(email,password)
         plan = Login.login_plan(email)
+        horas = int(plan[0])  # Parte entera: horas
+        minutos_decimal = plan[0] - horas  # Parte decimal: fracción de una hora
+        minutos = int(round(minutos_decimal * 60))  # Convertir fracción a minutos
+        tiempo = f"{horas}:{minutos:02d}"
         if user:
             # Cargar los Datos en la Sesión
             request.session['email'] = user[0]
@@ -25,7 +30,8 @@ def login_view(request):
             request.session['email_recover'] = user[5]
             request.session['firstlastname'] = user[7]
             request.session['secondlastname'] = user[8]
-            request.session['plan'] = plan
+            request.session['hours'] = tiempo
+            request.session['plan'] = plan[1]
             return redirect('dashboard')
         else:
             messages.error(request, "Correo o contraseña incorrectos")
@@ -42,11 +48,17 @@ def emailRetrieve_view(request):
     return render(request, 'emailRetrieve.html')
 #Función para la notificación de la recuperación de la contraseña
 def emailNotification_view(request):
-    return render(request, 'emailNotification.html')
+    email = request.session.get('email', 'Correo no disponible')
+    context = {'email': email}
+    return render(request, 'emailNotification.html', context)
 #Función para la carga de la recuperación de la contraseñas
 def passwordRetrive_view(request, token):
+    token2 = token.rstrip('/')
     context = {'token':token}
-    return render(request, 'passwordRetrieve.html',context)
+    if Email.search_token_temporal(token2):
+        return render(request, 'passwordRetrieve.html',context)
+    else:
+        raise Http404("El token no existe o es inválido.")
 
 #FUNCIONES PARA LA CARGA DE LAS VISTAS DEL DASHBOARD
 #Función para la vista del dashboard
@@ -54,7 +66,10 @@ def dashboard_view(request):
     email = request.session.get('email')
     if not email:
         return redirect('login')
-    return render(request, 'dashboard.html', {'email': email})
+    else:
+        models = CRUD.search_models(email)
+        context = {'modelos': models, 'email':email}
+        return render(request, 'dashboard.html', context)
 #Función para la vista del entrenamiento de IA
 def ia_view(request):
     email = request.session.get('email')
@@ -76,7 +91,9 @@ def account_view(request):
     password = request.session.get('password') # Recuperar la contraseña
     firstlastname = request.session.get('firstlastname')
     secondlastname = request.session.get('secondlastname')
-
+    plan =request.session.get('plan')
+    hours = request.session.get('hours')
+    
     # Verificar si el usuario está autenticado
     if not email:
         return redirect('login')
@@ -88,33 +105,11 @@ def account_view(request):
         'name': name,
         'password': password,  # Enviar la contraseña
         'firstlastname': firstlastname,
-        'secondlastname': secondlastname
+        'secondlastname': secondlastname,
+        'plan': plan,
+        'hours': hours
     })
 def accountEdit_view(request):
-    # Recuperar los datos de la sesión
-    email = request.session.get('email')
-    username = request.session.get('username')
-    name = request.session.get('name')
-    password = request.session.get('password')  # Recuperar la contraseña
-    email_recover = request.session.get('email_recover')
-    firstlastname = request.session.get('firstlastname')
-    secondlastname = request.session.get('secondlastname')
-
-    # Verificar si el usuario está autenticado
-    if not email:
-        return redirect('login')
-
-    # Pasar las variables al contexto de la plantilla
-    return render(request, 'accountEdit.html', {
-        'email': email,
-        'username': username,
-        'name': name,
-        'password': password,  # Enviar la contraseña
-        'firstlastname': firstlastname,
-        'secondlastname': secondlastname,
-        'email_recover': email_recover
-    })
-def payment_view(request):
     # Recuperar los datos de la sesión
     email = request.session.get('email')
     username = request.session.get('username')
@@ -130,6 +125,33 @@ def payment_view(request):
         return redirect('login')
 
     # Pasar las variables al contexto de la plantilla
+    return render(request, 'accountEdit.html', {
+        'email': email,
+        'username': username,
+        'name': name,
+        'password': password,  # Enviar la contraseña
+        'firstlastname': firstlastname,
+        'secondlastname': secondlastname,
+        'email_recover': email_recover,
+        'plan':plan
+    })
+def payment_view(request):
+    # Recuperar los datos de la sesión
+    email = request.session.get('email')
+    username = request.session.get('username')
+    name = request.session.get('name')
+    password = request.session.get('password')  # Recuperar la contraseña
+    email_recover = request.session.get('email_recover')
+    firstlastname = request.session.get('firstlastname')
+    secondlastname = request.session.get('secondlastname')
+    plan = request.session.get('plan')
+    hours = request.session.get('hours')
+
+    # Verificar si el usuario está autenticado
+    if not email:
+        return redirect('login')
+
+    # Pasar las variables al contexto de la plantilla
     return render(request, 'payment.html', {
         'email': email,
         'username': username,
@@ -138,7 +160,8 @@ def payment_view(request):
         'firstlastname': firstlastname,
         'secondlastname': secondlastname,
         'email_recover': email_recover,
-        'plan' : plan
+        'plan' : plan,
+        'hours': hours
     })
 def paymentUpgrade_view(request):
     username = request.session.get('username')
@@ -171,7 +194,7 @@ def update_profile(request):
         name = request.POST.get('accountName')
         lastname = request.POST.get('accountFLast')
         lastname2 = request.POST.get('accountSLast')
-        email = request.POST.get('accountEmail')
+        email = request.session.get('email')
         email_recover = request.POST.get('accountEmailBack')
         password = request.POST.get('accountPassword')
         password2 = request.POST.get('accountPassword2')
@@ -192,6 +215,8 @@ def update_profile(request):
                     """,
                     [username, name, password, email_recover, lastname, lastname2, email]
                     )
+                else:
+                    return redirect('resources')
                 cursor.execute(
                 """
                 SELECT *
@@ -201,24 +226,25 @@ def update_profile(request):
                 [email, password]
                 )
                 user = cursor.fetchone()
+                
+            if user:
+                request.session['email'] = user[0]
+                request.session['username'] = user[2]
+                request.session['name'] = user[3]
+                request.session['password'] = user[4]
+                request.session['email_recover'] = user[5]
+                request.session['firstlastname'] = user[7]
+                request.session['secondlastname'] = user[8]
 
-        if user:
-            request.session['email'] = user[0]
-            request.session['username'] = user[2]
-            request.session['name'] = user[3]
-            request.session['password'] = user[4]
-            request.session['email_recover'] = user[5]
-            request.session['firstlastname'] = user[7]
-            request.session['secondlastname'] = user[8]
-
-            return redirect('account')
+                return redirect('account')
+            else:
+                messages.error(request, "No se pudo actualizar el perfil")
+                return redirect('dashboard')
         else:
-            messages.error(request, "No se pudo actualizar el perfil")
-            return redirect('dashboard')
+            messages.error(request, "Las contraseñas no coinciden")
+            return redirect('account')
     else:
-        messages.error(request, "Las contraseñas no coinciden")
-        return redirect('account')
-
+            return redirect('dashboard')
 
 def exit(request):
     request.session['email'] = ""

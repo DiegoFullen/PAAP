@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.db import connection
 from django.contrib import messages
 from gestion_usuarios import CRUD,Email
-from django.utils.crypto import get_random_string
+from datetime import datetime
 import os
 import csv
 from django.conf import settings
@@ -46,8 +46,10 @@ def recover_password_email(request):
         retrieveEmail = request.POST.get('retrieveEmail')
         respuesta = Email.send_email_recover(request, email, retrieveEmail)
         if respuesta:
+            request.session['email'] = email
             return redirect('emailNotification')    
         else:
+            messages.error(request, "El correo de recuperación no coincide con el correo ingresado, por favor rebice el correo que ingreso")
             return redirect('emailRetrieve')    
     else:
         return redirect('emailRetrieve')
@@ -102,19 +104,6 @@ def save_parameters(request):
         # Agregar el nombre del modelo al framework de mensajes
         messages.success(request, f'Datos Guardados')
 
-        # Manejar la subida del archivo
-        if request.FILES.get('file'):
-            dataset = request.FILES['file']
-            dataset_name = dataset.name
-            dataset_path = os.path.join(settings.MEDIA_ROOT, 'file', dataset_name)
-            os.makedirs(os.path.dirname(dataset_path), exist_ok=True)
-            with open(dataset_path, 'wb+') as destination:
-                for chunk in dataset.chunks():
-                    destination.write(chunk)
-
-            # Guardar la ruta del dataset en la base de datos si es necesario
-            messages.success(request, f'Dataset "{dataset_name}" subido con éxito')
-
         with connection.cursor() as cursor:
             # Obtener id_user
             cursor.execute(
@@ -138,8 +127,28 @@ def save_parameters(request):
             n_dataset = cursor.fetchone()[0] + 1  # Incrementar en 1 para el nuevo dataset
 
             # Generar id_dataset único
-            id_dataset = f"{id_user}{n_dataset}"
+            id_dataset = f"{email}-{n_dataset}"
+            upload_date = datetime.now()
+            # Manejar la subida del archivo
+            if request.FILES.get('file'):
+                dataset = request.FILES['file']
+                dataset_name = dataset.name
+                dataset_size = dataset.size
+                dataset_path = os.path.join(settings.MEDIA_ROOT, 'file',email, id_dataset, dataset_name)
+                os.makedirs(os.path.dirname(dataset_path), exist_ok=True)
+                with open(dataset_path, 'wb+') as destination:
+                    for chunk in dataset.chunks():
+                        destination.write(chunk)
 
+                # Guardar la ruta del dataset en la base de datos si es necesario
+                messages.success(request, f'Dataset "{dataset_name}" subido con éxito')
+            cursor.execute(
+                """
+                INSERT INTO gestion_usuarios_dataset (id_dataset, upload_date, name_dataset, size, email_id) 
+                VALUES (%s,%s,%s,%s,%s)
+                """,
+                [id_dataset, upload_date, dataset_name, dataset_size,email]
+            )
             # Insertar en la tabla 'hiperparametros'
             cursor.execute(
                 """
@@ -151,12 +160,13 @@ def save_parameters(request):
                  max_leaf_nodes, min_samples_split, min_samples_leaf, min_impurity_decrease,
                  random_seed, ccp_alpha]
             )
+            id_model = f"{email}-{n_dataset}-Model"
             cursor.execute(
                 """
-                INSERT INTO gestion_usuarios_model (id_model, id_dataset, start_date, finish_date, name, type) 
+                INSERT INTO gestion_usuarios_model (id_model, id_dataset, email_id start_date, finish_date, name, type) 
                 VALUES (%s, %s, "-", "-", %s, %s)
                 """,
-                [id_dataset, id_dataset,model_name, algorithm]
+                [id_model, id_dataset,email, model_name, algorithm]
             )
             
         return redirect('ia')

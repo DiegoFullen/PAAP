@@ -101,6 +101,22 @@ def send_verification_email(email, name, verification_url):
             email_message.attach(img)
     email_message.send()
 
+def search_token_temporal(token):
+    with connection.cursor() as cursor:
+        cursor.execute(
+        """
+        SELECT * FROM gestion_usuarios_user_temporal
+        WHERE token = %s
+        """,
+        [token]
+        )
+        token_data = cursor.fetchone()
+    if token_data:
+        return True
+    else:
+        return False
+
+
 def verify_token(token, decision, password_recover):
     with connection.cursor() as cursor:
         cursor.execute(
@@ -145,10 +161,11 @@ def send_email_recover(request, mail, retrieveEmail):
             [mail,retrieveEmail]
         )
         email_data = cursor.fetchone()
+        
+    if email_data:
         email, id_user, username, name, password, email_recover, status, firstlasname, secondlastname = email_data  
         token_recover = CRUD.add_user(username,name,firstlasname,secondlastname,email,email_recover,password,password)
         recovery_url = request.build_absolute_uri(f"/passwordRetrive/{token_recover}")
-    if email_data:
         subject = "Verificación de correo"
         from_email = "angelohaziel2002l@gmail.com"
         recipient_list = [retrieveEmail]

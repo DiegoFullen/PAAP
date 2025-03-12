@@ -75,3 +75,19 @@ def update_user_password(password, email ,token,created_at):
         return True
     else:
         return False    
+    
+def search_models(email):
+    with connection.cursor() as cursor:
+        # Consulta SQL con JOIN
+        cursor.execute(
+            """
+            SELECT gm.id_model, gm.name, gm.type, gd.name_dataset
+            FROM gestion_usuarios_model gm
+            INNER JOIN gestion_usuarios_dataset gd ON gm.id_dataset = gd.id_dataset
+            WHERE gm.email_id = %s
+            """,
+            [email]  # Filtra por el email del usuario
+        )
+        # Obtener todos los resultados
+        modelos = cursor.fetchall()
+        return modelos

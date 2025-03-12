@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('404/',views.error404_view,name='404'),
+    #path('404/',views.error404_view,name='404'),
     path('401/',views.error401_view,name='401'),
     path('500/',views.error500_view,name='500'),
     path('login/',views.login_view,name='login'),
@@ -28,4 +28,4 @@ urlpatterns = [
     path('gestion_usuarios/', include('gestion_usuarios.urls')),
 ]
 from django.conf.urls import handler404
-handler404 = 'PAAP.views.error404_view'
+handler404 = views.error404_view
