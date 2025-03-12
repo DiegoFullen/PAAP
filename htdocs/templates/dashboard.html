@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 {% load static %}
+
 <head>
 
     <meta charset="utf-8">
@@ -13,7 +14,9 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css'%}">
     <!-- Custom fonts for this template-->
     <link href="{% static 'js/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">
@@ -30,8 +33,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <img src="{% static 'resources/img/logotipoColor.png'%}" class="img-fluid" id="logoDash" alt="Responsive logo">
-                <div class="sidebar-brand-text mx-3"  style="font-family: 'Post No Bills Jaffna SemiBold', sans-serif; font-size: 1.8rem; color: #2E3EA5;">
+                <img src="{% static 'resources/img/logotipoColor.png'%}" class="img-fluid" id="logoDash"
+                    alt="Responsive logo">
+                <div class="sidebar-brand-text mx-3"
+                    style="font-family: 'Post No Bills Jaffna SemiBold', sans-serif; font-size: 1.8rem; color: #2E3EA5;">
                     PAAP
                 </div>
                 <div class="text-center d-none d-md-inline mt-3">
@@ -61,7 +66,7 @@
                     <span>Entrenamiento</span></a>
             </li>
 
-             <!-- Nav Item - Tables -->
+            <!-- Nav Item - Tables -->
             <li class="nav-item ml-2">
                 <a class="nav-link" href="{% url 'resources'%}">
                     <i class="fas fa-book"></i>
@@ -70,31 +75,28 @@
 
             <!-- Heading -->
             <div class="sidebar-heading mt-5">
-                OTHER
+                AJUSTES
             </div>
 
-            <!-- Nav Item - Ajustes -->
-            <li class="nav-item">       
-                <a class="nav-link ml-2">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Ajustes</span>
-                </a>
-            </li>
-            
             <!-- Nav Item - Pagos -->
-            <li class="nav-item">
-                <a class="nav-link pl-5 pl-1 especial" href="{% url 'payment'%}">
+            <li class="nav-item ml-2 ">
+                <a class="nav-link" href="{% url 'payment' %}">
                     <i class="fas fa-solid fa-wallet"></i>
                     <span>Pagos</span></a>
             </li>
 
-             <!-- Nav Item - Cuenta -->
-            <li class="nav-item">
-                <a class="nav-link pl-5 pl-1 especial" href="{% url 'account'%}">
+            <!-- Nav Item - Cuenta -->
+            <li class="nav-item ml-2 ">
+                <a class="nav-link" href="{% url 'account' %}">
                     <i class="fas fa-solid fa-user"></i>
                     <span>Cuenta</span></a>
             </li>
-             
+
+            <!-- Heading -->
+            <div class="sidebar-heading mt-5">
+                OTROS
+            </div>
+
             <!-- Nav Item - Manual -->
             <li class="nav-item ml-2">
                 <a class="nav-link" href="#">
@@ -103,7 +105,7 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block mt-5">
+            <hr class="sidebar-divider d-none d-md-block mt-4">
             <hr class="sidebar-divider d-none d-md-block mt-5">
             <hr class="sidebar-divider d-none d-md-block mt-5">
             <hr class="sidebar-divider d-md-block mt-5" style="border-top: 3px solid #bbb;">
@@ -111,7 +113,8 @@
             <!-- Nav Item - Salir -->
             <li class="nav-item ml-2">
                 <btn class="nav-link" id="btnSalir">
-                    <span>Cerrar Sesión</span></btn>
+                    <span>Cerrar Sesión</span>
+                </btn>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -129,28 +132,36 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                     <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
-                    <div class="container mt-5"  id="infoSet">
-                        <div class="row justify-content-md-end">  
+                    <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
+                    <div class="container mt-5" id="infoSet">
+                        <div class="row justify-content-md-end">
 
                             <div class="col-md-auto">
-                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem; ">Modelo #<span>placeholder</span> </span> 
+                                <select class="form-control" id="selectModel" name="selectModel">
+                                    <option value="">Despligue de Información</option>
+                                    <option value="arbolDesicion">Modelo Placeholder</option>
+                                    <option value="kNeighbors">K-Nearest Neighbors</option>
+                                    <option value="randomForest">Random Forest</option>
+                                </select>
                             </div>
                             <div class="col-md-auto">
                                 <span style="font-weight: 400; font-size: 1.1rem;">placeholderEntrenamiento</span>
                             </div>
                             <div class="col">
-                                <button class="btn-circle" id ="btn-download"><i class="fas fa-solid fa-download"></i></button>
+                                <button class="btn-circle" id="btn-download"><i
+                                        class="fas fa-solid fa-download"></i></button>
                             </div>
-                        </div>   
+                        </div>
 
                         <div class="row pr-5 justify-content-md-center">
                             <div class="col-md-auto">
-                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Dataset de Entrenamiento</span> <br>
+                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Dataset de
+                                    Entrenamiento</span> <br>
                                 <span>Placeholder-archivo</span>
                             </div>
                             <div class="col-md-auto ml-5">
-                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span> <br>
+                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span>
+                                <br>
                                 <span>Placeholder-horas</span>
                             </div>
                         </div>
@@ -167,11 +178,11 @@
                             <!-- Default Card Example -->
                             <div class="card mb-4">
                                 <div class="card-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna 
-                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate velit
                                 </div>
                             </div>
 
@@ -200,7 +211,7 @@
     <script src="{% static 'js/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
 
     <!-- Custom scripts for all pages-->
-     
+
     <script src="{% static 'js/dashboard.min.js'%}"></script>
 
 </body>
