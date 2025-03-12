@@ -162,7 +162,7 @@
                                 <div class="col-4 ml-5" style="text-align: start;">
                                     <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
                                     <input type="text" readonly class="form-control-plaintext" id="accountType"
-                                        name="accountType" placeholder="Usuario1234" value="Premium">
+                                        name="accountType" placeholder="Usuario1234" value={{plan}}>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +179,7 @@
                                     <h5 class="card-title faustina-regular">Confirmación</h5>
                                     <p class="card-text roboto-regular">Se actualizarán los datos conforme a la nueva
                                         información registrada. <br>¿Está seguro de continuar?</p>
-                                    <button class="btn btn-primary mr-3" id="optConfirmar" type="button">Confirmar
+                                    <button class="btn btn-primary mr-3" id="optConfirmar" type="submit">Confirmar
                                         Cambios</button> <a href="account.php" id="optCancelar"
                                         class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
                                 </div>

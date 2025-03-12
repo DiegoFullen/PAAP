@@ -133,6 +133,7 @@
 
                     <!-- Page Heading -->
                     <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
+                    {% for modelo in modelos %}
                     <div class="container mt-5" id="infoSet">
                         <div class="row justify-content-md-end">
 
@@ -145,7 +146,7 @@
                                 </select>
                             </div>
                             <div class="col-md-auto">
-                                <span style="font-weight: 400; font-size: 1.1rem;">placeholderEntrenamiento</span>
+                                <span style="font-weight: 400; font-size: 1.1rem;">{{ modelo.2}}</span>
                             </div>
                             <div class="col">
                                 <button class="btn-circle" id="btn-download"><i
@@ -157,16 +158,16 @@
                             <div class="col-md-auto">
                                 <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Dataset de
                                     Entrenamiento</span> <br>
-                                <span>Placeholder-archivo</span>
+                                <span>{{modelo.3}}</span>
                             </div>
                             <div class="col-md-auto ml-5">
                                 <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span>
                                 <br>
-                                <span>Placeholder-horas</span>
+                                <span>0</span>
                             </div>
                         </div>
                     </div>
-
+                    {% endfor %}
                     <dialog id="dialog">
                         <p>¿Está seguro de querer cerrar sesión?</p>
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optAccept">Aceptar</button>
