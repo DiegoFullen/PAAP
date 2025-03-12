@@ -70,8 +70,8 @@
     text-align: center;
 }
 
-#paymentInfo .card-body{
-    min-height: 240px;
+#paymentInfo .col .card{
+    height: 100%;
 }
 
 .imgPlaceholder{
