@@ -91,3 +91,31 @@ def search_models(email):
         # Obtener todos los resultados
         modelos = cursor.fetchall()
         return modelos
+
+
+def select_hiperparametros(id_dataset):
+     with connection.cursor() as cursor:
+        # Consulta SQL con JOIN
+        cursor.execute(
+            """
+            SELECT * FROM hiperparametros WHERE id_dataset = %s
+            """,
+            [id_dataset]  # Filtra por el email del usuario
+        )
+        # Obtener todos los resultados
+        hiperparametros = cursor.fetchall()
+        return hiperparametros
+
+def select_dataset(id_dataset):
+     with connection.cursor() as cursor:
+        # Consulta SQL con JOIN
+        cursor.execute(
+            """
+            SELECT * FROM gestion_usuarios_dataset WHERE id_dataset = %s
+            """,
+            [id_dataset]  # Filtra por el email del usuario
+        )
+        # Obtener todos los resultados
+        data_dataset = cursor.fetchall()
+        return data_dataset
+     

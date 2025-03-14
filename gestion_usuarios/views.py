@@ -163,10 +163,10 @@ def save_parameters(request):
             id_model = f"{email}-{n_dataset}-Model"
             cursor.execute(
                 """
-                INSERT INTO gestion_usuarios_model (id_model, id_dataset, email_id start_date, finish_date, name, type) 
-                VALUES (%s, %s, "-", "-", %s, %s)
+                INSERT INTO gestion_usuarios_model (id_model, id_dataset, email_id, start_date, finish_date, name, type) 
+                VALUES (%s, %s, %s, "-", "-", %s, %s)
                 """,
-                [id_model, id_dataset,email, model_name, algorithm]
+                [id_model, id_dataset, email, model_name, algorithm]
             )
             
         return redirect('ia')
