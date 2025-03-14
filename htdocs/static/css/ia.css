@@ -120,6 +120,13 @@ input[type=file]{
     width: 0;
 }
 
+@media(min-width: 1300px){
+    .hiper{
+        overflow: auto;
+        padding: 0 2em 2em 2em !important;
+        height: 40rem !important;
+    }
+}
 
 @media (max-width: 1210px) {
     .row .card{
@@ -207,7 +214,7 @@ input[type=file]{
     .hiper .row #col3{
         grid-column: 1;
         grid-row: 3;
-        margin-top: 0;
+        margin-top: 10px;
     }
     
 }

@@ -236,6 +236,18 @@
     font-size: 1em;
 }
 
-@media (max-width: 1060px) {
+@media (min-width: 1310px) {
+    .formUpdate{
+        max-width: 1400px;
 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #controlPanel{
+        max-width: 1400px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

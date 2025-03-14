@@ -85,3 +85,15 @@
     border-style: solid;
     border-image: linear-gradient(to right, darkblue, darkorchid) 1;
   }
+
+@media (min-width: 1500px){
+    #paymentInfo .col{
+        padding: 4%;
+    }
+    
+    #paymentInfo{
+        max-width: 1480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
