@@ -54,7 +54,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item ml-2">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{% url 'dashboard'%}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -108,17 +108,18 @@
             <hr class="sidebar-divider d-none d-md-block mt-4">
             <hr class="sidebar-divider d-none d-md-block mt-5">
             <hr class="sidebar-divider d-none d-md-block mt-5">
-            <hr class="sidebar-divider d-md-block mt-5" style="border-top: 3px solid #bbb;">
 
-            <!-- Nav Item - Salir -->
-            <li class="nav-item ml-2">
-                <btn class="nav-link" id="btnSalir">
-                    <span>Cerrar Sesión</span>
-                </btn>
-            </li>
+            <div class="mt-auto">
+                <!-- Divider -->
+                <hr class="sidebar-divider" style="border-top: 3px solid #bbb;">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-
+                <!-- Nav Item - Salir -->
+                <li class="nav-item ml-2">
+                    <button class="nav-link w-95 text-left border-0" id="btnSalir">
+                        <span>Cerrar Sesión</span>
+                    </button>
+                </li>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -173,23 +174,6 @@
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optAccept">Aceptar</button>
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
-
-                    <div class="row mt-5">
-                        <div class="col-lg-6">
-                            <!-- Default Card Example -->
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
 
                 </div>
                 <!-- /.container-fluid -->

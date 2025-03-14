@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <link rel="icon" href="{% static 'resources/img/logotipoColor.png' %}" type="image/x-icon">
     <title>Edición Cuenta</title>
-    
+
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/accountEdit.css' %}">
     <!-- Custom fonts for this template-->
@@ -108,17 +108,18 @@
             <hr class="sidebar-divider d-none d-md-block mt-4">
             <hr class="sidebar-divider d-none d-md-block mt-5">
             <hr class="sidebar-divider d-none d-md-block mt-5">
-            <hr class="sidebar-divider d-md-block mt-5" style="border-top: 3px solid #bbb;">
 
-            <!-- Nav Item - Salir -->
-            <li class="nav-item ml-2">
-                <btn class="nav-link" id="btnSalir">
-                    <span>Cerrar Sesión</span>
-                </btn>
-            </li>
+            <div class="mt-auto">
+                <!-- Divider -->
+                <hr class="sidebar-divider" style="border-top: 3px solid #bbb;">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-
+                <!-- Nav Item - Salir -->
+                <li class="nav-item ml-2">
+                    <button class="nav-link w-95 text-left border-0" id="btnSalir">
+                        <span>Cerrar Sesión</span>
+                    </button>
+                </li>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -195,8 +196,8 @@
                                 <div class="row1_1">
                                     <label for="accountName" class="col-form-label">Nombre/s*</label>
                                     <input type="text" class="form-control" id="accountName" name="accountName"
-                                        placeholder="Héctor Mariano" required pattern="[A-Za-z\s]+" 
-                                        title="Solo se permiten carácteres"  value="{{name}}">
+                                        placeholder="Héctor Mariano" required pattern="[A-Za-z\s]+"
+                                        title="Solo se permiten carácteres" value="{{name}}">
                                 </div>
 
                                 <div class="row1_2">
@@ -222,7 +223,8 @@
                                 <div class="row2_2">
                                     <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
                                     <input type="email" class="form-control" id="accountEmailBack"
-                                        name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="{{email_recover}}" required>
+                                        name="accountEmailBack" placeholder="alumnoCeti@ceti.mx"
+                                        value="{{email_recover}}" required>
                                 </div>
 
                                 <div class="row3_1">

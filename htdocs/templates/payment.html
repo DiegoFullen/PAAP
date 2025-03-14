@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 {% load static %}
+
 <head>
 
     <meta charset="utf-8">
@@ -9,12 +10,14 @@
     <meta name="description" content="">
     <link rel="icon" href="{% static 'resources/img/logotipoColor.png' %}" type="image/x-icon">
     <title>Cuenta</title>
-    
+
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'css/payment.css' %}">
     <!-- Custom fonts for this template-->
     <link href="{% static 'js/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static ' https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' %}" rel="stylesheet">
+    <link
+        href="{% static ' https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' %}"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
@@ -31,8 +34,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <img src="{% static 'resources/img/logotipoColor.png'%}" class="img-fluid" id="logoDash" alt="Responsive logo">
-                <div class="sidebar-brand-text mx-3"  style="font-family: 'Post No Bills Jaffna SemiBold', sans-serif; font-size: 1.8rem; color: #2E3EA5;">
+                <img src="{% static 'resources/img/logotipoColor.png'%}" class="img-fluid" id="logoDash"
+                    alt="Responsive logo">
+                <div class="sidebar-brand-text mx-3"
+                    style="font-family: 'Post No Bills Jaffna SemiBold', sans-serif; font-size: 1.8rem; color: #2E3EA5;">
                     PAAP
                 </div>
                 <div class="text-center d-none d-md-inline mt-3">
@@ -62,7 +67,7 @@
                     <span>Entrenamiento</span></a>
             </li>
 
-             <!-- Nav Item - Tables -->
+            <!-- Nav Item - Tables -->
             <li class="nav-item ml-2">
                 <a class="nav-link" href="{% url 'resources'%}">
                     <i class="fas fa-book"></i>
@@ -104,16 +109,18 @@
             <hr class="sidebar-divider d-none d-md-block mt-4">
             <hr class="sidebar-divider d-none d-md-block mt-5">
             <hr class="sidebar-divider d-none d-md-block mt-5">
-            <hr class="sidebar-divider d-md-block mt-5" style="border-top: 3px solid #bbb;">
 
-            <!-- Nav Item - Salir -->
-            <li class="nav-item ml-2">
-                <btn class="nav-link" id="btnSalir">
-                    <span>Cerrar Sesión</span></btn>
-            </li>
+            <div class="mt-auto">
+                <!-- Divider -->
+                <hr class="sidebar-divider" style="border-top: 3px solid #bbb;">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-
+                <!-- Nav Item - Salir -->
+                <li class="nav-item ml-2">
+                    <button class="nav-link w-95 text-left border-0" id="btnSalir">
+                        <span>Cerrar Sesión</span>
+                    </button>
+                </li>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -127,26 +134,30 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                     <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
-                    <div class="container mt-5"  id="accountSet">
-                        <div class="row justify-content-md">  
+                    <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
+                    <div class="container mt-5" id="accountSet">
+                        <div class="row justify-content-md">
                             <div class="col-md-auto">
-                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Mi Perfil </span> 
+                                <span style="color: #082431; font-weight: 500; font-size: 1.2rem;" class="ml-4">Mi
+                                    Perfil </span>
                                 <!--<a href="{% url 'paymentUpgrade' %}" class="btn btn-light ml-4" role="button" aria-disabled="true">Editar</a>-->
                             </div>
-                        </div>   
+                        </div>
 
                         <div class="row ml-3 mt-4">
                             <div class="col-2">
-                                <img src="{% static 'resources/img/usuario.png' %}" alt="usuarioPerfil" class="imgPlaceholder">
+                                <img src="{% static 'resources/img/usuario.png' %}" alt="usuarioPerfil"
+                                    class="imgPlaceholder">
                             </div>
                             <div class="col-3 ml-5" style="text-align: start;">
                                 <label for="userName" class="col-form-label">Nombre Usuario</label>
-                                <input type="text" readonly class="form-control-plaintext" id="userName" placeholder="Usuario1234" value="{{username}}">
+                                <input type="text" readonly class="form-control-plaintext" id="userName"
+                                    placeholder="Usuario1234" value="{{username}}">
                             </div>
-                            <div class="col-3 ml-5" style="text-align: start;">   
+                            <div class="col-3 ml-5" style="text-align: start;">
                                 <label for="accountType" class="col-form-label">Tipo de Cuenta</label>
-                                <input type="text"  readonly class="form-control-plaintext" id="accountType" placeholder="Usuario1234" value="{{plan}}">
+                                <input type="text" readonly class="form-control-plaintext" id="accountType"
+                                    placeholder="Usuario1234" value="{{plan}}">
                             </div>
                         </div>
                     </div>
@@ -157,19 +168,21 @@
                         <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
                     </dialog>
 
-                    <div class="row mt-5 ml-5" id="paymentInfo">
+                    <div class="row mt-5" id="paymentInfo">
 
                         <div class="col">
                             <div class="card" id="savedHours">
                                 <div class="card-body">
                                     <form>
-                                        <p>En nuestra base de datos se ha registrado que usted cuenta con las siguientes horas disponibles para 
+                                        <p>En nuestra base de datos se ha registrado que usted cuenta con las siguientes
+                                            horas disponibles para
                                             hacer uso de los sistemas de la platafoma
                                         </p>
                                         <br>
-                                        <input type="text" readonly class="form-control-plaintext" id="hoursLeft" name="hoursLeft" placeholder="placeholder Horas" value="{{hours}}"> 
-                                        
-                                         <!--<div class="mt-5"><button type="submit" class="btn btn-outline-dark btn-sm w-100 mt-5" id="placeholderPaypal">PayPal Placeholder</button>
+                                        <input type="text" readonly class="form-control-plaintext" id="hoursLeft"
+                                            name="hoursLeft" placeholder="placeholder Horas" value="{{hours}}">
+
+                                        <!--<div class="mt-5"><button type="submit" class="btn btn-outline-dark btn-sm w-100 mt-5" id="placeholderPaypal">PayPal Placeholder</button>
                                         </div>-->
                                     </form>
                                 </div>
@@ -193,11 +206,13 @@
                                             <option value="300">5 horas</option>
                                         </select>
                                         <br>
-                                        
+
                                         <label for="presupuesto" class="col-form-label">Total</label>
-                                        <input type="text" readonly required class="form-control-plaintext" id="presupuesto" name="presupuesto" placeholder="Ingrese un número de horas"> 
-                                        
-                                         <!--<div class="mt-5"><button type="submit" class="btn btn-outline-dark btn-sm w-100 mt-5" id="placeholderPaypal">PayPal Placeholder</button>
+                                        <input type="text" readonly required class="form-control-plaintext"
+                                            id="presupuesto" name="presupuesto"
+                                            placeholder="Ingrese un número de horas">
+
+                                        <!--<div class="mt-5"><button type="submit" class="btn btn-outline-dark btn-sm w-100 mt-5" id="placeholderPaypal">PayPal Placeholder</button>
                                         </div>-->
                                     </form>
                                 </div>
@@ -230,7 +245,8 @@
     <script src="{% static 'js/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
 
     <!-- Paypal SDK script-->
-    <script src="https://www.paypal.com/sdk/js?client-id=AWPeOVRI18ymEwK_WLYupl8MGpsPMY9Turb73goGWntMbWFdOTlFdtYWOXmOoQYh6uNnr-C3ISp03JjL&currency=MXN"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AWPeOVRI18ymEwK_WLYupl8MGpsPMY9Turb73goGWntMbWFdOTlFdtYWOXmOoQYh6uNnr-C3ISp03JjL&currency=MXN"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/dashboard.min.js'%}"></script>

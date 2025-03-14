@@ -11,6 +11,10 @@ body{
   background-color: white !important;
 }
 
+#accordionSidebar {
+  min-height: 100vh;
+}
+
 .montserrat{
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -76,7 +80,7 @@ body{
 }
 
 #btnSalir{
-    text-align: center;
+    text-align: center !important;
     width: 95%;
     background-color: white;
     border-radius: 8px;
