@@ -1,13 +1,16 @@
 from django.shortcuts import redirect
 from django.db import connection
 from django.contrib import messages
-from gestion_usuarios import CRUD,Email
+from gestion_usuarios import CRUD,Email, crud_user
 from datetime import datetime
 import os
 import csv
 from django.conf import settings
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render, redirect
+from gestion_usuarios.models import User
+from django.contrib import messages
 
 def add_user(request):
     if request.method == "POST":
@@ -20,18 +23,34 @@ def add_user(request):
         password = request.POST.get('accountPassword')
         password2 = request.POST.get('accountPassword2')
 
-        token = CRUD.add_user(username,name,lastname,lastname2,email,email_recover,password,password2)
-        # Construir la URL de verificación
+        # Verificar si las contraseñas coinciden
+        if password != password2:
+            messages.error(request, "Las contraseñas no coinciden.")
+            return render(request, 'register.html')
+
+        # Verificar si el correo electrónico ya está registrado
+        if crud_user.get_user(email):
+            messages.error(request, "Ya hay un usuario enlazado a este correo.")
+            return render(request, 'register.html')
+
+        # Verificar si el nombre de usuario ya existe
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "El nombre de usuario ya existe.")
+            return render(request, 'register.html')
+
+        # Crear el usuario y enviar el correo de verificación
+        token = CRUD.add_user(username, name, lastname, lastname2, email, email_recover, password, password2)
         if token:
             verification_url = request.build_absolute_uri(f"/gestion_usuarios/verify-email/{token}")
-            # Enviar correo de verificación con imagen incrustada
             Email.send_verification_email(email, name, verification_url)
             messages.success(request, "Te hemos enviado un correo de verificación. Confirma para completar el registro.")
-            return redirect('login')  # Redirige a una página de espera o login
-
+            return redirect('login')  # Redirigir al login después de enviar el correo
         else:
-            messages.error(request, "Las contraseñas no coinciden.")
-            return redirect('register')
+            messages.error(request, "Hubo un error al crear el usuario.")
+            return render(request, 'register.html')
+
+    return render(request, 'register.html')
+
 def verify_email(request, token):
     if Email.verify_token(token,1,""):
         messages.success(request, "Correo verificado exitosamente. Ya puedes acceder al sistema.")

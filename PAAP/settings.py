@@ -48,10 +48,10 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/' 
 ACCOUNT_LOGOUT_REDIRECT_URL = '/login/'
 
-#AUTHENTICATION_BACKENDS = [
-#    'django.contrib.auth.backends.ModelBackend',
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
 #    'allauth.account.auth_backends.AuthenticationBackend',
-#]
+]
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATION_METHOD = "email"

@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from gestion_usuarios import Login,Email,CRUD
+from gestion_usuarios import Login,Email,CRUD, crud_plan, crud_user, crud_temporal
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth import authenticate, login
 from django.http import Http404
 from django.db import connection
 from django.contrib import messages
@@ -15,26 +17,34 @@ def login_view(request):
     if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = Login.login_user(email,password)
-        plan = Login.login_plan(email)
-        horas = int(plan[0])  # Parte entera: horas
-        minutos_decimal = plan[0] - horas  # Parte decimal: fracción de una hora
+        user = crud_user.get_user(email)
+        plan = crud_plan.get_plan(email)
+        horas = int(plan.hours)  # Parte entera: horas
+        minutos_decimal = plan.hours - horas  # Parte decimal: fracción de una hora
         minutos = int(round(minutos_decimal * 60))  # Convertir fracción a minutos
         tiempo = f"{horas}:{minutos:02d}"
         if user:
-            # Cargar los Datos en la Sesión
-            request.session['email'] = user[0]
-            request.session['username'] = user[2]
-            request.session['name'] = user[3]
-            request.session['password'] = user[4]
-            request.session['email_recover'] = user[5]
-            request.session['firstlastname'] = user[7]
-            request.session['secondlastname'] = user[8]
-            request.session['hours'] = tiempo
-            request.session['plan'] = plan[1]
-            return redirect('dashboard')
+            if check_password(password, user.password):    
+                if user.status:
+                    # Cargar los Datos en la Sesión
+                    request.session['email'] = user.email
+                    request.session['username'] = user.username
+                    request.session['name'] = user.name
+                    request.session['password'] = user.password
+                    request.session['email_recover'] = user.email_recover
+                    request.session['firstlastname'] = user.firstlastname
+                    request.session['secondlastname'] = user.secondlastname
+                    request.session['hours'] = tiempo
+                    request.session['plan'] = plan.type_plan
+                    return redirect('dashboard')
+                else:
+                    messages.error(request, "Usuario desactivado")
+                    return redirect('login')  
+            else:
+                messages.error(request, "La contraseña o el correo estan equivocados")
+                return redirect('login') 
         else:
-            messages.error(request, "Correo o contraseña incorrectos")
+            messages.error(request, "El usuario no existe")
             return redirect('login')
     return render(request, 'login.html')
 #Función del Pricing view
@@ -55,7 +65,7 @@ def emailNotification_view(request):
 def passwordRetrive_view(request, token):
     token2 = token.rstrip('/')
     context = {'token':token}
-    if Email.search_token_temporal(token2):
+    if crud_temporal.get_temporal_token(token2):
         return render(request, 'passwordRetrieve.html',context)
     else:
         raise Http404("El token no existe o es inválido.")
