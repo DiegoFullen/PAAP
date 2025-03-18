@@ -2,7 +2,7 @@ body{
     min-height: 100vh;
     position: relative;
     height: fit-content;
-    padding-bottom: 12em;
+    padding-bottom: 10em;
 }
 
 footer a{
@@ -223,6 +223,8 @@ footer a{
 
 #milestones{
     padding-top: 1rem;
+    padding-bottom: 8rem;
+
     margin-top: 4rem;
     background-color: #F2FBFF;
 }

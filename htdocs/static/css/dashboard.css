@@ -91,12 +91,14 @@ body{
     border: solid;
     border-color: mediumblue    ;
     border-radius: 10px;
-    padding: calc(2px + 0.5rem);
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
     min-width: 455px;
     align-items: center;
-    text-align: end;
+    text-align: center;
+
+    padding: 20px;
+    background-color: rgba(243, 248, 252, 0.3)
 }
 
 #btn-download{
@@ -109,7 +111,6 @@ body{
 
 #dialog {
     font-family: "Inter", sans-serif;
-    animation: fade-out 0.7s ease-out;
     border-radius: 12px;
   }
   
