@@ -5,7 +5,7 @@ import os
 from email.mime.image import MIMEImage
 from datetime import datetime, timedelta
 from django.utils.crypto import get_random_string
-from gestion_usuarios import CRUD
+from gestion_usuarios import CRUD, crud_temporal,crud_user
 
 def send_verification_email(email, name, verification_url):
     subject = "Verificación de correo"
@@ -101,45 +101,23 @@ def send_verification_email(email, name, verification_url):
             email_message.attach(img)
     email_message.send()
 
-def search_token_temporal(token):
-    with connection.cursor() as cursor:
-        cursor.execute(
-        """
-        SELECT * FROM gestion_usuarios_user_temporal
-        WHERE token = %s
-        """,
-        [token]
-        )
-        token_data = cursor.fetchone()
-    if token_data:
-        return True
-    else:
-        return False
 
 
 def verify_token(token, decision, password_recover):
-    with connection.cursor() as cursor:
-        cursor.execute(
-            """
-            SELECT id, email, username, name, password, email_recover, firstlastname, secondlastname, created_at 
-            FROM gestion_usuarios_user_temporal 
-            WHERE token=%s
-            """,
-            [token]
-        )
-        user_data = cursor.fetchone()  # Obtener el usuario temporal
-
-    if not user_data:
-        return False
-    else:
+    user_data = crud_temporal.get_temporal_token(token)
+    if user_data:
         # Extraer los datos del usuario
-        id, email, username, name, password, email_recover, firstlastname, secondlastname, created_at = user_data
+        email = user_data.email
+        created_at = user_data.created_at
         if decision == 1:
-            resultado  =  CRUD.add_new_user(id, email, username, name, password, email_recover, firstlastname, secondlastname, created_at, token)
+            resultado  =  CRUD.add_new_user(created_at, token)
         else: 
             if decision == 2:
                 resultado = CRUD.update_user_password(password_recover,email,token,created_at)
         return resultado
+        
+    else:
+        return False
 
 def delete_temporal(token):
     with connection.cursor() as cursor:
@@ -152,81 +130,81 @@ def delete_temporal(token):
         )
 
 def send_email_recover(request, mail, retrieveEmail):
-    with connection.cursor() as cursor:
-        cursor.execute(
-            """
-            select * FROM gestion_usuarios_user 
-            WHERE email=%s AND email_recover=%s
-            """,
-            [mail,retrieveEmail]
-        )
-        email_data = cursor.fetchone()
+    email_data = crud_user.get_user_email(mail,retrieveEmail)
         
     if email_data:
-        email, id_user, username, name, password, email_recover, status, firstlasname, secondlastname = email_data  
-        token_recover = CRUD.add_user(username,name,firstlasname,secondlastname,email,email_recover,password,password)
-        recovery_url = request.build_absolute_uri(f"/passwordRetrive/{token_recover}")
-        subject = "Verificación de correo"
-        from_email = "angelohaziel2002l@gmail.com"
-        recipient_list = [retrieveEmail]
-        html_content = f"""
-                        <!DOCTYPE html>
-                        <html>
-                        <head>
-                            <meta charset="UTF-8">
-                            <style>
-                                body {{
-                                    font-family: Arial, sans-serif;
-                                    background-color: #f4f4f4;
-                                    padding: 20px;
-                                }}
-                                .container {{
-                                    max-width: 600px;
-                                    margin: auto;
-                                    background: white;
-                                    border-radius: 10px;
-                                    padding: 20px;
-                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                                }}
-                                .button {{
-                                    display: inline-block;
-                                    background-color: #3c43cb;
-                                    color: white;
-                                    padding: 10px 20px;
-                                    text-decoration: none;
-                                    border-radius: 5px;
-                                    font-size: 16px;
-                                    margin: 20px 0;
-                                }}
-                                .footer {{
-                                    text-align: center;
-                                    font-size: 12px;
-                                    color: #888;
-                                }}
-                            </style>
-                        </head>
-                        <body>
-                            <div class="container">
-                                <h2 style="text-align: center; color: #3c43cb;">Recuperación de Contraseña</h2>
-                                <div style="text-align: center;">
-                                    <img src="cid:logo_cid" alt="Logo de PAAP" style="width: 200px;"/>
+        email = email_data.email
+        username = email_data.username
+        name = email_data.name
+        password = email_data.password  # La contraseña ya está cifrada
+        email_recover = email_data.email_recover
+        firstlastname = email_data.firstlastname
+        secondlastname = email_data.secondlastname
+        token_recover = CRUD.add_recover_password_request(username,name,firstlastname ,secondlastname,email,email_recover,password)
+        if token_recover:
+            recovery_url = request.build_absolute_uri(f"/passwordRetrive/{token_recover}")
+            subject = "Verificación de correo"
+            from_email = "angelohaziel2002l@gmail.com"
+            recipient_list = [retrieveEmail]
+            html_content = f"""
+                            <!DOCTYPE html>
+                            <html>
+                            <head>
+                                <meta charset="UTF-8">
+                                <style>
+                                    body {{
+                                        font-family: Arial, sans-serif;
+                                        background-color: #f4f4f4;
+                                        padding: 20px;
+                                    }}
+                                    .container {{
+                                        max-width: 600px;
+                                        margin: auto;
+                                        background: white;
+                                        border-radius: 10px;
+                                        padding: 20px;
+                                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                    }}
+                                    .button {{
+                                        display: inline-block;
+                                        background-color: #3c43cb;
+                                        color: white;
+                                        padding: 10px 20px;
+                                        text-decoration: none;
+                                        border-radius: 5px;
+                                        font-size: 16px;
+                                        margin: 20px 0;
+                                    }}
+                                    .footer {{
+                                        text-align: center;
+                                        font-size: 12px;
+                                        color: #888;
+                                    }}
+                                </style>
+                            </head>
+                            <body>
+                                <div class="container">
+                                    <h2 style="text-align: center; color: #3c43cb;">Recuperación de Contraseña</h2>
+                                    <div style="text-align: center;">
+                                        <img src="cid:logo_cid" alt="Logo de PAAP" style="width: 200px;"/>
+                                    </div>
+                                    <p>Hola <strong>{name}</strong>,</p>
+                                    <p>Hemos recibido una solicitud para recuperar la contraseña de tu cuenta. Si no fuiste tú, ignora este mensaje.</p>
+                                    <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
+                                    <div style="text-align: center;">
+                                        <a href="{ recovery_url }" style="display: inline-block; background-color: #3c43cb; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; margin: 20px 0;">Recuperar Contraseña</a>
+                                    <p class="footer">Si no solicitaste este registro, por favor ignora este mensaje.</p>
                                 </div>
-                                <p>Hola <strong>{name}</strong>,</p>
-                                <p>Hemos recibido una solicitud para recuperar la contraseña de tu cuenta. Si no fuiste tú, ignora este mensaje.</p>
-                                <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
-                                <div style="text-align: center;">
-                                    <a href="{ recovery_url }" style="display: inline-block; background-color: #3c43cb; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; margin: 20px 0;">Recuperar Contraseña</a>
-                                <p class="footer">Si no solicitaste este registro, por favor ignora este mensaje.</p>
-                            </div>
-                        </body>
-                        </html>
-        """
-        email_message = EmailMultiAlternatives(subject, "", from_email, recipient_list)
-        email_message.attach_alternative(html_content, "text/html")
-        comprovasion = email_message.send()
-        if comprovasion:
-            return True
-        else:
-            return False
+                            </body>
+                            </html>
+            """
+            email_message = EmailMultiAlternatives(subject, "", from_email, recipient_list)
+            email_message.attach_alternative(html_content, "text/html")
+            comprovasion = email_message.send()
+            if comprovasion:
+                return True
+            else:
+                return False
+        else: return False
     else:
         return False    

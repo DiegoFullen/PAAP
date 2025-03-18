@@ -1,96 +1,65 @@
 from django.db import connection
 from django.utils.crypto import get_random_string
-from datetime import datetime, timedelta
+from django.utils import timezone
+from datetime import timedelta 
+from gestion_usuarios import crud_temporal,crud_user,crud_plan,crud_dataset,crud_model
+from django.contrib.auth.hashers import make_password
 
 #Funciones de CRUD
 def add_user(username, name, lastname,lastname2,email,email_recover,password,password2):
     if password == password2:
             token = get_random_string(length=32)  # Genera un token único
+            temporal = crud_temporal.create_temporal(email,username,password,name,lastname,lastname2,email_recover,token)
+            if temporal:
+                return token
+            else: return None
+    else: return None
 
-            with connection.cursor() as cursor:
-                # Insertar datos del usuario junto con el token en la tabla temporal
-                cursor.execute(
-                    """
-                    INSERT INTO gestion_usuarios_user_temporal 
-                    (email, username, name, password, email_recover, status, firstlastname, secondlastname, token) 
-                    VALUES (%s, %s, %s, %s, %s, 1, %s, %s, %s)
-                    """,
-                    [email, username, name, password, email_recover, lastname, lastname2, token]
-                )
-    return token
+def add_recover_password_request(username, name, lastname,lastname2,email,email_recover,password):
+    token = get_random_string(length=32)
+    temporal = crud_temporal.create_request_temporal(email,username,password,name,lastname,lastname2,email_recover,token)
+    if temporal:
+        return token
+    else: return None
 
-def add_new_user(id, email, username, name, password, email_recover, firstlastname, secondlastname, created_at, token):
-    if datetime.now() <= created_at + timedelta(minutes=15):
-
-            # Insertar el usuario en la tabla definitiva
-            with connection.cursor() as cursor:
-                cursor.execute(
-                """
-                INSERT INTO gestion_usuarios_user 
-                (email, id_user, username, name, password, email_recover, status, firstlastname, secondlastname) 
-                VALUES (%s, %s, %s, %s, %s, %s, 1, %s, %s)
-                """,
-                [email, id, username, name, password, email_recover, firstlastname, secondlastname]
-                )
-
-                # Eliminar el registro temporal
-                cursor.execute(
-                """
-                DELETE FROM gestion_usuarios_user_temporal 
-                WHERE token=%s
-                """,
-                [token]
-                )
-                cursor.execute(
-                """
-                INSERT INTO gestion_usuarios_plan 
-                (id,hours,type_plan, email_id) 
-                VALUES (%s, 0 , 'Integrado', %s)
-                """,
-                [id,email]
-                )
-            return True
+def add_new_user(created_at, token):
+    if timezone.now() <= created_at + timedelta(minutes=15):
+            user = crud_user.transfer_temporal_to_user(token)
+            if user:
+                crud_plan.create_plan(0,"Integrado", user.email)
+                return True
+            else:
+                 crud_user.delete_user(user.email)
+                 return False
     else:
+         crud_temporal.delete_temporal(token)
          return False
 
 def update_user_password(password, email ,token,created_at):
-    if datetime.now() <= created_at + timedelta(minutes=15): 
-        with connection.cursor() as cursor:
-                    cursor.execute(
-                    """
-                    UPDATE gestion_usuarios_user SET password = %s
-                    WHERE email = %s
-                    """,
-                    [password, email]
-                    )
-
-                    # Eliminar el registro temporal
-                    cursor.execute(
-                    """
-                    DELETE FROM gestion_usuarios_user_temporal 
-                    WHERE token=%s
-                    """,
-                    [token]
-                    )
+    if timezone.now() <= created_at + timedelta(minutes=15): 
+        cifred_password = make_password(password)
+        crud_user.update_user(email, password=cifred_password)
+        crud_temporal.delete_temporal(token)
         return True
     else:
         return False    
     
 def search_models(email):
-    with connection.cursor() as cursor:
+    modelos = crud_model.get_user_models(email)
+    #with connection.cursor() as cursor:
         # Consulta SQL con JOIN
-        cursor.execute(
-            """
-            SELECT gm.id_model, gm.name, gm.type, gd.name_dataset
-            FROM gestion_usuarios_model gm
-            INNER JOIN gestion_usuarios_dataset gd ON gm.id_dataset = gd.id_dataset
-            WHERE gm.email_id = %s
-            """,
-            [email]  # Filtra por el email del usuario
-        )
+    #    cursor.execute(
+    #        """
+    #        SELECT gm.id_model, gm.name, gm.type, gd.name
+    #        FROM gestion_usuarios_model gm
+    #        INNER JOIN gestion_usuarios_dataset gd ON gm.id_dataset = gd.id_dataset
+    #        WHERE gm.email_id = %s
+    #        """,
+    #        [email]  # Filtra por el email del usuario
+    #    )
         # Obtener todos los resultados
-        modelos = cursor.fetchall()
-        return modelos
+    #    modelos = cursor.fetchall()
+    return modelos
 
 
 def select_hiperparametros(id_dataset):

@@ -1,36 +1,83 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils import timezone
 from django.contrib.auth.hashers import make_password
 
-class User(models.Model):
-    email = models.EmailField(primary_key=True) 
+class UserManager(BaseUserManager):
+    def create_user(self, email, username, password, **extra_fields):
+        if not email:
+            raise ValueError('El email es obligatorio')
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username, password=password, **extra_fields)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, username, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, username, password, **extra_fields)
+
+class User(AbstractBaseUser):
+    email = models.EmailField(primary_key=True, max_length=100)
+    username = models.CharField(max_length=20, unique=True)
+    password = models.CharField(max_length=128)
+    name = models.CharField(max_length=50)
+    firstlastname = models.CharField(max_length=50, null=True, blank=True)
+    secondlastname = models.CharField(max_length=50, null=True, blank=True)
+    email_recover = models.EmailField()
+    status = models.BooleanField(default=True)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    def __str__(self):
+        return self.email
+
+class Dataset(models.Model):
+    id_dataset = models.CharField(primary_key=True, max_length=100)
+    upload_date = models.DateField()
+    name = models.CharField(max_length=100, null=True, blank=True)
+    size = models.FloatField()
+    email_id = models.EmailField()  # Cambiado de ForeignKey a EmailField
+
+    def __str__(self):
+        return self.name
+
+class Model(models.Model):
+    id_model = models.CharField(primary_key=True, max_length=100)
+    id_dataset = models.CharField(max_length=100)  # Cambiado de ForeignKey a CharField
+    email_id = models.EmailField(default='example@example.com')
+    start_date = models.DateField()
+    finish_date = models.DateField()
+    name = models.CharField(max_length=50)
+    type = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+class Plan(models.Model):
+    hours = models.IntegerField()
+    type_plan = models.CharField(max_length=50)
+    email_id = models.EmailField()  # Cambiado de ForeignKey a EmailField
+
+    def __str__(self):
+        return f"{self.type_plan} - {self.hours} horas"
+
+class Temporal(models.Model):
+    email = models.EmailField()
     username = models.CharField(max_length=20)
+    password = models.CharField(max_length=128)  # Longitud aumentada para almacenar el hash
     name = models.CharField(max_length=50)
     firstlastname = models.CharField(max_length=50)
     secondlastname = models.CharField(max_length=50)
-    password = models.CharField(max_length=128) 
     email_recover = models.EmailField()
-    status = models.BooleanField()
+    token = models.CharField(max_length=64)
+    created_at = models.DateTimeField(default=timezone.now)
 
-    def save(self, *args, **kwargs):
-        self.password = make_password(self.password)
-        super(User, self).save(*args, **kwargs)
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)  # Cifra la contraseña
 
-class Dataset(models.Model):
-    id_dataset = models.IntegerField(primary_key=True)
-    email = models.ForeignKey(User, on_delete=models.CASCADE) 
-    upload_date = models.CharField(max_length=15)
-    name_dataset = models.CharField(max_length=50)
-    size = models.DecimalField(max_digits=20, decimal_places=6)
-
-class Model(models.Model):
-    id_model = models.IntegerField(primary_key=True)
-    id_dataset = models.IntegerField()
-    start_date = models.CharField(max_length=15)
-    finish_date = models.CharField(max_length=15)
-    name = models.CharField(max_length=50)
-    type = models.IntegerField()
-
-class Plan(models.Model):
-    email = models.ForeignKey(User, on_delete=models.CASCADE)  
-    hours = models.DecimalField(max_digits=5, decimal_places=2)
-    type_plan = models.IntegerField()
+    def __str__(self):
+        return self.email
