@@ -23,7 +23,7 @@ urlpatterns = [
     path('dashboard/payment/upgrade/plan/',views.upgrade_plan,name='upgrade_plan'),
     path('pricing/',views.pricing_view,name='pricing'),
     path('register/',views.register_view,name='register'),
-    path('dashboard/account/update/',views.update_profile,name='update_profile'),
+    #path('dashboard/account/update/',views.update_profile,name='update_profile'),
     path('exit/',views.exit,name='exit'),
     path('gestion_usuarios/', include('gestion_usuarios.urls')),
 ]
