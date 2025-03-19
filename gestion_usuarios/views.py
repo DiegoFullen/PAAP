@@ -86,6 +86,63 @@ def recover_password(request, token):
         else:
             return redirect('passwordRetrive', token = token)
 
+def update_profile(request):
+    if request.method == "POST":
+        username = request.POST.get('userName')
+        name = request.POST.get('accountName')
+        lastname = request.POST.get('accountFLast')
+        lastname2 = request.POST.get('accountSLast')
+        email = request.session.get('email')
+        email_recover = request.POST.get('accountEmailBack')
+        password = request.POST.get('accountPassword')
+        password2 = request.POST.get('accountPassword2')
+
+        if password == password2:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                "SELECT * FROM gestion_usuarios_user WHERE email=%s AND status=1", 
+                [email]
+                )
+                user = cursor.fetchone()
+                if user:
+                    cursor.execute(
+                    """
+                    UPDATE gestion_usuarios_user 
+                    SET username=%s, name=%s, password=%s, email_recover=%s, firstlastname=%s, secondlastname=%s
+                    WHERE email=%s
+                    """,
+                    [username, name, password, email_recover, lastname, lastname2, email]
+                    )
+                else:
+                    return redirect('resources')
+                cursor.execute(
+                """
+                SELECT *
+                FROM gestion_usuarios_user 
+                WHERE email=%s AND password=%s AND status=1
+                """,
+                [email, password]
+                )
+                user = cursor.fetchone()
+                
+            if user:
+                request.session['email'] = user[0]
+                request.session['username'] = user[2]
+                request.session['name'] = user[3]
+                request.session['password'] = user[4]
+                request.session['email_recover'] = user[5]
+                request.session['firstlastname'] = user[7]
+                request.session['secondlastname'] = user[8]
+
+                return redirect('account')
+            else:
+                messages.error(request, "No se pudo actualizar el perfil")
+                return redirect('dashboard')
+        else:
+            messages.error(request, "Las contraseñas no coinciden")
+            return redirect('account')
+    else:
+            return redirect('dashboard')
 
 def save_parameters(request):
     if request.method == 'POST':
