@@ -12,6 +12,11 @@ body{
     min-width: 280px;
 }
 
+#parameters{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
 .header{
     font-family: "Mulish", sans-serif;
     font-weight: 700;
@@ -32,13 +37,15 @@ body{
     overflow: auto;
     padding: 0 2em 2em 2em !important;
     height: 19rem !important;
+    background-color: #FBFBFB;
+
+    margin-top: 3rem;
 }
 
 .hiper .card    {
-    background-color: #FBFBFB;
     border-radius: 12px;
     border-color: transparent;
-    box-shadow: 0px 2px 2px gray;
+
     padding: 10px 50px 0px 30px;
     min-height: 8em;
     max-height: 8.1em;
@@ -111,6 +118,14 @@ body{
     margin-bottom: 5%;
     height: 38px;
     
+}
+
+#primeStack{
+    border-radius: 5px;
+    border-width: .1px;
+    width: 100%;
+    margin-bottom: 5%;
+    height: 38px;
 }
 
 input[type=file]{

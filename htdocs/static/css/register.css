@@ -67,7 +67,7 @@ body {
     grid-template-rows: minmax(50px, auto);
     width: 100%;
     height: max-content;
-    background-color: white;
+    background-color: white; /*#E8F4FA*/
     color: #000;
 }
 
@@ -190,6 +190,9 @@ body {
     font-style: normal;
     font-weight: 300;
     font-size: 1.6em;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .formRegister #form_control #btnValidate {
