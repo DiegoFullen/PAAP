@@ -4,6 +4,20 @@ body{
     min-width: 860px;
 }
 
+/*Quitar las flechas de los input number*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: auto;
+}
+
 #CSV{
     min-width: 280px;
 }
@@ -16,6 +30,7 @@ body{
     padding-left: 2rem;
     padding-right: 2rem;
 }
+
 
 .header{
     font-family: "Mulish", sans-serif;
@@ -40,6 +55,7 @@ body{
     background-color: #FBFBFB;
 
     margin-top: 3rem;
+    border-radius: 20px;
 }
 
 .hiper .card    {
@@ -51,16 +67,41 @@ body{
     max-height: 8.1em;
 }
 
-.hiper .row .col{
-    margin-top: 20px;
-}
-
 .hiper .row{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
     grid-template-rows: max-content;
     width: 100%;
+
+    margin-top: 1rem;
+}
+
+.hiper .row .col{
+    margin-top: 20px;
+}
+
+.hiper .row .col input[type="number"], input[type="text"]{
+    border: solid;
+    border-color: lightgray;
+
+    border-radius: 5px;
+    border-width: .1px;
+    width: 100%;
+    margin-bottom: 5%;
+    height: 38px;
+}
+
+.hiper .row .col #box{
+    width: 88%;
+    margin-left: 6%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hiper .row .col #box > * {
+    width: 50%;
 }
 
 .hiper .row #col1{
