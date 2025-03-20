@@ -6,9 +6,11 @@ from gestion_usuarios import crud_temporal,crud_user,crud_plan,crud_dataset,crud
 from django.contrib.auth.hashers import make_password
 
 #Funciones de CRUD
+
+
 def add_user(username, name, lastname,lastname2,email,email_recover,password,password2):
     if password == password2:
-            token = get_random_string(length=32)  # Genera un token único
+            token = get_random_string(length=32)
             temporal = crud_temporal.create_temporal(email,username,password,name,lastname,lastname2,email_recover,token)
             if temporal:
                 return token
@@ -46,19 +48,6 @@ def update_user_password(password, email ,token,created_at):
     
 def search_models(email):
     modelos = crud_model.get_user_models(email)
-    #with connection.cursor() as cursor:
-        # Consulta SQL con JOIN
-    #    cursor.execute(
-    #        """
-    #        SELECT gm.id_model, gm.name, gm.type, gd.name
-    #        FROM gestion_usuarios_model gm
-    #        INNER JOIN gestion_usuarios_dataset gd ON gm.id_dataset = gd.id_dataset
-    #        WHERE gm.email_id = %s
-    #        """,
-    #        [email]  # Filtra por el email del usuario
-    #    )
-        # Obtener todos los resultados
-    #    modelos = cursor.fetchall()
     return modelos
 
 

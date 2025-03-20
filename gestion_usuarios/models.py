@@ -81,3 +81,21 @@ class Temporal(models.Model):
 
     def __str__(self):
         return self.email
+    
+class Hiperparameters_Tree(models.Model):
+    email = models.EmailField
+    model_id = models.CharField(max_length=100)
+    type = models.IntegerField() #0 Para Regresión o 1 para Clasificación
+    prime_stack = models.CharField(max_length=70)
+    #Hiperparametros
+    criterion = models.IntegerField()
+    splitter = models.IntegerField()
+    max_depth = models.FloatField()
+    min_samples_split = models.FloatField()
+    min_leaf_split = models.FloatField()
+    max_leaf_nodes = models.FloatField()
+    min_impurity_decrease = models.FloatField()
+    max_features = models.FloatField()
+    random_state = models.FloatField()
+    ccp_alpha = models.FloatField()
+    class_weight = models.FloatField()

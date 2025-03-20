@@ -106,7 +106,6 @@ def send_verification_email(email, name, verification_url):
 def verify_token(token, decision, password_recover):
     user_data = crud_temporal.get_temporal_token(token)
     if user_data:
-        # Extraer los datos del usuario
         email = user_data.email
         created_at = user_data.created_at
         if decision == 1:
@@ -119,15 +118,6 @@ def verify_token(token, decision, password_recover):
     else:
         return False
 
-def delete_temporal(token):
-    with connection.cursor() as cursor:
-        cursor.execute(
-            """
-            delete FROM gestion_usuarios_user_temporal 
-            WHERE token=%s
-            """,
-            [token]
-        )
 
 def send_email_recover(request, mail, retrieveEmail):
     email_data = crud_user.get_user_email(mail,retrieveEmail)
