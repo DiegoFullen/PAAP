@@ -49,10 +49,11 @@ class Model(models.Model):
     id_model = models.CharField(primary_key=True, max_length=100)
     id_dataset = models.CharField(max_length=100)  # Cambiado de ForeignKey a CharField
     email_id = models.EmailField(default='example@example.com')
-    start_date = models.DateField()
-    finish_date = models.DateField()
+    start_date = models.DateField(null=True)
+    finish_date = models.DateField(null=True)
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=20)
+    primeStack = models.CharField(max_length=70, default='stack')
 
     def __str__(self):
         return self.name
@@ -108,10 +109,10 @@ class Hiperparameters_KNN(models.Model):
     #Hiperparametros
     n_neighbors = models.FloatField()
     weights = models.FloatField()
-    algorithm = models.IntegerField()
+    algorithm = models.CharField(max_length=15,default='auto' )
     leaf_size = models.FloatField()
     p = models.FloatField()
-    metric = models.IntegerField()
+    metric = models.CharField(max_length=15,default='minkowski' )
     
 class Hiperparameters_RandomForest(models.Model):
     email_id = models.EmailField(default='example@example.com')

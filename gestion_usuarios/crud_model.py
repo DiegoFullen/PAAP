@@ -1,14 +1,15 @@
 from gestion_usuarios.models import Model, Dataset
 from django.db.models import F
 # Crear un nuevo modelo
-def create_model(id_model, id_dataset, start_date, finish_date, name, type):
+def create_model(id_model, id_dataset, start_date, finish_date, name, type,stack):
     model = Model.objects.create(
         id_model=id_model,
         id_dataset=id_dataset,  # Almacena directamente el ID del dataset
         start_date=start_date,
         finish_date=finish_date,
         name=name,
-        type=type
+        type=type,
+        primeStack = stack
     )
     return model
 
@@ -70,3 +71,7 @@ def delete_model(id_model):
         return True
     except Model.DoesNotExist:
         return False
+    
+def count_models(email_id):
+    cantidad = Model.objects.filter(email_id=email_id).count()
+    return cantidad

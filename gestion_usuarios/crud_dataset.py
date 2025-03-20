@@ -42,3 +42,7 @@ def delete_dataset(id_dataset):
         return True
     except Dataset.DoesNotExist:
         return False
+
+def count_dataset(email_id):
+    cantidad = Dataset.objects.filter(email_id=email_id).count()
+    return cantidad

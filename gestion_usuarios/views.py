@@ -1,8 +1,8 @@
 from django.shortcuts import redirect
 from django.db import connection
 from django.contrib import messages
-from gestion_usuarios import CRUD,Email,crud_user
-from datetime import datetime
+from gestion_usuarios import CRUD,Email,crud_user, crud_model,crud_dataset
+from django.utils import timezone
 import os
 import csv
 from django.conf import settings
@@ -148,11 +148,29 @@ def save_parameters(request):
     if request.method == 'POST':
         email = request.session['email']
         # Obtener valores del formulario
-        model_name = request.POST.get('modelName')
+        model = request.POST.get('modelName')
         algorithm = request.POST.get('selectAlgorithm')
         algorithm_type = request.POST.get('algoritmoType') #Clasificación o Regresión
         primeStack = request.POST.get('primeStack')
-        messages.success(request, f'{model_name} || {algorithm} || {algorithm_type} || {primeStack}') 
+        number = crud_dataset.count_dataset(email) + 1
+        model_name = f"{email}-{number}"
+        dataset_id = f"{model_name}_dataset"
+        messages.success(request, f'{model_name} || {algorithm} || {algorithm_type} || {primeStack}')
+        crud_model.create_model(model_name,dataset_id,None,None,model,algorithm,primeStack)
+        upload_date = timezone.now()
+            # Manejar la subida del archivo
+        if request.FILES.get('file'):
+            dataset = request.FILES['file']
+            dataset_name = dataset.name
+            dataset_size = dataset.size
+            dataset_path = os.path.join(settings.MEDIA_ROOT, 'file',email, model_name, dataset_name)
+            os.makedirs(os.path.dirname(dataset_path), exist_ok=True)
+            with open(dataset_path, 'wb+') as destination:
+                for chunk in dataset.chunks():
+                    destination.write(chunk)
+        crud_dataset.create_dataset(dataset_id,upload_date,dataset_name,dataset_size,email)
+
+
         if algorithm == "arbolDesicion":
             if algorithm_type == "regression":
                 criterion = request.POST.get('criterioRadio-Tree_reg')
@@ -201,7 +219,7 @@ def save_parameters(request):
             if algorithm_type == "regression":
                 n_neighbors = request.POST.get('neighborsInput-KNN_reg')
                 weights = request.POST.get('neighborsInput-KNN_reg')
-                algorithm_knn = request.POST.get('neighborsInput-KNN_reg')
+                algorithm_knn = request.POST.get('algorithmRadio-KNN_reg')
                 leaf_size = request.POST.get('lifeSizeInput-KNN_reg')
                 p = request.POST.get('pInput-KNN_reg')
                 metric = request.POST.get('metricaRadio-KNN_reg')
@@ -209,7 +227,7 @@ def save_parameters(request):
             elif algorithm_type == "classify":
                 n_neighbors = request.POST.get('neighborsInput-KNN_class')
                 weights = request.POST.get('neighborsInput-KNN_class')
-                algorithm_knn = request.POST.get('neighborsInput-KNN_class')
+                algorithm_knn = request.POST.get('algorithmRadio-KNN_reg')
                 leaf_size = request.POST.get('lifeSizeInput-KNN_class')
                 p = request.POST.get('pInput-KNN_class')
                 metric = request.POST.get('metricaRadio-KNN_class')
