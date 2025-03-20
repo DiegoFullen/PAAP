@@ -50,10 +50,11 @@ input[type=number] {
 .hiper{
     overflow: auto;
     padding: 0 2em 2em 2em !important;
-    height: 19rem !important;
+    /*height: 19rem !important;*/
     background-color: #FBFBFB;
 
     margin-top: 3rem;
+    margin-bottom: 4rem;
     border-radius: 20px;
 }
 
@@ -180,7 +181,7 @@ input[type=number] {
 
 .hiper #KNNparameters #metricKNN{
     grid-column: 1;
-    grid-row: 1/4;
+    grid-row: 1;
 }
 
 .hiper #KNNparameters #neighborsKNN{
@@ -204,8 +205,8 @@ input[type=number] {
 }
 
 .hiper #KNNparameters #algorithmKNN{
-    grid-column: 2/4;
-    grid-row: 3;
+    grid-column: 1;
+    grid-row: 2;
 }
 
 .hiper #KNNparameters #algorithmKNN #box > * {
@@ -261,7 +262,6 @@ input[type=file]{
     .hiper{
         overflow: auto;
         padding: 0 2em 2em 2em !important;
-        height: 40rem !important;
     }
 }
 
@@ -304,6 +304,47 @@ input[type=file]{
         grid-row: 2;
         margin-top: 0;
     }
+
+    .hiper #KNNparameters{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5em;
+        grid-template-rows: max-content;
+        width: 90%;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hiper #KNNparameters #metricKNN{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .hiper #KNNparameters #neighborsKNN{
+        grid-column: 2;
+        grid-row: 1;
+    }
+    
+    .hiper #KNNparameters #leafSizeKNN{
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .hiper #KNNparameters #pKNN{
+        grid-column: 2;
+        grid-row: 2;
+    }
+    
+    .hiper #KNNparameters #weightsKNN{
+        grid-column: 1;
+        grid-row: 3;
+    }
+    
+    .hiper #KNNparameters #algorithmKNN{
+        grid-column: 2;
+        grid-row: 3;
+    }
     
 }
 
@@ -323,11 +364,12 @@ input[type=file]{
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: max-content;
-        width: 70%;
+        width: 80%;
 
         margin-left: auto;
         margin-right: auto;
-        min-width: 286px;
+        /*min-width: 286px;*/
+        gap: 2.5rem 0;
     }
 
     .hiper .row .card .card-body span{
@@ -353,8 +395,64 @@ input[type=file]{
         grid-row: 3;
         margin-top: 10px;
     }
+
+    .hiper #KNNparameters{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content;
+        width: 80%;
+
+        margin-left: auto;
+        margin-right: auto;
+        /*min-width: 286px;*/
+        gap: 2.5rem 0;
+    }
+
+    .hiper #KNNparameters #metricKNN{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .hiper #KNNparameters #neighborsKNN{
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .hiper #KNNparameters #leafSizeKNN{
+        grid-column: 1;
+        grid-row: 3;
+    }
+    
+    .hiper #KNNparameters #pKNN{
+        grid-column: 1;
+        grid-row: 4;
+    }
+    
+    .hiper #KNNparameters #weightsKNN{
+        grid-column: 1;
+        grid-row: 5;
+    }
+    
+    .hiper #KNNparameters #algorithmKNN{
+        grid-column: 1;
+        grid-row: 6;
+    }
     
     #weightRNF{
         max-height: fit-content !important;
+    }
+}
+
+@media (max-width:760px){
+
+    .hiper{
+        padding: 0 !important;
+    }
+
+    .hiper .row{
+        width: 100%;
+    }
+    .hiper #KNNparameters{
+        width: 100%;    
     }
 }
