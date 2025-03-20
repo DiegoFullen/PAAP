@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.db import connection
 from django.contrib import messages
-from gestion_usuarios import CRUD,Email, crud_user
+from gestion_usuarios import CRUD,Email,crud_user
 from datetime import datetime
 import os
 import csv
@@ -146,106 +146,123 @@ def update_profile(request):
 
 def save_parameters(request):
     if request.method == 'POST':
+        email = request.session['email']
         # Obtener valores del formulario
         model_name = request.POST.get('modelName')
         algorithm = request.POST.get('selectAlgorithm')
-        algorithm_type = request.POST.get('algoritmoType')  # 0 = "Regresión" o 1 ="Clasificación"
-        criterion = request.POST.get('criterioRadio') # 0 = Entropia o 1 = Indice Gini (Default)
-        max_depth = request.POST.get('nodosRange') # Profundida Máxima (Nodos)
-        max_leaf_nodes = request.POST.get('max-hojasRange') # Máximo de nodos hoja
-        min_samples_split = request.POST.get('divisorRange') # Mínimo de Muestras para dividir un Nodo
-        min_samples_leaf = request.POST.get('hojasRange') # Mínimo de Muestras en un Nodo Hoja
-        min_impurity_decrease = request.POST.get('reduccionRange') # Reducción mínima de impureza para dividir
-        ccp_alpha = request.POST.get('ccpRange') # Parámetro de poda costo-complejidad
-        random_seed = request.POST.get('semillaRadio')
-        email = request.session['email']
-        if algorithm == 'kNeighbors':
-            criterion = request.POST.get('criterioRadio-KNN') # 0 = Entropia o 1 = Indice Gini (Default)
-            max_depth = request.POST.get('nodosRange-KNN') # Profundida Máxima (Nodos)
-            max_leaf_nodes = request.POST.get('max-hojasRange-KNN') # Máximo de nodos hoja
-            min_samples_split = request.POST.get('divisorRange-KNN') # Mínimo de Muestras para dividir un Nodo
-            min_samples_leaf = request.POST.get('hojasRange-KNN') # Mínimo de Muestras en un Nodo Hoja
-            min_impurity_decrease = request.POST.get('reduccionRange-KNN') # Reducción mínima de impureza para dividir
-            ccp_alpha = request.POST.get('ccpRange-KNN') # Parámetro de poda costo-complejidad
-            random_seed = request.POST.get('semillaRadio-KNN')
-        if algorithm == 'randomForest':
-            criterion = request.POST.get('criterioRadio-RF') # 0 = Entropia o 1 = Indice Gini (Default)
-            max_depth = request.POST.get('nodosRange-RF') # Profundida Máxima (Nodos)
-            max_leaf_nodes = request.POST.get('max-hojasRange-RF') # Máximo de nodos hoja
-            min_samples_split = request.POST.get('divisorRange-RF') # Mínimo de Muestras para dividir un Nodo
-            min_samples_leaf = request.POST.get('hojasRange-RF') # Mínimo de Muestras en un Nodo Hoja
-            min_impurity_decrease = request.POST.get('reduccionRange-RF') # Reducción mínima de impureza para dividir
-            ccp_alpha = request.POST.get('ccpRange-RF') # Parámetro de poda costo-complejidad
-            random_seed = request.POST.get('semillaRadio-RF') 
-        # Agregar el nombre del modelo al framework de mensajes
-        messages.success(request, f'Datos Guardados')
-
-        with connection.cursor() as cursor:
-            # Obtener id_user
-            cursor.execute(
-                """
-                SELECT id_user FROM gestion_usuarios_user WHERE email = %s
-                """,
-                [email]
-            )
-            id_user = cursor.fetchone()
-            if not id_user:
-                raise ValueError("Usuario no encontrado")
-            id_user = id_user[0]  # Extraer el valor de la tupla
-
-            # Calcular N_dataset
-            cursor.execute(
-                """
-                SELECT COUNT(*) FROM hiperparametros WHERE email = %s
-                """,
-                [email]
-            )
-            n_dataset = cursor.fetchone()[0] + 1  # Incrementar en 1 para el nuevo dataset
-
-            # Generar id_dataset único
-            id_dataset = f"{email}-{n_dataset}"
-            upload_date = datetime.now()
-            # Manejar la subida del archivo
-            if request.FILES.get('file'):
-                dataset = request.FILES['file']
-                dataset_name = dataset.name
-                dataset_size = dataset.size
-                dataset_path = os.path.join(settings.MEDIA_ROOT, 'file',email, id_dataset, dataset_name)
-                os.makedirs(os.path.dirname(dataset_path), exist_ok=True)
-                with open(dataset_path, 'wb+') as destination:
-                    for chunk in dataset.chunks():
-                        destination.write(chunk)
-
-                # Guardar la ruta del dataset en la base de datos si es necesario
-                messages.success(request, f'Dataset "{dataset_name}" subido con éxito')
-            cursor.execute(
-                """
-                INSERT INTO gestion_usuarios_dataset (id_dataset, upload_date, name_dataset, size, email_id) 
-                VALUES (%s,%s,%s,%s,%s)
-                """,
-                [id_dataset, upload_date, dataset_name, dataset_size,email]
-            )
-            # Insertar en la tabla 'hiperparametros'
-            cursor.execute(
-                """
-                INSERT INTO hiperparametros (id_dataset, email, algoritmo, tipo, criterio, 
-                nodosValue, max_hojasValue, divisorValue, hojasValue, reduccionValue, semilla, poda) 
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """,
-                [id_dataset, email, algorithm, algorithm_type, criterion, max_depth,
-                 max_leaf_nodes, min_samples_split, min_samples_leaf, min_impurity_decrease,
-                 random_seed, ccp_alpha]
-            )
-            id_model = f"{email}-{n_dataset}-Model"
-            cursor.execute(
-                """
-                INSERT INTO gestion_usuarios_model (id_model, id_dataset, email_id, start_date, finish_date, name, type) 
-                VALUES (%s, %s, %s, "-", "-", %s, %s)
-                """,
-                [id_model, id_dataset, email, model_name, algorithm]
-            )
-            
-        return redirect('ia')
+        algorithm_type = request.POST.get('algoritmoType') #Clasificación o Regresión
+        primeStack = request.POST.get('primeStack')
+        messages.success(request, f'{model_name} || {algorithm} || {algorithm_type} || {primeStack}') 
+        if algorithm == "arbolDesicion":
+            if algorithm_type == "regression":
+                criterion = request.POST.get('criterioRadio-Tree_reg')
+                # 0 = Squared Error || 1 = Absolute Error
+                # 2 = Friedman MSE  || 3 = Poisson
+                splitter = request.POST.get('semillaRadio-Tree_reg')
+                # 0 = Mejor || 1 = Aleatorio
+                max_depth = request.POST.get('nodosRange-Tree_reg')
+                min_samples_split = request.POST.get('divisorRange-Tree_reg')
+                min_leaf_split = request.POST.get('hojasRange-Tree_reg')
+                max_leaf_nodes = request.POST.get('max-hojasRange-Tree_reg')
+                min_impurity_decrease = request.POST.get('reduccionRange-Tree_reg')
+                max_features = request.POST.get('max_charInput-Tree_reg')
+                random_state = request.POST.get('controlInput-Tree_reg')
+                ccp_alpha = request.POST.get('ccpRange-Tree_reg')
+                envio = CRUD.save_hiperparameters_tree(email,model_name,0,primeStack,criterion,splitter,max_depth,min_samples_split,min_leaf_split,max_leaf_nodes,min_impurity_decrease,max_features, random_state,ccp_alpha, 0)
+                if envio:
+                    messages.success(request, f'Hiperparametros Cargados con Exito') 
+                    return redirect('dashboard')   
+                else:
+                    messages.success(request, f'Error al cargar los parametros')
+                    return redirect('ia')
+            elif algorithm_type == "classify":
+                criterion = request.POST.get('criterioRadio-Tree_class')
+                # 0 = Entropi   || 1 = Indice Gini
+                # 2 = Log Loss
+                splitter = request.POST.get('semillaRadio-Tree_class')
+                # 0 = Mejor || 1 = Aleatorio
+                max_depth = request.POST.get('nodosRange-Tree_class')
+                min_samples_split = request.POST.get('divisorRange-Tree_class')
+                min_leaf_split = request.POST.get('hojasRange-Tree_class')
+                max_leaf_nodes = request.POST.get('max-hojasRange-Tree_class')
+                min_impurity_decrease = request.POST.get('reduccionRange-Tree_class')
+                max_features = request.POST.get('max_charInput-Tree_class')
+                random_state = request.POST.get('controlInput-Tree_class')
+                ccp_alpha = request.POST.get('ccpRange-Tree_class')
+                class_weight = request.POST.get('classWeight-Tree_class')
+                envio = CRUD.save_hiperparameters_tree(email,model_name,1,primeStack,criterion,splitter,max_depth,min_samples_split,min_leaf_split,max_leaf_nodes,min_impurity_decrease,max_features, random_state,ccp_alpha,class_weight)
+                if envio:
+                    messages.success(request, f'Hiperparametros Cargados con Exito') 
+                    return redirect('dashboard')   
+                else:
+                    messages.success(request, f'Error al cargar los parametros')
+                    return redirect('ia')
+        elif algorithm == "kNeighbors":
+            if algorithm_type == "regression":
+                n_neighbors = request.POST.get('neighborsInput-KNN_reg')
+                weights = request.POST.get('neighborsInput-KNN_reg')
+                algorithm_knn = request.POST.get('neighborsInput-KNN_reg')
+                leaf_size = request.POST.get('lifeSizeInput-KNN_reg')
+                p = request.POST.get('pInput-KNN_reg')
+                metric = request.POST.get('metricaRadio-KNN_reg')
+                algorithm_type_knn = 0
+            elif algorithm_type == "classify":
+                n_neighbors = request.POST.get('neighborsInput-KNN_class')
+                weights = request.POST.get('neighborsInput-KNN_class')
+                algorithm_knn = request.POST.get('neighborsInput-KNN_class')
+                leaf_size = request.POST.get('lifeSizeInput-KNN_class')
+                p = request.POST.get('pInput-KNN_class')
+                metric = request.POST.get('metricaRadio-KNN_class')
+                algorithm_type_knn = 1
+            envio = CRUD.save_hiperparameters_knn(email,model_name,algorithm_type_knn,primeStack,n_neighbors,weights,algorithm_knn,leaf_size,p,metric)
+            if envio:
+                messages.success(request, f'Hiperparametros Cargados con Exito') 
+                return redirect('dashboard')   
+            else:
+                messages.success(request, f'Error al cargar los parametros')
+                return redirect('ia')
+        elif algorithm == "randomForest":
+            if algorithm_type == "regression":
+                n_estimators = request.POST.get('splitQuality-RNF_reg')
+                criterion_RF = request.POST.get('criterioRadio-RNF_reg')
+                max_depth_RF = request.POST.get('nodosRange-RNF_reg')
+                min_samples_split_RF = request.POST.get('divisorRange-RNF_reg')
+                min_samples_leaft = request.POST.get('hojasRange-RNF_reg')
+                max_features_RF = request.POST.get('max_charInput-RNF_reg')
+                bootstrap = request.POST.get('reemplazoRadio-RNF_reg')
+                oob_score = request.POST.get('bagRadio-RNF_reg')
+                max_samples = request.POST.get('max_sampleInput-RNF_reg')
+                random_state_RF = request.POST.get('randomControlInput-RNF_reg')
+                class_weight_RF = 0
+                algorithm_type_RF = 0
+            elif algorithm_type == "classify":
+                n_estimators = request.POST.get('splitQuality-RNF_class')
+                criterion_RF = request.POST.get('criterioRadio-RNF_class')
+                max_depth_RF = request.POST.get('nodosRange-RNF_class')
+                min_samples_split_RF = request.POST.get('divisorRange-RNF_class')
+                min_samples_leaft = request.POST.get('hojasRange-RNF_class')
+                max_features_RF = request.POST.get('max_charInput-RNF_class')
+                bootstrap = request.POST.get('reemplazoRadio-RNF_class')
+                oob_score = request.POST.get('bagRadio-RNF_class')
+                max_samples = request.POST.get('max_sampleInput-RNF_class')
+                random_state_RF = request.POST.get('randomControlInput-RNF_class')
+                class_weight_RF = request.POST.get('criterioRadio-Tree_class')
+                algorithm_type_RF = 1
+            if bootstrap == "false":
+                bootstrap_RF = False
+            elif bootstrap == "true":
+                bootstrap_RF = True
+            envio = CRUD.save_hiperparameters_RF(email,model_name,algorithm_type_RF,primeStack,n_estimators,criterion_RF,max_depth_RF,min_samples_split_RF,
+                              min_samples_leaft, max_features_RF,bootstrap_RF,oob_score,max_samples,random_state_RF,class_weight_RF)
+            if envio:
+                messages.success(request, f'Hiperparametros Cargados con Exito') 
+                return redirect('dashboard')   
+            else:
+                messages.success(request, f'Error al cargar los parametros')
+                return redirect('ia')
+    else:
+        messages.success(request, f'No existe un metodo Post')
+        return redirect('ia')      
 
 def update_hours(request):
     try:

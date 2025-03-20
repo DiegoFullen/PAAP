@@ -83,7 +83,7 @@ class Temporal(models.Model):
         return self.email
     
 class Hiperparameters_Tree(models.Model):
-    email = models.EmailField
+    email_id = models.EmailField(default='example@example.com')
     model_id = models.CharField(max_length=100)
     type = models.IntegerField() #0 Para Regresión o 1 para Clasificación
     prime_stack = models.CharField(max_length=70)
@@ -99,3 +99,34 @@ class Hiperparameters_Tree(models.Model):
     random_state = models.FloatField()
     ccp_alpha = models.FloatField()
     class_weight = models.FloatField()
+
+class Hiperparameters_KNN(models.Model):
+    email_id = models.EmailField(default='example@example.com')
+    model_id = models.CharField(max_length=100)
+    type = models.IntegerField() #0 Para Regresión o 1 para Clasificación
+    prime_stack = models.CharField(max_length=70)
+    #Hiperparametros
+    n_neighbors = models.FloatField()
+    weights = models.FloatField()
+    algorithm = models.IntegerField()
+    leaf_size = models.FloatField()
+    p = models.FloatField()
+    metric = models.IntegerField()
+    
+class Hiperparameters_RandomForest(models.Model):
+    email_id = models.EmailField(default='example@example.com')
+    model_id = models.CharField(max_length=100)
+    type = models.IntegerField() #0 Para Regresión o 1 para Clasificación
+    prime_stack = models.CharField(max_length=70)
+    #Hiperparametros
+    n_estimators = models.FloatField()
+    criterion = models.IntegerField()
+    max_depth = models.FloatField()
+    min_samples_split = models.FloatField()
+    min_samples_leaft = models.FloatField()
+    max_features = models.FloatField()
+    bootstrap = models.BooleanField(default=True)
+    oob_score = models.IntegerField()
+    max_samples = models.FloatField(null=True)
+    random_state = models.FloatField()
+    class_weight = models.IntegerField()

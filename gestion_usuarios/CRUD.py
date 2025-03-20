@@ -2,7 +2,7 @@ from django.db import connection
 from django.utils.crypto import get_random_string
 from django.utils import timezone
 from datetime import timedelta 
-from gestion_usuarios import crud_temporal,crud_user,crud_plan,crud_dataset,crud_model
+from gestion_usuarios import crud_temporal,crud_user,crud_plan,crud_dataset,crud_model, crud_hiperparameters_tree, crud_hiperparameters_KNN, crud_hiperparameters_RF
 from django.contrib.auth.hashers import make_password
 
 #Funciones de CRUD
@@ -50,6 +50,37 @@ def search_models(email):
     modelos = crud_model.get_user_models(email)
     return modelos
 
+def save_hiperparameters_tree(email,model_id,type,prime_stack,criterion,
+                                               splitter,max_depth,min_samples_split,
+                                               min_leaf_split,max_leaf_nodes,min_impurity_decrease,
+                                               max_features,random_state,ccp_alpha,class_weight):
+    if type == 0:
+        if crud_hiperparameters_tree.create_hiperparameters_tree_regression(email,model_id,type,prime_stack,criterion,
+                                                splitter,max_depth,min_samples_split,
+                                                min_leaf_split,max_leaf_nodes,min_impurity_decrease,
+                                                max_features,random_state,ccp_alpha,class_weight):
+            return True
+        else: return False
+    elif type == 1: 
+        if crud_hiperparameters_tree.create_hiperparameters_tree_classify(email,model_id,type,prime_stack,criterion,
+                                               splitter,max_depth,min_samples_split,
+                                               min_leaf_split,max_leaf_nodes,min_impurity_decrease,
+                                               max_features,random_state,ccp_alpha,class_weight):
+            return True
+        else: return False
+    else: return False
+
+def save_hiperparameters_knn(email,model_id,type,prime_stack,n_neighbors,weights,algorithm,leaf_size,p,metric):
+    if  crud_hiperparameters_KNN.create_hiperparameters_KNN(email,model_id,type,prime_stack,n_neighbors,weights,algorithm,leaf_size,p,metric):
+        return True
+    else: return False
+
+def save_hiperparameters_RF(email,model_id,type,prime_stack,n_estimators,criterion,max_depth,min_samples_split,
+                              min_samples_leaft, max_features,bootstrap,oob_score,max_samples,random_state,class_weight):
+    if  crud_hiperparameters_RF.create_hiperparameters_RF(email,model_id,type,prime_stack,n_estimators,criterion,max_depth,min_samples_split,
+                              min_samples_leaft, max_features,bootstrap,oob_score,max_samples,random_state,class_weight):
+        return True
+    else: return False
 
 def select_hiperparametros(id_dataset):
      with connection.cursor() as cursor:
