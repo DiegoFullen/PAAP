@@ -93,7 +93,7 @@ body{
     border-radius: 10px;
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
-    min-width: 455px;
+    min-width: 280px;
     align-items: center;
     text-align: center;
 
@@ -111,8 +111,34 @@ body{
 
 #dialog {
     font-family: "Inter", sans-serif;
+    border-color: #FBFBFB;
+    border-style: solid;
     border-radius: 12px;
+
   }
+
+#dialog h5{
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+#dialog p{
+  font-size: 1em;
+  margin-bottom: 10%;
+}
+
+#dialog .controlPanel{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+#dialog .controlPanel button{
+  width: 25%;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+}
   
   #dialog[open] {
     animation: fade-in 0.7s ease-out;

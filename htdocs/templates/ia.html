@@ -150,9 +150,13 @@
 
                         <!-- Alert para cerrar sesión -->
                         <dialog id="dialog">
-                            <p>¿Está seguro de querer cerrar sesión?</p>
-                            <button type="button" class="btn btn-outline-dark btn-sm" id="optAccept">Aceptar</button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" id="optCancel">Cancelar</button>
+                            <h5 class="montserrat">Cerrar Sesión</h5>
+                            <p>Está por abandonar la plaforma ¿Desea continuar?</p>
+    
+                            <div class="controlPanel">
+                            <button type="button" class="btn btn-outline-primary" id="optAccept">Aceptar</button>
+                            <button type="button" class="btn btn-outline-dark" id="optCancel">Cancelar</button>
+                            </div>
                         </dialog>
 
                         <div class="container mt-5" id="parameters">
@@ -240,7 +244,7 @@
             </form>
             <div class="container hiper hidden" id="arbolDesicion_regression">
                 <div style="background-color: white;">
-                    <span class="montserrat" style="font-size: 1.2em;">HIPERPARÁMETROS ARBOLES DE
+                    <span class="montserrat pl-4" style="font-size: 1.2em;">HIPERPARÁMETROS ARBOLES DE
                         DESICIÓN</span>
                 </div>
 
@@ -253,7 +257,7 @@
 
                                 <div>
                                     <input class="form-check-input" type="radio" name="criterioRadio-Tree_reg"
-                                        id="entropyRadio" value="0" checked>
+                                        id="entropyRadio" value="0">
                                     <label class="form-check-label" for="entropyRadio">
                                         Squared Error
                                     </label>
@@ -261,7 +265,7 @@
 
                                 <div>
                                     <input class="form-check-input" type="radio" name="criterioRadio-Tree_reg"
-                                        id="entropyRadio" value="1">
+                                        id="entropyRadio" value="1" checked>
                                     <label class="form-check-label" for="entropyRadio">
                                         Absolute Error
                                     </label>
@@ -395,7 +399,7 @@
 
             <div class="container hiper hidden" id="arbolDesicion_classify">
                 <div style="background-color: white;">
-                    <span class="montserrat" style="font-size: 1.2em;">HIPERPARÁMETROS ARBOLES DE
+                    <span class="montserrat pl-4" style="font-size: 1.2em;">HIPERPARÁMETROS ARBOLES DE
                         DESICIÓN</span>
                 </div>
 
@@ -405,20 +409,20 @@
                             <h5 class="header" style="font-size: 1rem;">Criterio</h5>
                             <div class="card-body pt-1">
 
-                                <input class="form-check-input" type="radio" name="criterioRadio-Tree_class" id="entropyRadio"
-                                    value="0">
+                                <input class="form-check-input" type="radio" name="criterioRadio-Tree_class"
+                                    id="entropyRadio" value="0">
                                 <label class="form-check-label" for="criterioRadio-Tree_class">
                                     Entropia
                                 </label>
                                 <br>
-                                <input class="form-check-input" type="radio" name="criterioRadio-Tree_class" id="giniRadio"
-                                    value="1" checked>
+                                <input class="form-check-input" type="radio" name="criterioRadio-Tree_class"
+                                    id="giniRadio" value="1" checked>
                                 <label class="form-check-label" for="criterioRadio-Tree_class">
                                     Indice Gini (Default)
                                 </label>
                                 <br>
-                                <input class="form-check-input" type="radio" name="criterioRadio-Tree_class" id="logRadio"
-                                    value="2">
+                                <input class="form-check-input" type="radio" name="criterioRadio-Tree_class"
+                                    id="logRadio" value="2">
                                 <label class="form-check-label" for="criterioRadio-Tree_class">
                                     Log Loss
                                 </label>
@@ -493,12 +497,13 @@
                         </div>
 
                         <div class="card pr-4 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Ajustes de Peso de Clases 
-                            <span id="classWeight-Tree_value"></span></h5>
+                            <h5 class="header" style="font-size: 1rem;">Ajustes de Peso de Clases
+                                <span id="classWeight-Tree_value"></span>
+                            </h5>
                             <div class="card-body">
                                 <span>0</span>
-                                <input type="range" class="form-range" id="classWeight-Tree_range" name="classWeight-Tree_class"
-                                    min="0" max="0.5" value="0.1" step="0.01">
+                                <input type="range" class="form-range" id="classWeight-Tree_range"
+                                    name="classWeight-Tree_class" min="0" max="0.5" value="0.1" step="0.01">
                                 <span>0.5</span>
                             </div>
                         </div>
@@ -512,8 +517,8 @@
                                 <br>costo-complejidad <span id="ccpValue"></span>
                             </h5>
                             <div class="card-body">
-                                <input type="number" class="form-range" id="ccpRange" name="ccpRange--Tree_class" min="0"
-                                    max="100" step="0.001" value="0.0">
+                                <input type="number" class="form-range" id="ccpRange" name="ccpRange--Tree_class"
+                                    min="0" max="100" step="0.001" value="0.0">
                             </div>
                         </div>
 
@@ -537,117 +542,159 @@
                 </div>
             </div>
 
-            <div class="container hiper hidden" id="kNeighbors">
+            <div class="container hiper hidden" id="randomForest_regression">
+                <div style="background-color: white;">
+                    <span class="montserrat pl-4" style="font-size: 1.2em;">HIPERPARÁMETROS RANDOM FOREST</span>
+                </div>
+
+                <div class="row">
+                    <div class="col" style="grid-column: 1/3;">
+                        <div class="card pr-3">
+                            <h5 class="header" style="font-size: 1rem;">Criterio</h5>
+                            <div class="card-body pt-1" id="box">
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-RNF_reg"
+                                        id="entropyRadio" value="0" checked>
+                                    <label class="form-check-label" for="entropyRadio">
+                                        Squared Error
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-RNF_reg"
+                                        id="entropyRadio" value="1">
+                                    <label class="form-check-label" for="entropyRadio">
+                                        Absolute Error
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-RNF_reg"
+                                        id="entropyRadio" value="2">
+                                    <label class="form-check-label" for="entropyRadio">
+                                        Friedman MSE
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-RNF_reg"
+                                        id="entropyRadio" value="3">
+                                    <label class="form-check-label" for="entropyRadio">
+                                        Poisson
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col" id="col1">
                         <div class="card pr-3">
-                            <h5 class="header" style="font-size: 1rem;">Criterio</h5>
-                            <div class="card-body pt-1">
-
-                                <input class="form-check-input" type="radio" name="criterioRadio-KNN"
-                                    id="entropyRadio-KNN" value="0">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Entropia
-                                </label>
-                                <br>
-                                <input class="form-check-input" type="radio" name="criterioRadio-KNN" id="giniRadio-KNN"
-                                    value="1" checked>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Indice Gini (Default)
-                                </label>
-
-                            </div>
-                        </div>
-
-                        <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Profundida Máxima (<span
-                                    id="nodosValue-KNN">Nodos</span>)</h5>
-                            <div class="card-body pt-3">
-                                <span>1</span>
-                                <input type="range" class="form-range" id="nodosRange-KNN" name="nodosRange-KNN" min="1"
-                                    max="100">
-                                <span>100</span>
-                            </div>
-                        </div>
-
-                        <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Máximo de nodos hoja <span
-                                    id="max-hojasValue-KNN"></span></h5>
+                            <h5 class="header" style="font-size: 1rem;">Función para medir la Calidad de Split</h5>
                             <div class="card-body">
-                                <span>2</span>
-                                <input type="range" class="form-range" id="max-hojasRange-KNN" name="max-hojasRange-KNN"
-                                    min="2" max="500">
-                                <span>500</span>
+                                <input type="number" id="splitQualityValue" name="splitQuality-RNF_reg" min="1"
+                                    max="500" value="1">
+                            </div>
+                        </div>
+
+                        <div class="card pr-3 mt-4">
+                            <h5 class="header" style="font-size: 1rem;">Profundida Máxima (Nodos)
+                            </h5>
+                            <div class="card-body pt-3">
+                                <input type="number" id="nodosRange" name="nodosRange-RNF_reg" min="0" max="500"
+                                    value="0">
+                            </div>
+                        </div>
+
+
+                        <div class="card pr-3 mt-4">
+                            <h5 class="header" style="font-size: 1rem;">Número máximo de Características a
+                                considerar </h5>
+                            <div class="card-body pt-3">
+                                <input type="text" id="max_charInput" name="max_charInput-RNF_reg" value="0">
                             </div>
                         </div>
 
                     </div>
 
                     <div class="col" id="col2">
-                        <div class="card pr-4" id="divisorCard-KNN">
-                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un
-                                Nodo <span id="divisorValue-KNN"></span></h5>
+
+                        <div class="card pr-4">
+                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un Nodo</h5>
                             <div class="card-body">
-                                <span>2</span>
-                                <input type="range" class="form-range" id="divisorRange-KNN" name="divisorRange-KNN"
-                                    min="2" max="50">
-                                <span>50</span>
+                                <input type="number" id="divisorRange" name="divisorRange-RNF_reg" min="1" max="200"
+                                    step="0.01" value="1">
                             </div>
                         </div>
 
                         <div class="card pr-4 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras en un Nodo Hoja
-                                <span id="hojasValue-KNN"></span>
-                            </h5>
+                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras en un Nodo Hoja</h5>
                             <div class="card-body">
-                                <span>1</span>
-                                <input type="range" class="form-range" id="hojasRange-KNN" name="hojasRange-KNN" min="1"
-                                    max="50">
-                                <span>50</span>
+                                <input type="number" id="hojasRange" name="hojasRange-RNF_reg" min="1" max="200"
+                                    step="0.01" value="1">
                             </div>
                         </div>
 
-                        <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Reducción mínima de impureza para
-                                dividir <span id="reduccionValue-KNN"></span></h5>
-                            <div class="card-body">
-                                <span>0</span>
-                                <input type="range" class="form-range" id="reduccionRange-KNN" name="reduccionRange-KNN"
-                                    min="0" max="0.1" value="0.05" step="0.001">
-                                <span>0.1</span>
+                        <div class="card pr-4 mt-4">
+                            <h5 class="header" style="font-size: 1rem;">Uso de Muestreo con Reemplazo</h5>
+                            <div class="card-body pt-1">
+
+                                <input class="form-check-input" type="radio" value="false" name="reemplazoRadio-RNF_reg"
+                                    id="desactivadoRadio-RNF_reg" checked>
+                                <label class="form-check-label" for="reemplazoRadio-RNF_reg">
+                                    Desactivado
+                                </label>
+                                <br>
+                                <input class="form-check-input" type="radio" value="true" name="reemplazoRadio-RNF_reg"
+                                    id="activadoRadio-RNF_reg">
+                                <label class="form-check-label" for="reemplazoRadio-RNF_reg">
+                                    Activado
+                                </label>
+
                             </div>
                         </div>
+
                     </div>
 
                     <div class="col" id="col3">
-                        <div class="card">
-                            <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
+
+                        <div class="card pr-3">
+                            <h5 class="header" style="font-size: 1rem;">Puntuación con muestras fuera de Bolsa
+                                (out-of-bag)</h5>
                             <div class="card-body pt-1">
 
-                                <input class="form-check-input" type="radio" value="0" name="semillaRadio-KNN"
-                                    id="semillaRadio-KNN">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Mejor
+                                <input class="form-check-input" type="radio" value="false" name="bagRadio-RNF_reg"
+                                    id="bagOffRadio-RNF_reg" checked>
+                                <label class="form-check-label" for="bagRadio-RNF_reg">
+                                    Desactivado
                                 </label>
                                 <br>
-                                <input class="form-check-input" type="radio" value="1" name="semillaRadio-KNN"
-                                    id="aleatorioRadio-KNN" checked>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Aleatorio
+                                <input class="form-check-input" type="radio" value="true" name="bagRadio-RNF_reg"
+                                    id="bagOnRadio-RNF_reg">
+                                <label class="form-check-label" for="bagRadio-RNF_reg">
+                                    Activado
                                 </label>
 
                             </div>
                         </div>
 
                         <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Parámetro de poda
-                                <br>costo-complejidad <span id="ccpValue-KNN"></span>
-                            </h5>
+                            <h5 class="header" style="font-size: 1rem;">Control de Aleatoriedad</h5>
                             <div class="card-body">
-                                <span>0</span>
-                                <input type="range" class="form-range" id="ccpRange-KNN" name="ccpRange-KNN" min="0"
-                                    max="0.1" step="0.001">
-                                <span>0.1</span>
+                                <input type="number" class="form-range" id="randomControlInput-RNF_reg"
+                                    name="randomControlInput-RNF_reg" min="1" max="100" value="1">
+                            </div>
+                        </div>
+
+                        <div class="card pr-3 mt-4">
+                            <h5 class="header" style="font-size: 1rem;">Proporción o número de Muestras por Árbol</h5>
+                            <div class="card-body pt-3">
+                                <input type="number" id="max_sampleInput-RNF_reg" disabled
+                                    name="max_sampleInput-RNF_reg" min="1" max="200" step="0.01">
                             </div>
                         </div>
                     </div>
@@ -655,120 +702,533 @@
 
             </div>
 
-            <div class="container hiper hidden" id="randomForest">
+            <div class="container hiper hidden" id="randomForest_classify">
+                <div style="background-color: white;">
+                    <span class="montserrat pl-4" style="font-size: 1.2em;">HIPERPARÁMETROS RANDOM FOREST</span>
+                </div>
+
+                <div class="row">
+                    <div class="col" style="grid-column: 1/3;">
+                        <div class="card pr-3" id="weightRNF">
+                            <h5 class="header" style="font-size: 1rem;">Ajustes de Pesos de Clase</h5>
+                            <div class="card-body pt-1" id="box">
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-Tree_reg"
+                                        id="entropyRadio" value="0" checked>
+                                    <label class="form-check-label" for="entropyRadio">
+                                        None (sin ponderación)
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-Tree_reg"
+                                        id="entropyRadio" value="1">
+                                    <label class="form-check-label" for="entropyRadio">
+                                        Balanced
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-Tree_reg"
+                                        id="entropyRadio" value="2">
+                                    <label class="form-check-label" for="entropyRadio">
+                                        Balance Subsample
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="radio" name="criterioRadio-Tree_reg"
+                                        id="entropyRadio" value="3">
+                                    <label class="form-check-label" for="entropyRadio">
+                                        Diccionario de Pesos
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col" id="col1">
                         <div class="card pr-3">
                             <h5 class="header" style="font-size: 1rem;">Criterio</h5>
                             <div class="card-body pt-1">
 
-                                <input class="form-check-input" type="radio" name="criterioRadio-RF"
-                                    id="entropyRadio-RF" value="0">
-                                <label class="form-check-label" for="flexCheckDefault">
+                                <input class="form-check-input" type="radio" name="criterioRadio-RNF_class"
+                                    id="entropyRadio" value="0">
+                                <label class="form-check-label" for="criterioRadio-RNF_class">
                                     Entropia
                                 </label>
                                 <br>
-                                <input class="form-check-input" type="radio" name="criterioRadio-RF" id="giniRadio-RF"
-                                    value="1" checked>
-                                <label class="form-check-label" for="flexCheckDefault">
+                                <input class="form-check-input" type="radio" name="criterioRadio-RNF_class"
+                                    id="giniRadio" value="1" checked>
+                                <label class="form-check-label" for="criterioRadio-Tree_class">
                                     Indice Gini (Default)
+                                </label>
+                                <br>
+                                <input class="form-check-input" type="radio" name="criterioRadio-RNF_class"
+                                    id="logRadio" value="2">
+                                <label class="form-check-label" for="criterioRadio-Tree_class">
+                                    Log Loss
                                 </label>
 
                             </div>
                         </div>
 
                         <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Profundida Máxima (<span
-                                    id="nodosValue-RF">Nodos</span>)</h5>
-                            <div class="card-body pt-3">
-                                <span>1</span>
-                                <input type="range" class="form-range" id="nodosRange-RF" name="nodosRange-RF" min="1"
-                                    max="100">
-                                <span>100</span>
+                            <h5 class="header" style="font-size: 1rem;">Función para medir la Calidad de Split</h5>
+                            <div class="card-body">
+                                <input type="number" id="splitQualityValue" name="splitQuality-RNF_class" min="1"
+                                    max="500" value="1">
                             </div>
                         </div>
 
                         <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Máximo de nodos hoja <span
-                                    id="max-hojasValue-RF"></span></h5>
-                            <div class="card-body">
-                                <span>2</span>
-                                <input type="range" class="form-range" id="max-hojasRange-RF" name="max-hojasRange-RF"
-                                    min="2" max="500">
-                                <span>500</span>
+                            <h5 class="header" style="font-size: 1rem;">Profundida Máxima (Nodos)
+                            </h5>
+                            <div class="card-body pt-3">
+                                <input type="number" id="nodosRange" name="nodosRange-RNF_class" min="0" max="500"
+                                    value="0">
+                            </div>
+                        </div>
+
+
+                        <div class="card pr-3 mt-4">
+                            <h5 class="header" style="font-size: 1rem;">Número máximo de Características a
+                                considerar </h5>
+                            <div class="card-body pt-3">
+                                <input type="text" id="max_charInput" name="max_charInput-RNF_class" value="0">
                             </div>
                         </div>
 
                     </div>
 
                     <div class="col" id="col2">
+
                         <div class="card pr-4">
-                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un
-                                Nodo <span id="divisorValue-RF"></span></h5>
+                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras para dividir un Nodo</h5>
                             <div class="card-body">
-                                <span>2</span>
-                                <input type="range" class="form-range" id="divisorRange-RF" name="divisorRange-RF"
-                                    min="2" max="50">
-                                <span>50</span>
+                                <input type="number" id="divisorRange" name="divisorRange-RNF_class" min="1" max="200"
+                                    step="0.01" value="1">
                             </div>
                         </div>
 
                         <div class="card pr-4 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras en un Nodo Hoja
-                                <span id="hojasValue-RF"></span>
-                            </h5>
+                            <h5 class="header" style="font-size: 1rem;">Mínimo de Muestras en un Nodo Hoja</h5>
                             <div class="card-body">
-                                <span>1</span>
-                                <input type="range" class="form-range" id="hojasRange-RF" name="hojasRange-RF" min="1"
-                                    max="50">
-                                <span>50</span>
+                                <input type="number" id="hojasRange" name="hojasRange-RNF_class" min="1" max="200"
+                                    step="0.01" value="1">
                             </div>
                         </div>
 
-                        <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Reducción mínima de impureza para
-                                dividir <span id="reduccionValue-RF"></span></h5>
-                            <div class="card-body">
-                                <span>0</span>
-                                <input type="range" class="form-range" id="reduccionRange-RF" name="reduccionRange-RF"
-                                    min="0" max="0.1" value="0.05" step="0.001">
-                                <span>0.1</span>
+                        <div class="card pr-4 mt-4">
+                            <h5 class="header" style="font-size: 1rem;">Uso de Muestreo con Reemplazo</h5>
+                            <div class="card-body pt-1">
+
+                                <input class="form-check-input" type="radio" value="false"
+                                    name="reemplazoRadio-RNF_class" id="desactivadoRadio-RNF_class" checked>
+                                <label class="form-check-label" for="reemplazoRadio-RNF_class">
+                                    Desactivado
+                                </label>
+                                <br>
+                                <input class="form-check-input" type="radio" value="true"
+                                    name="reemplazoRadio-RNF_class" id="activadoRadio-RNF_class">
+                                <label class="form-check-label" for="reemplazoRadio-RNF_class">
+                                    Activado
+                                </label>
+
                             </div>
                         </div>
                     </div>
 
                     <div class="col" id="col3">
-                        <div class="card">
-                            <h5 class="header" style="font-size: 1rem;">Semilla para reproducibilidad</h5>
+
+                        <div class="card pr-3">
+                            <h5 class="header" style="font-size: 1rem;">Puntuación con muestras fuera de Bolsa
+                                (out-of-bag)</h5>
                             <div class="card-body pt-1">
 
-                                <input class="form-check-input" type="radio" value="0" name="semillaRadio-RF"
-                                    id="semillaRadio-RF">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Mejor
+                                <input class="form-check-input" type="radio" value="false" name="bagRadio-RNF_class"
+                                    id="bagOffRadio-RNF_class" checked>
+                                <label class="form-check-label" for="bagRadio-RNF_class">
+                                    Desactivado
                                 </label>
                                 <br>
-                                <input class="form-check-input" type="radio" value="1" name="semillaRadio-RF"
-                                    id="aleatorioRadio-RF" checked>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Aleatorio
+                                <input class="form-check-input" type="radio" value="true" name="bagRadio-RNF_class"
+                                    id="bagOnRadio-RNF_class">
+                                <label class="form-check-label" for="bagRadio-RNF_class">
+                                    Activado
                                 </label>
 
                             </div>
                         </div>
 
                         <div class="card pr-3 mt-4">
-                            <h5 class="header" style="font-size: 1rem;">Parámetro de poda
-                                <br>costo-complejidad <span id="ccpValue-RF"></span>
-                            </h5>
+                            <h5 class="header" style="font-size: 1rem;">Control de Aleatoriedad</h5>
                             <div class="card-body">
-                                <span>0</span>
-                                <input type="range" class="form-range" id="ccpRange-RF" name="ccpRange-RF" min="0"
-                                    max="0.1" step="0.001">
-                                <span>0.1</span>
+                                <input type="number" class="form-range" id="randomControlInput-RNF_class"
+                                    name="randomControlInput-RNF_class" min="1" max="100" value="1">
+                            </div>
+                        </div>
+
+                        <div class="card pr-3 mt-4">
+                            <h5 class="header" style="font-size: 1rem;">Proporción o número de Muestras por Árbol</h5>
+                            <div class="card-body pt-3">
+                                <input type="number" id="max_sampleInput-RNF_class" disabled
+                                    name="max_sampleInput-RNF_class" min="1" max="200" step="0.01">
                             </div>
                         </div>
                     </div>
+                </div>
+
+            </div>
+
+            <div class="container hiper hidden" id="kNeighbors_regression">
+                <div style="background-color: white;">
+                    <span class="montserrat pl-4 mb-4" style="font-size: 1.2em;">HIPERPARÁMETROS K-NEAREST
+                        NEIGHBORS</span>
+                </div>
+
+                <div id="KNNparameters">
+                    <div class="cardHolder" id="metricKNN" style="padding: 10px 20px 0px 30%;">
+                        <h5 class="header" style="font-size: 1rem;">Métrica</h5>
+                        <div class="card-body pt-1 pl-4" id="box">
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="minkowskiRadio" value="0" checked>
+                                <label class="form-check-label" for="minkowskiRadio">
+                                    Minkowski
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="euclideanRadio" value="1">
+                                <label class="form-check-label" for="euclideanRadio">
+                                    Euclidean
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="manhattanRadio" value="2">
+                                <label class="form-check-label" for="manhattanRadio">
+                                    Manhattan
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="chebyshevRadio" value="3">
+                                <label class="form-check-label" for="chebyshevRadio">
+                                    Chebyshev
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="hammingRadio" value="4">
+                                <label class="form-check-label" for="hammingentropyRadio">
+                                    Hamming
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="canberraRadio" value="5">
+                                <label class="form-check-label" for="canberraRadio">
+                                    Canberra
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="bray-CurtisRadio" value="6">
+                                <label class="form-check-label" for="bray-CurtisRadio">
+                                    Bray-Curtis
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="cosineRadio" value="7">
+                                <label class="form-check-label" for="cosineRadio">
+                                    Cosine
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_reg"
+                                    id="correlationRadio" value="8">
+                                <label class="form-check-label" for="correlationRadio">
+                                    Correlation
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="cardHolder pr-4" id="neighborsKNN">
+                        <h5 class="header" style="font-size: 1rem;">Medición de Calidad del Split</h5>
+                        <div class="card-body">
+                            <input type="number" id="neighborsInput-KNN_reg" name="neighborsInput-KNN_reg"
+                                min="1" max="100" value="1">
+                        </div>
+                    </div>
+
+                    <div class="cardHolder pr-4" id="leafSizeKNN">
+                        <h5 class="header" style="font-size: 1rem;">Tamaño de la hoja</h5>
+                        <div class="card-body">
+                            <input type="number" id="lifeSizeInput-KNN_reg" name="lifeSizeInput-KNN_reg"
+                                min="1" max="100" value="1">
+                        </div>
+                    </div>
+
+                    <div class="cardHolder pr-4" id="pKNN">
+                        <h5 class="header" style="font-size: 1rem;">placeholder</h5>
+                        <div class="card-body">
+                            <input type="number" id="pInput-KNN_reg" name="pInput-KNN_reg"
+                                min="1" max="100" value="1">
+                        </div>
+                    </div>
+
+                    <div class="cardHolder" id="weightsKNN" >
+                        <h5 class="header" style="font-size: 1rem;">Pesos de Métricas</h5>
+                        <div class="card-body pt-1 pl-4" id="box">
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="weightRadio-KNN_reg"
+                                    id="uniformRadio" value="0" checked>
+                                <label class="form-check-label" for="uniformRadio">
+                                    Uniform
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="weightRadio-KNN_reg"
+                                    id="distanceRadio" value="1">
+                                <label class="form-check-label" for="distanceRadio">
+                                    Distance
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cardHolder" id="algorithmKNN" >
+                        <h5 class="header" style="font-size: 1rem;">Algoritmos</h5>
+                        <div class="card-body pt-1 pl-4" id="box">
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_reg"
+                                    id="automaticRadio" value="0" checked>
+                                <label class="form-check-label" for="automaticRadio">
+                                    Automático
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_reg"
+                                    id="ballTreeRadio" value="1">
+                                <label class="form-check-label" for="ballTreeRadio">
+                                    Ball Tree
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_reg"
+                                    id="kdTreeRadio" value="2">
+                                <label class="form-check-label" for="kdTreeRadio">
+                                    KD Tree
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_reg"
+                                    id="bruteRadio" value="3">
+                                <label class="form-check-label" for="bruteRadio">
+                                    Brute
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container hiper hidden" id="kNeighbors_class">
+                <div style="background-color: white;">
+                    <span class="montserrat pl-4 mb-4" style="font-size: 1.2em;">HIPERPARÁMETROS K-NEAREST
+                        NEIGHBORS</span>
+                </div>
+
+                <div id="KNNparameters">
+                    <div class="cardHolder" id="metricKNN" style="padding: 10px 20px 0px 30%;">
+                        <h5 class="header" style="font-size: 1rem;">Métrica</h5>
+                        <div class="card-body pt-1 pl-4" id="box">
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="minkowskiRadio" value="0" checked>
+                                <label class="form-check-label" for="minkowskiRadio">
+                                    Minkowski
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="euclideanRadio" value="1">
+                                <label class="form-check-label" for="euclideanRadio">
+                                    Euclidean
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="manhattanRadio" value="2">
+                                <label class="form-check-label" for="manhattanRadio">
+                                    Manhattan
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="chebyshevRadio" value="3">
+                                <label class="form-check-label" for="chebyshevRadio">
+                                    Chebyshev
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="hammingRadio" value="4">
+                                <label class="form-check-label" for="hammingentropyRadio">
+                                    Hamming
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="canberraRadio" value="5">
+                                <label class="form-check-label" for="canberraRadio">
+                                    Canberra
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="bray-CurtisRadio" value="6">
+                                <label class="form-check-label" for="bray-CurtisRadio">
+                                    Bray-Curtis
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="cosineRadio" value="7">
+                                <label class="form-check-label" for="cosineRadio">
+                                    Cosine
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="metricaRadio-KNN_class"
+                                    id="correlationRadio" value="8">
+                                <label class="form-check-label" for="correlationRadio">
+                                    Correlation
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="cardHolder pr-4" id="neighborsKNN">
+                        <h5 class="header" style="font-size: 1rem;">Medición de Calidad del Split</h5>
+                        <div class="card-body">
+                            <input type="number" id="neighborsInput-KNN_class" name="neighborsInput-KNN_class"
+                                min="1" max="100" value="1">
+                        </div>
+                    </div>
+
+                    <div class="cardHolder pr-4" id="leafSizeKNN">
+                        <h5 class="header" style="font-size: 1rem;">Tamaño de la hoja</h5>
+                        <div class="card-body">
+                            <input type="number" id="lifeSizeInput-KNN_class" name="lifeSizeInput-KNN_class"
+                                min="1" max="100" value="1">
+                        </div>
+                    </div>
+
+                    <div class="cardHolder pr-4" id="pKNN">
+                        <h5 class="header" style="font-size: 1rem;">placeholder</h5>
+                        <div class="card-body">
+                            <input type="number" id="pInput-KNN_class" name="pInput-KNN_class"
+                                min="1" max="100" value="1">
+                        </div>
+                    </div>
+
+                    <div class="cardHolder" id="weightsKNN" >
+                        <h5 class="header" style="font-size: 1rem;">Pesos de Métricas</h5>
+                        <div class="card-body pt-1 pl-4" id="box">
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="weightRadio-KNN_class"
+                                    id="uniformRadio" value="0" checked>
+                                <label class="form-check-label" for="uniformRadio">
+                                    Uniform
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="weightRadio-KNN_class"
+                                    id="distanceRadio" value="1">
+                                <label class="form-check-label" for="distanceRadio">
+                                    Distance
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cardHolder" id="algorithmKNN" >
+                        <h5 class="header" style="font-size: 1rem;">Algoritmos</h5>
+                        <div class="card-body pt-1 pl-4" id="box">
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_class"
+                                    id="automaticRadio" value="0" checked>
+                                <label class="form-check-label" for="automaticRadio">
+                                    Automático
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_class"
+                                    id="ballTreeRadio" value="1">
+                                <label class="form-check-label" for="ballTreeRadio">
+                                    Ball Tree
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_class"
+                                    id="kdTreeRadio" value="2">
+                                <label class="form-check-label" for="kdTreeRadio">
+                                    KD Tree
+                                </label>
+                            </div>
+
+                            <div class="mb-1">
+                                <input class="form-check-input" type="radio" name="algorithmRadio-KNN_class"
+                                    id="bruteRadio" value="3">
+                                <label class="form-check-label" for="bruteRadio">
+                                    Brute
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

@@ -63,14 +63,44 @@ function showHyper(selectedValue, selectedType) {
   }
 }
 
-
+//Input & Value
 //Árbol
 const $classWeightRange = $d.getElementById("classWeight-Tree_range");
 const $classWeightValue = $d.getElementById("classWeight-Tree_value");
 
+//Random Forest
+const $activeBootstrapRadio = $d.getElementById("activadoRadio-RNF_reg");
+const $deactiveBootstrapRadio = $d.getElementById("desactivadoRadio-RNF_reg");
+const $maxSampleInput = $d.getElementById("max_sampleInput-RNF_reg");
 
+const $activeBootstrapRadio_2 = $d.getElementById("activadoRadio-RNF_class");
+const $deactiveBootstrapRadio_2 = $d.getElementById("desactivadoRadio-RNF_class");
+const $maxSampleInput_2 = $d.getElementById("max_sampleInput-RNF_class");
+
+//Eventps
 //Árbol
 $classWeightRange.addEventListener("input", () => {
   $classWeightValue.textContent = $classWeightRange.value;
+});
+
+//Random Forest
+$deactiveBootstrapRadio.addEventListener("change", () => {
+  $maxSampleInput.setAttribute("disabled", "disabled");
+  $maxSampleInput.value = '';
+});
+
+$activeBootstrapRadio.addEventListener("change", () => {
+    $maxSampleInput.removeAttribute("disabled");
+    $maxSampleInput.value = '1';
+});
+
+$deactiveBootstrapRadio_2.addEventListener("change", () => {
+  $maxSampleInput_2.setAttribute("disabled", "disabled");
+  $maxSampleInput_2.value = '';
+});
+
+$activeBootstrapRadio_2.addEventListener("change", () => {
+    $maxSampleInput_2.removeAttribute("disabled");
+    $maxSampleInput_2.value = '1';
 });
 
