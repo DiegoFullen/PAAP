@@ -258,6 +258,37 @@ input[type=file]{
     width: 0;
 }
 
+#confirmStack {
+    font-family: "Inter", sans-serif;
+    border-color: #FBFBFB;
+    border-style: solid;
+    border-radius: 12px;
+
+  }
+
+#confirmStack h5{
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+#confirmStack p{
+  font-size: 1em;
+  margin-bottom: 10%;
+}
+
+#confirmStack .controlPanel{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+#confirmStack .controlPanel button{
+  width: 25%;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+}
+
 @media(min-width: 1300px){
     .hiper{
         overflow: auto;

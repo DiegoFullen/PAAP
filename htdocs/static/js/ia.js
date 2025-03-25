@@ -77,7 +77,7 @@ const $activeBootstrapRadio_2 = $d.getElementById("activadoRadio-RNF_class");
 const $deactiveBootstrapRadio_2 = $d.getElementById("desactivadoRadio-RNF_class");
 const $maxSampleInput_2 = $d.getElementById("max_sampleInput-RNF_class");
 
-//Eventps
+//Eventos
 //Árbol
 $classWeightRange.addEventListener("input", () => {
   $classWeightValue.textContent = $classWeightRange.value;
@@ -103,4 +103,46 @@ $activeBootstrapRadio_2.addEventListener("change", () => {
     $maxSampleInput_2.removeAttribute("disabled");
     $maxSampleInput_2.value = '1';
 });
+
+//Dialog confirmación Prime Stack
+const input_PrimeStack = document.getElementById("primeStack");
+const confirmationDialog = document.querySelector("dialog.stack");
+const btnAceptar_Confirm = document.getElementById("confirmAccept");
+const btnCancelar_Confirm = document.getElementById("confirmDeny");
+
+input_PrimeStack.addEventListener("focusout", () => {
+  var value_PrimeStack = document.getElementById("primeStack").value;
+
+    if(isNotEmpty(value_PrimeStack)){
+      confirmationDialog.showModal();
+    }
+});
+
+btnAceptar_Confirm.addEventListener("click", ()=> {
+    confirmationDialog.close();
+});
+
+
+btnCancelar_Confirm.addEventListener("click", () => {
+  confirmationDialog.close();
+  input_PrimeStack.value = "";
+  input_PrimeStack.focus();
+});
+
+function isNotEmpty(value){
+  if (value === null || value === undefined) {
+    return false;
+  }
+
+  if (typeof value === "string") {
+    return value.trim() !== ""; 
+  }
+
+  if (typeof value === "number") {
+    return true; 
+  }
+
+  return false; 
+}
+
 

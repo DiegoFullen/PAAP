@@ -159,6 +159,18 @@
                             </div>
                         </dialog>
 
+                        <!-- Alert para confirmación de Pila Objetivo -->
+                        <dialog class="stack" id="confirmStack">
+                            <h5 class="montserrat">Confirmación Pila Objetivo</h5>
+                            <p>La selección de la pila objetivo afectará el proceso de entrenamiento y<br>los 
+                                resultados del modelo ¿Está seguro de utilizar la pila ingresada?</p>
+
+                            <div class="controlPanel">
+                                <button type="button" class="btn btn-outline-primary" id="confirmAccept">Aceptar</button>
+                                <button type="button" class="btn btn-outline-dark" id="confirmDeny">Cancelar</button>
+                            </div>
+                        </dialog>
+
                         <div class="container mt-5" id="parameters">
                             <div class="row">
                                 <div class="col text-center main" id="CSV">
@@ -185,7 +197,7 @@
                                     </div>
 
                                     <button type="submit" form="selectionAlgorithm" class="btn btn-outline-primary mt-3"
-                                        style="width: 100%;">
+                                        style="width: 100%;" id="btnStart_Training">
                                         <span>INICIAR ENTRENAMIENTO</span> </button>
                                 </div>
 
@@ -233,7 +245,7 @@
                                         <div class="mt-4">
                                             <label for="primeStack" class="montserrat">PILA OBJETIVO</label>
                                             <input type="text" name="primeStack" id="primeStack"
-                                                placeholder="Prime_Stack" autofocus required maxlength="70"
+                                                placeholder="Prime_Stack" required maxlength="70"
                                                 pattern="^[A-Za-z0-9\s_]+$" title="Solo se permiten letras y números">
                                         </div>
                                     </div>
@@ -895,7 +907,8 @@
                 <div id="KNNparameters">
                     <div class="cardHolder" id="metricKNN">
                         <h5 class="header" style="font-size: 1rem;">Métrica</h5>
-                        <select class="form-control mt-3" id="metricaRadio-KNN_reg" name="metricaRadio-KNN_reg" required>
+                        <select class="form-control mt-3" id="metricaRadio-KNN_reg" name="metricaRadio-KNN_reg"
+                            required>
                             <option value="minkowski">Minkowski</option>
                             <option value="euclidean">Euclidean</option>
                             <option value="manhattan">Manhattan</option>
@@ -956,13 +969,14 @@
                     <div class="cardHolder" id="algorithmKNN">
                         <h5 class="header" style="font-size: 1rem;">Algoritmos</h5>
 
-                        <select class="form-control mt-3" id="algorithmRadio-KNN_reg" name="algorithmRadio-KNN_reg" required>
+                        <select class="form-control mt-3" id="algorithmRadio-KNN_reg" name="algorithmRadio-KNN_reg"
+                            required>
                             <option value="automatic">Automático</option>
                             <option value="ballTree">Ball Tree</option>
                             <option value="kdTree">KD Tree</option>
                             <option value="brute">Brute</option>
                         </select>
-                        
+
                     </div>
 
                 </div>
@@ -977,7 +991,8 @@
                 <div id="KNNparameters">
                     <div class="cardHolder" id="metricKNN">
                         <h5 class="header" style="font-size: 1rem;">Métrica</h5>
-                        <select class="form-control mt-3" id="metricaRadio-KNN_class" name="metricaRadio-KNN_class" required>
+                        <select class="form-control mt-3" id="metricaRadio-KNN_class" name="metricaRadio-KNN_class"
+                            required>
                             <option value="minkowski">Minkowski</option>
                             <option value="euclidean">Euclidean</option>
                             <option value="manhattan">Manhattan</option>
@@ -1039,13 +1054,14 @@
                     <div class="cardHolder" id="algorithmKNN">
                         <h5 class="header" style="font-size: 1rem;">Algoritmos</h5>
 
-                        <select class="form-control mt-3" id="algorithmRadio-KNN_class" name="algorithmRadio-KNN_class" required>
+                        <select class="form-control mt-3" id="algorithmRadio-KNN_class" name="algorithmRadio-KNN_class"
+                            required>
                             <option value="automatic">Automático</option>
                             <option value="ballTree">Ball Tree</option>
                             <option value="kdTree">KD Tree</option>
                             <option value="brute">Brute</option>
                         </select>
-                        
+
                     </div>
 
                 </div>
