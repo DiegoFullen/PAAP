@@ -146,3 +146,11 @@ function isNotEmpty(value){
 }
 
 
+//Evitar envío de información al presionar Enter
+const formAlgorithm = document.getElementById("selectionAlgorithm");
+
+formAlgorithm.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+  }
+});
