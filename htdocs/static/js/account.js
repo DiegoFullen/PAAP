@@ -1,4 +1,4 @@
-document.getElementById('togglePassword').addEventListener('click', function() {
+/*document.getElementById('togglePassword').addEventListener('click', function() {
     // Seleccionar el campo de contraseña
     var passwordField = document.getElementById('accountPassword');
     var icon = this; // El ícono del ojo
@@ -13,4 +13,4 @@ document.getElementById('togglePassword').addEventListener('click', function() {
         icon.classList.remove('fa-eye-slash'); // Cambiar ícono a "ojo normal"
         icon.classList.add('fa-eye');
     }
-});
+});*/

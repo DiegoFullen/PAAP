@@ -1,3 +1,12 @@
+//Alinear el captcha con el resto de la interfaz
+window.onload = function () {
+    const recaptcha = document.querySelector(".g-recaptcha iframe");
+    if (recaptcha) {
+        recaptcha.style.maxWidth = "100%";
+        recaptcha.style.height = "auto";
+    }
+};
+
 const inputEmail = document.getElementById("email")
 const labelEmail = document.getElementById("labelEmail");
 const inputPassword = document.getElementById("password")

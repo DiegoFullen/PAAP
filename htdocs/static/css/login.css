@@ -69,3 +69,7 @@
     color: black !important;
 }
 
+.g-recaptcha > *{
+    text-align: center;
+    width: 100% !important;
+}
