@@ -26,25 +26,25 @@ $selectAlgorithm.addEventListener("change", () => {
 
   // Esconder divs
   hideHyper();
-  
-  if(selectedType === null){
+
+  if (selectedType === null) {
     console.clear();
     console.warn("Element received null");
-  }else{
+  } else {
     var selectedType = document.querySelector('input[name="algoritmoType"]:checked').value;
     showHyper(selectedValue, selectedType);
   }
 });
 
 $d.querySelectorAll('input[name="algoritmoType"]').forEach((radio) => {
-  radio.addEventListener("change", function () {  
+  radio.addEventListener("change", function () {
 
     const evt = new Event("change");
     $selectAlgorithm.dispatchEvent(evt);
   });
 });
 
-function hideHyper(){
+function hideHyper() {
   document.querySelectorAll(".hiper").forEach(div => {
     div.classList.add("hidden");
   });
@@ -90,8 +90,8 @@ $deactiveBootstrapRadio.addEventListener("change", () => {
 });
 
 $activeBootstrapRadio.addEventListener("change", () => {
-    $maxSampleInput.removeAttribute("disabled");
-    $maxSampleInput.value = '1';
+  $maxSampleInput.removeAttribute("disabled");
+  $maxSampleInput.value = '1';
 });
 
 $deactiveBootstrapRadio_2.addEventListener("change", () => {
@@ -100,57 +100,71 @@ $deactiveBootstrapRadio_2.addEventListener("change", () => {
 });
 
 $activeBootstrapRadio_2.addEventListener("change", () => {
-    $maxSampleInput_2.removeAttribute("disabled");
-    $maxSampleInput_2.value = '1';
+  $maxSampleInput_2.removeAttribute("disabled");
+  $maxSampleInput_2.value = '1';
 });
 
 //Dialog confirmación Prime Stack
-const input_PrimeStack = document.getElementById("primeStack");
+const valuePrimeStack = document.getElementById("primeStack");
 const confirmationDialog = document.querySelector("dialog.stack");
 const btnAceptar_Confirm = document.getElementById("confirmAccept");
 const btnCancelar_Confirm = document.getElementById("confirmDeny");
 
-input_PrimeStack.addEventListener("focusout", () => {
-  var value_PrimeStack = document.getElementById("primeStack").value;
 
-    if(isNotEmpty(value_PrimeStack)){
-      confirmationDialog.showModal();
-    }
+const formAlgorithm = document.getElementById("selectionAlgorithm");
+const inputFile = document.getElementById("file");
+const message = document.getElementById("message");
+
+//Evitar envío de información al presionar Enter
+formAlgorithm.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+  }
 });
 
-btnAceptar_Confirm.addEventListener("click", ()=> {
-    confirmationDialog.close();
+formAlgorithm.addEventListener("submit", function(event){
+  if(inputFile.files.length === 0){
+    event.preventDefault();
+
+    message.style.backgroundColor = "red";
+    message.style.color = "white";
+  }else{
+    confirmationDialog.showModal();
+    event.preventDefault();
+  }
 });
 
+btnAceptar_Confirm.addEventListener("click", () => {
+  confirmationDialog.close();
+  formAlgorithm.submit();
+});
 
 btnCancelar_Confirm.addEventListener("click", () => {
   confirmationDialog.close();
-  input_PrimeStack.value = "";
-  input_PrimeStack.focus();
+  valuePrimeStack.value = "";
+  valuePrimeStack.focus();
 });
 
-function isNotEmpty(value){
+inputFile.addEventListener("change", function (event) {
+  if (inputFile.files.length > 0) {
+    message.classList.add("hidden");
+  } else {
+    
+  }
+});
+
+function isNotEmpty(value) {
   if (value === null || value === undefined) {
     return false;
   }
 
   if (typeof value === "string") {
-    return value.trim() !== ""; 
+    return value.trim() !== "";
   }
 
   if (typeof value === "number") {
-    return true; 
+    return true;
   }
 
-  return false; 
+  return false;
 }
-
-
-//Evitar envío de información al presionar Enter
-const formAlgorithm = document.getElementById("selectionAlgorithm");
-
-formAlgorithm.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-  }
-});
