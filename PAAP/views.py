@@ -5,7 +5,9 @@ from django.contrib.auth import authenticate, login
 from django.http import Http404
 from django.db import connection
 from django.contrib import messages
-
+import requests
+from django.conf import settings
+from django.contrib import messages
 
 #FUNCIONES PARA LA CARGA DEL INICIO DE LA PAGINA (ANTES DE REGISTRARSE)
 
@@ -15,38 +17,76 @@ def index(request):
 #Función para iniciar sesión
 def login_view(request):
     if request.method == "POST":
+        # Validación del CAPTCHA primero
+        captcha_response = request.POST.get('g-recaptcha-response')
+        if not captcha_response:
+            messages.error(request, "Por favor, completa el CAPTCHA.")
+            return redirect('login')
+        
+        # Validación con Google (versión mejorada)
+        try:
+            data = {
+                'secret': settings.RECAPTCHA_PRIVATE_KEY,
+                'response': captcha_response
+            }
+            headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            response = requests.post(
+                'https://www.google.com/recaptcha/api/siteverify',
+                data=data,
+                headers=headers,
+                timeout=5  # Timeout de 5 segundos
+            )
+            result = response.json()
+            
+            if not result.get('success'):
+                error_codes = result.get('error-codes', ['unknown-error'])
+                messages.error(request, f"Error en CAPTCHA: {', '.join(error_codes)}")
+                return redirect('login')
+
+        except requests.exceptions.RequestException as e:
+            messages.error(request, "Error al validar el CAPTCHA. Inténtalo nuevamente.")
+            return redirect('login')
+
+        # Resto de tu lógica de autenticación...
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = crud_user.get_user(email)
-        plan = crud_plan.get_plan(email)
-        horas = int(plan.hours)  # Parte entera: horas
-        minutos_decimal = plan.hours - horas  # Parte decimal: fracción de una hora
-        minutos = int(round(minutos_decimal * 60))  # Convertir fracción a minutos
-        tiempo = f"{horas}:{minutos:02d}"
-        if user:
-            if check_password(password, user.password):    
-                if user.status:
-                    # Cargar los Datos en la Sesión
-                    request.session['email'] = user.email
-                    request.session['username'] = user.username
-                    request.session['name'] = user.name
-                    request.session['password'] = user.password
-                    request.session['email_recover'] = user.email_recover
-                    request.session['firstlastname'] = user.firstlastname
-                    request.session['secondlastname'] = user.secondlastname
-                    request.session['hours'] = tiempo
-                    request.session['plan'] = plan.type_plan
-                    return redirect('dashboard')
-                else:
-                    messages.error(request, "Usuario desactivado")
-                    return redirect('login')  
-            else:
-                messages.error(request, "La contraseña o el correo estan equivocados")
-                return redirect('login') 
-        else:
+        
+        if not user:
             messages.error(request, "El usuario no existe")
             return redirect('login')
-    return render(request, 'login.html')
+            
+        if not check_password(password, user.password):
+            messages.error(request, "La contraseña o el correo están equivocados")
+            return redirect('login')
+            
+        if not user.status:
+            messages.error(request, "Usuario desactivado")
+            return redirect('login')
+            
+        # Resto de tu lógica de sesión...
+        plan = crud_plan.get_plan(email)
+        horas = int(plan.hours)
+        minutos = int(round((plan.hours - horas) * 60))
+        tiempo = f"{horas}:{minutos:02d}"
+        
+        request.session.update({
+            'email': user.email,
+            'username': user.username,
+            'name': user.name,
+            'password': user.password,
+            'email_recover': user.email_recover,
+            'firstlastname': user.firstlastname,
+            'secondlastname': user.secondlastname,
+            'hours': tiempo,
+            'plan': plan.type_plan
+        })
+        
+        return redirect('dashboard')
+    context = { 'RECAPTCHA_PUBLIC_KEY': settings.RECAPTCHA_PUBLIC_KEY}
+    return render(request, 'login.html',context)
 #Función del Pricing view
 def pricing_view(request):
     return render(request, 'pricing.html')

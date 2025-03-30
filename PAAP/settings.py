@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gestion_usuarios',
+    'django_recaptcha',
     #'django.contrib.sites', 
     #'allauth',
     #'allauth.account',
@@ -47,6 +48,8 @@ INSTALLED_APPS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/' 
 ACCOUNT_LOGOUT_REDIRECT_URL = '/login/'
+RECAPTCHA_PUBLIC_KEY = '6LfCGgQrAAAAACcooyNFsmKuMzqjg4kmX174dkf2'  # Clave pública
+RECAPTCHA_PRIVATE_KEY = '6LfCGgQrAAAAAHbfVAFR99-JYmk6kssENxXpHCpm'  # Clave privada
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
