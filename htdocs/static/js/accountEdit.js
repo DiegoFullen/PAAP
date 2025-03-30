@@ -71,7 +71,13 @@ btnValidate.addEventListener("click", function (event) {
             event.preventDefault();
             window.alert("Ingrese una contraseña valida");
         }
-    } else {
+    } 
+    else if (isNotEmpty(valuePassword) || isNotEmpty(valueRepeat)) {
+        event.preventDefault();
+        window.alert("Error, está intentado cambiar la contraseña dejando un campo vacio");
+    }
+    else{
+
     }
 });
 
