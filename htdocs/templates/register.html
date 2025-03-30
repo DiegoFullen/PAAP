@@ -56,37 +56,58 @@
                             <div class="row1_1">
                                 <label for="accountName" class="col-form-label">Nombre/s*</label>
                                 <input type="text" class="form-control" id="accountName" name="accountName"
-                                    placeholder="Héctor Mariano" value="" required pattern="[A-Za-z\s]+"
+                                    placeholder="Héctor Mariano" value="{{ name|default:'' }}" required pattern="[A-Za-z\s]+"
                                     title="Solo se permiten carácteres">
                             </div>
 
                             <div class="row1_2">
                                 <label for="accountFLast" class="col-form-label">Primer Apellido*</label>
                                 <input type="text" class="form-control" id="accountFLast" name="accountFLast"
-                                    placeholder="Padilla" value="" required pattern="[A-Za-z]+"
+                                    placeholder="Padilla" value="{{ lastname|default:'' }}" required pattern="[A-Za-z]+"
                                     title="Solo se permiten carácteres">
                             </div>
 
                             <div class="row1_3">
                                 <label for="accountSLast" class="col-form-label">Segundo Apellido*</label>
                                 <input type="text" class="form-control" id="accountSLast" name="accountSLast"
-                                    placeholder="Rodríguez" value="" required pattern="[A-Za-z]+"
+                                    placeholder="Rodríguez" value="{{ lastname2|default:'' }}" required pattern="[A-Za-z]+"
                                     title="Solo se permiten carácteres">
                             </div>
 
                             <div class="row2_1">
                                 <label for="accountEmail" class="col-form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="" required>
+                                <input type="email" class="form-control" id="accountEmail" name="accountEmail" placeholder="alumnoCeti@ceti.mx" value="{{ email|default:'' }}" required>
+                                {% for message in messages %}
+                                    {% if 'email' in message.tags %}
+                                        <div class="alert alert-danger mt-2" role="alert" style="width: 85%; margin-left: 7%;">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
 
                             <div class="row2_2">
                                 <label for="accountEmailBack" class="col-form-label">Correo Recuperación*</label>
-                                <input type="email" class="form-control" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="" required>
+                                <input type="email" class="form-control" id="accountEmailBack" name="accountEmailBack" placeholder="alumnoCeti@ceti.mx" value="{{ email_recover|default:'' }}" required>
+                                {% for message in messages %}
+                                    {% if 'recover' in message.tags %}
+                                        <div class="alert alert-danger mt-2" role="alert" style="width: 85%; margin-left: 7%;">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
 
                             <div class="row2_3">
                                 <label for="accountUsername" class="col-form-label">Nombre Usuario*</label>
-                                <input type="text" class="form-control" id="accountUsername" name="accountUsername" placeholder="User123" required minlength="6">
+                                <input type="text" class="form-control" id="accountUsername" name="accountUsername" value="{{ username|default:'' }}" placeholder="User123" required minlength="6">
+                                {% for message in messages %}
+                                    {% if 'username' in message.tags %}
+                                        <div class="alert alert-danger mt-2" role="alert" style="width: 85%; margin-left: 7%;">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
 
                             <div class="row3_1">
@@ -137,12 +158,8 @@
                                     </ul>
                                 </div>
                             </div>
-
                             <span id="message">Campos Obligatorios*</span>
                             <button class="btn btn-primary" id="btnValidate">Confirmar</button>
-                            
-                        </div>
-
                     </form>
                 </div>
             </div>

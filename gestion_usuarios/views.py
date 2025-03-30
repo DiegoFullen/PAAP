@@ -23,20 +23,38 @@ def add_user(request):
         password = request.POST.get('accountPassword')
         password2 = request.POST.get('accountPassword2')
 
+        # Crear contexto con los valores actuales
+        context = {
+            'username': username,
+            'name': name,
+            'lastname': lastname,
+            'lastname2': lastname2,
+            'email': email,
+            'email_recover': email_recover,
+        }
+
         # Verificar si las contraseñas coinciden
         if password != password2:
-            messages.error(request, "Las contraseñas no coinciden.")
-            return render(request, 'register.html')
+            messages.error(request, "Las contraseñas no coinciden.", extra_tags='password')
+            return render(request, 'register.html', context)
+
+        # Verificar que el correo y la recuperación sean diferentes
+        if email == email_recover:
+            messages.error(request, "Los correos son iguales", extra_tags='recover')
+            context['email_recover'] = ''
+            return render(request, 'register.html', context)
 
         # Verificar si el correo electrónico ya está registrado
         if crud_user.get_user(email):
-            messages.error(request, "Ya hay un usuario enlazado a este correo.")
-            return render(request, 'register.html')
+            messages.error(request, "Ya hay un usuario enlazado a este correo.", extra_tags='email')
+            context['email'] = ''
+            return render(request, 'register.html', context)
 
         # Verificar si el nombre de usuario ya existe
         if User.objects.filter(username=username).exists():
-            messages.error(request, "El nombre de usuario ya existe.")
-            return render(request, 'register.html')
+            messages.error(request, "El nombre de usuario ya existe.", extra_tags='username')
+            context['username'] = ''
+            return render(request, 'register.html', context)
 
         # Crear el usuario y enviar el correo de verificación
         token = CRUD.add_user(username, name, lastname, lastname2, email, email_recover, password, password2)
@@ -44,10 +62,10 @@ def add_user(request):
             verification_url = request.build_absolute_uri(f"/gestion_usuarios/verify-email/{token}")
             Email.send_verification_email(email, name, verification_url)
             messages.success(request, "Te hemos enviado un correo de verificación. Confirma para completar el registro.")
-            return redirect('login')  # Redirigir al login después de enviar el correo
+            return redirect('login')
         else:
             messages.error(request, "Hubo un error al crear el usuario.")
-            return render(request, 'register.html')
+            return render(request, 'register.html', context)
 
     return render(request, 'register.html')
 
