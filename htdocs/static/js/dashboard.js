@@ -55,21 +55,23 @@
 
 })(jQuery); // End of use strict
 
-const btnSalir = document.getElementById("btnSalir");
-const dialogElem = document.querySelector("dialog");
-const btnAceptar = document.getElementById("optAccept");
-const btnCancelar = document.getElementById("optCancel");
-
-btnSalir.addEventListener("click", () => {
-  dialogElem.showModal();
-});
-
-btnAceptar.addEventListener("click", ()=> {
-    window.location.href = 'about:blank';
-    window.location.href = '/exit/';
-});
-
+const btnErase = document.getElementById("btnErase");
+const confirmErase = document.querySelector("dialog.alertDialog");
+const eraseAccept = document.getElementById("eraseAccept");
+const eraseDeny = document.getElementById("eraseDeny");
 
 btnCancelar.addEventListener("click", () => {
   dialogElem.close();
+});
+
+btnErase.addEventListener("click", () => {
+  confirmErase.showModal();
+});
+
+eraseAccept.addEventListener("click", () => {
+  confirmErase.close();
+});
+
+eraseDeny.addEventListener("click", () => {
+  confirmErase.close();
 });
