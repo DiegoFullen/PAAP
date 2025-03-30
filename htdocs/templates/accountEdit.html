@@ -131,7 +131,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <form method="POST" action="{% url 'update_profile' %}">
+                    <form method="POST" action="">
                         {% csrf_token %}
                         <!-- Page Heading -->
                         <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
@@ -237,14 +237,12 @@
                                         <label for="accountPassword" class="col-form-label">Contraseña*</label>
                                         <i class="fas fa-solid fa-eye pl-3" id="togglePassword"></i>
                                         <input type="password" class="form-control" id="accountPassword"
-                                            name="accountPassword" placeholder="**********" value="{{ password }}"
-                                            required>
+                                            name="accountPassword" placeholder="**********" value="">
 
                                         <label for="accountPassword" class="col-form-label">Confirmar
                                             Contraseña*</label>
                                         <input type="password" class="form-control" id="accountPassword2"
-                                            name="accountPassword2" placeholder="**********" value="{{ password }}"
-                                            required>
+                                            name="accountPassword2" placeholder="**********" value="">
                                     </div>
 
                                 </div>

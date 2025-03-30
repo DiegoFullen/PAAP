@@ -109,6 +109,39 @@ body{
     color: black;
 }
 
+.alertDialog{
+  font-family: "Inter", sans-serif;
+  border-color: #FBFBFB;
+  border-style: solid;
+  border-radius: 12px;
+
+  position: absolute;
+  margin: auto;
+}
+.alertDialog h5{
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.alertDialog p{
+  font-size: 1em;
+  margin-bottom: 10%;
+}
+
+.alertDialog .controlPanel{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.alertDialog .controlPanel button{
+  width: 25%;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+}
+
+
 #dialog {
     font-family: "Inter", sans-serif;
     border-color: #FBFBFB;

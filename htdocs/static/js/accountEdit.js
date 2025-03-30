@@ -49,8 +49,8 @@ inputPassword.addEventListener("keyup", (e) => {
 });
 
 //Simulación de Evento para activar las comprobaciones de contraseña segura
-const evt = new Event("keyup");
-inputPassword.dispatchEvent(evt);
+/*const evt = new Event("keyup");
+inputPassword.dispatchEvent(evt);*/
 
 btnValidate.addEventListener("click", function (event) {
     const valuePassword = $d.getElementById("accountPassword").value;
@@ -71,7 +71,13 @@ btnValidate.addEventListener("click", function (event) {
             event.preventDefault();
             window.alert("Ingrese una contraseña valida");
         }
-    } else {
+    } 
+    else if (isNotEmpty(valuePassword) || isNotEmpty(valueRepeat)) {
+        event.preventDefault();
+        window.alert("Error, está intentado cambiar la contraseña dejando un campo vacio");
+    }
+    else{
+
     }
 });
 

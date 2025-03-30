@@ -149,9 +149,10 @@
                             <div class="col-md-auto">
                                 <span style="font-weight: 400; font-size: 1.1rem;">{{ modelo.2}}</span>
                             </div>
-                            <div class="col">
-                                <button class="btn-circle" id="btn-download"><i
+                            <div class="col" style="text-align: end;">
+                                <button class="btn-circle" id="btnDownload"><i
                                         class="fas fa-solid fa-download"></i></button>
+                                <button class="btn-circle" id="btnErase"><i class="fas fa-solid fa-trash"></i></button>
                             </div>
                         </div>
 
@@ -161,7 +162,13 @@
                                     Entrenamiento</span> <br>
                                 <span>{{modelo.3}}</span>
                             </div>
-                            <div class="col-md-auto ml-5">
+                            <div class="col-md-auto">
+                                <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Tipo de
+                                    Entrenamiento</span>
+                                <br>
+                                <span>Árboles de Decisión</span><span> - </span><span>Regresión</span>
+                            </div>
+                            <div class="col-md-auto ml-2">
                                 <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span>
                                 <br>
                                 <span>0</span>
@@ -169,13 +176,27 @@
                         </div>
                     </div>
                     {% endfor %}
+
+                    <!-- Alert para confirmar Cerrar Sesión -->
                     <dialog id="dialog">
                         <h5 class="montserrat">Cerrar Sesión</h5>
                         <p>Está por abandonar la plaforma ¿Desea continuar?</p>
 
                         <div class="controlPanel">
-                        <button type="button" class="btn btn-outline-primary" id="optAccept">Aceptar</button>
-                        <button type="button" class="btn btn-outline-dark" id="optCancel">Cancelar</button>
+                            <button type="button" class="btn btn-outline-primary" id="optAccept">Aceptar</button>
+                            <button type="button" class="btn btn-outline-dark" id="optCancel">Cancelar</button>
+                        </div>
+                    </dialog>
+
+                    <!-- Alert para confirmación de eliminar Modelo -->
+                    <dialog class="alertDialog">
+                        <h5 class="montserrat">Confirmación Eliminar Modelo</h5>
+                        <p>Está por eliminar el modelo entrenado de la base de datos. <br>Este proceso es
+                            permanente ¿Desea continuar?</p>
+
+                        <div class="controlPanel">
+                            <button type="button" class="btn btn-outline-primary" id="eraseAccept">Aceptar</button>
+                            <button type="button" class="btn btn-outline-dark" id="eraseDeny">Cancelar</button>
                         </div>
                     </dialog>
 
