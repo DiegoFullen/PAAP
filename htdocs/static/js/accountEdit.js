@@ -49,8 +49,8 @@ inputPassword.addEventListener("keyup", (e) => {
 });
 
 //Simulación de Evento para activar las comprobaciones de contraseña segura
-const evt = new Event("keyup");
-inputPassword.dispatchEvent(evt);
+/*const evt = new Event("keyup");
+inputPassword.dispatchEvent(evt);*/
 
 btnValidate.addEventListener("click", function (event) {
     const valuePassword = $d.getElementById("accountPassword").value;
