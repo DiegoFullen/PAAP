@@ -1,7 +1,7 @@
-from gestion_usuarios.models import Model, Dataset
+from gestion_usuarios.models import Model, Dataset, Hiperparameters_Tree, Hiperparameters_KNN, Hiperparameters_RandomForest
 from django.db.models import F
 # Crear un nuevo modelo
-def create_model(id_model, id_dataset, start_date, finish_date, name, type,stack):
+def create_model(id_model, id_dataset, start_date, finish_date, name, type, type_cr,stack):
     model = Model.objects.create(
         id_model=id_model,
         id_dataset=id_dataset,  # Almacena directamente el ID del dataset
@@ -9,6 +9,7 @@ def create_model(id_model, id_dataset, start_date, finish_date, name, type,stack
         finish_date=finish_date,
         name=name,
         type=type,
+        type_cr = type_cr,
         primeStack = stack
     )
     return model
@@ -38,10 +39,10 @@ def get_user_models(email):
 
         # Obtener los modelos cuyos id_dataset están en la lista de datasets filtrados
         modelos = Model.objects.filter(id_dataset__in=dataset_map.keys()).values(
-            'id_model', 'name', 'type', 'id_dataset'
+            'id_model', 'name', 'type', 'type_cr','id_dataset'
         )
 
-        # Agregar el nombre del dataset a cada modelo
+        # Agregar el nombre del dataset a cada modelo y la información adicional
         resultados = []
         for modelo in modelos:
             modelo['name_dataset'] = dataset_map.get(modelo['id_dataset'], 'Desconocido')

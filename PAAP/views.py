@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
-from gestion_usuarios import Email,CRUD, crud_plan, crud_user, crud_temporal
+from gestion_usuarios import CRUD, crud_plan, crud_user, crud_temporal
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth import authenticate, login
 from django.http import Http404
 from django.db import connection
 from django.contrib import messages
 import requests
 from django.conf import settings
-from django.contrib import messages
+
 
 #FUNCIONES PARA LA CARGA DEL INICIO DE LA PAGINA (ANTES DE REGISTRARSE)
 
@@ -116,10 +115,16 @@ def dashboard_view(request):
     email = request.session.get('email')
     if not email:
         return redirect('login')
-    else:
-        models = CRUD.search_models(email)
-        context = {'modelos': models, 'email':email}
-        return render(request, 'dashboard.html', context)
+    
+    modelos = CRUD.search_models(email)  # Esto devuelve diccionarios
+    
+    # Procesar cada modelo (que es un diccionario)
+    for modelo in modelos:
+        modelo['type_cr'] = "Regresión" if modelo['type_cr'] == 0 else "Clasificación"
+        modelo['type'] = "Árboles de Decisión" if modelo['type'] == "arbolDesicion" else "K-Nearest Neighbors" if modelo['type'] == "kNeighbors" else "Random Forest"
+    
+    context = {'modelos': modelos, 'email': email}
+    return render(request, 'dashboard.html', context)
 #Función para la vista del entrenamiento de IA
 def ia_view(request):
     email = request.session.get('email')
@@ -257,4 +262,5 @@ def error401_view(request):
 
 def error500_view(request):
     return render(request, '500.html',status=500)
+
 

@@ -134,20 +134,30 @@
 
                     <!-- Page Heading -->
                     <!--<h1 class="h3 mb-4 text-gray-800 mt-3">placeholder algo algo sjdiasd</h1> -->
-                    {% for modelo in modelos %}
+                    
                     <div class="container mt-5" id="infoSet">
                         <div class="row justify-content-md-end">
 
                             <div class="col-md-auto">
                                 <select class="form-control" id="selectModel" name="selectModel">
                                     <option value="">Despligue de Información</option>
-                                    <option value="arbolDesicion">Modelo Placeholder</option>
-                                    <option value="kNeighbors">K-Nearest Neighbors</option>
-                                    <option value="randomForest">Random Forest</option>
+                                    {% for modelo in modelos %}
+                                        <option 
+                                            value="{{ modelo.id_model }}" 
+                                            data-model-name = "{{modelo.name}}"
+                                            data-dataset-name="{{ modelo.name_dataset }}"
+                                            data-model-type="{{ modelo.type}}"
+                                            data-model-training = "{{modelo.type_cr}}"
+                                            data-model-id="{{modelo.id_model}}"
+                                            data-dataset-id="{{modelo.id_dataset}}"
+                                        >
+                                            {{ modelo.name}}
+                                        </option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-auto">
-                                <span style="font-weight: 400; font-size: 1.1rem;">{{ modelo.2}}</span>
+                                <span style="font-weight: 400; font-size: 1.1rem;" id="displayModelName">-</span>
                             </div>
                             <div class="col" style="text-align: end;">
                                 <button class="btn-circle" id="btnDownload"><i
@@ -160,22 +170,22 @@
                             <div class="col-md-auto">
                                 <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Dataset de
                                     Entrenamiento</span> <br>
-                                <span>{{modelo.3}}</span>
+                                <span id="displayDatasetName">Dataset</span>
                             </div>
                             <div class="col-md-auto">
                                 <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Tipo de
                                     Entrenamiento</span>
                                 <br>
-                                <span>Árboles de Decisión</span><span> - </span><span>Regresión</span>
+                                <span id="displayModelType">Algoritmo</span><span> - </span><span id="displayModelTypeTraining">Reg/Cla</span>
                             </div>
                             <div class="col-md-auto ml-2">
                                 <span style=" color: #082431; font-weight: 400; font-size: 1.1rem;">Horas Usadas</span>
                                 <br>
-                                <span>0</span>
+                                <span>Horas</span>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
+                    
 
                     <!-- Alert para confirmar Cerrar Sesión -->
                     <dialog id="dialog">
@@ -224,7 +234,6 @@
 
     <script src="{% static 'js/dashboard.min.js'%}"></script>
     <script src="{% static 'js/dashboard.js'%}"></script>
-
 </body>
 
 </html>

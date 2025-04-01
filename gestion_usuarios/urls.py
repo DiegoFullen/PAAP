@@ -8,5 +8,6 @@ urlpatterns = [
     path('dashboard/payment/hours/',views.update_hours,name='update_hours'),
     path('dashboard/ia/upload_csv/', views.upload_csv, name='upload_csv'),
     path('emailRetrieve/recoverPassword/',views.recover_password_email,name='recover_password_email'),
-    path('recover_password/<str:token>/',views.recover_password,name='recover_password')
+    path('recover_password/<str:token>/',views.recover_password,name='recover_password'),
+    path('delete_model/<str:model_id>/<str:dataset_id>/',views.delete_model,name='delete_model'),
 ]

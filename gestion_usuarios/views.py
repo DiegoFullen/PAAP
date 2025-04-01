@@ -9,7 +9,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect
-from gestion_usuarios.models import User
+from gestion_usuarios.models import User, Model,Dataset,Hiperparameters_KNN,Hiperparameters_RandomForest,Hiperparameters_Tree
 from django.contrib import messages
 
 def add_user(request):
@@ -173,8 +173,12 @@ def save_parameters(request):
         number = crud_dataset.count_dataset(email) + 1
         model_name = f"{email}-{number}"
         dataset_id = f"{model_name}_dataset"
+        if algorithm_type == "regression":
+            algorithm_type_b = 0
+        else:
+            algorithm_type_b = 1
         messages.success(request, f'{model_name} || {algorithm} || {algorithm_type} || {primeStack}')
-        crud_model.create_model(model_name,dataset_id,None,None,model,algorithm,primeStack)
+        crud_model.create_model(model_name,dataset_id,None,None,model,algorithm,algorithm_type_b,primeStack)
         upload_date = timezone.now()
             # Manejar la subida del archivo
         if request.FILES.get('file'):
@@ -388,4 +392,25 @@ def upload_csv(request):
         # Si todo está bien, devolver una respuesta
         return JsonResponse({"message": f"Archivo {file.name} subido y procesado correctamente."})
 
-    return JsonResponse({"message": "Método no permitido."}, status=405)  
+    return JsonResponse({"message": "Método no permitido."}, status=405)
+
+def delete_model(request, model_id, dataset_id):
+    try:
+        modelo = Model.objects.get(id_model=model_id)
+        modelo.delete()
+        dataset = Dataset.objects.get(id_dataset=dataset_id)
+        dataset.delete()
+        if Hiperparameters_KNN.objects.filter(model_id=model_id).exists():
+            hiper_knn = Hiperparameters_KNN.objects.get(model_id=model_id)
+            hiper_knn.delete()
+        elif Hiperparameters_RandomForest.objects.filter(model_id=model_id).exists():
+            hiper_rf = Hiperparameters_RandomForest.objects.get(model_id=model_id)
+            hiper_rf.delete()
+        elif Hiperparameters_Tree.objects.filter(model_id=model_id).exists():
+            hiper_tree = Hiperparameters_Tree.objects.get(model_id=model_id)
+            hiper_tree.delete()
+
+        return redirect('dashboard')
+    except Exception as e:
+        print(f"Error al eliminar: {e}")
+        return redirect('dashboard')

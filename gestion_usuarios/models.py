@@ -53,6 +53,7 @@ class Model(models.Model):
     finish_date = models.DateField(null=True)
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=20)
+    type_cr = models.IntegerField(default=0)
     primeStack = models.CharField(max_length=70, default='stack')
 
     def __str__(self):
