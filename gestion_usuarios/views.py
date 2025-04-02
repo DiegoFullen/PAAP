@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.db import connection
 from django.contrib import messages
-from gestion_usuarios import CRUD,Email,crud_user, crud_model,crud_dataset
+from gestion_usuarios import CRUD,Email,crud_user, crud_model,crud_dataset,crud_plan
 from django.utils import timezone
 import os
 import csv
@@ -11,6 +11,7 @@ from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect
 from gestion_usuarios.models import User, Model,Dataset,Hiperparameters_KNN,Hiperparameters_RandomForest,Hiperparameters_Tree
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
 
 def add_user(request):
     if request.method == "POST":
@@ -106,61 +107,56 @@ def recover_password(request, token):
 
 def update_profile(request):
     if request.method == "POST":
-        username = request.POST.get('userName')
-        name = request.POST.get('accountName')
-        lastname = request.POST.get('accountFLast')
-        lastname2 = request.POST.get('accountSLast')
         email = request.session.get('email')
-        email_recover = request.POST.get('accountEmailBack')
-        password = request.POST.get('accountPassword')
-        password2 = request.POST.get('accountPassword2')
-
-        if password == password2:
-            with connection.cursor() as cursor:
-                cursor.execute(
-                "SELECT * FROM gestion_usuarios_user WHERE email=%s AND status=1", 
-                [email]
-                )
-                user = cursor.fetchone()
-                if user:
-                    cursor.execute(
-                    """
-                    UPDATE gestion_usuarios_user 
-                    SET username=%s, name=%s, password=%s, email_recover=%s, firstlastname=%s, secondlastname=%s
-                    WHERE email=%s
-                    """,
-                    [username, name, password, email_recover, lastname, lastname2, email]
-                    )
-                else:
-                    return redirect('resources')
-                cursor.execute(
-                """
-                SELECT *
-                FROM gestion_usuarios_user 
-                WHERE email=%s AND password=%s AND status=1
-                """,
-                [email, password]
-                )
-                user = cursor.fetchone()
+        if not email:
+            return redirect('login')  # Redirigir si no hay email en sesión
+        
+        update_data = {
+            'username': request.POST.get('userName', '').strip(),
+            'name': request.POST.get('accountName', '').strip(),
+            'firstlastname': request.POST.get('accountFLast', '').strip(),
+            'secondlastname': request.POST.get('accountSLast', '').strip(),
+            'email_recover': request.POST.get('accountEmailBack', '').strip(),
+        }
+        
+        # Filtrar campos vacíos
+        update_data = {k: v for k, v in update_data.items() if v}
+        
+        # Manejo especial para contraseña
+        password = request.POST.get('accountPassword', '').strip()
+        password2 = request.POST.get('accountPassword2', '').strip()
+        
+        if password and password2 and password == password2:
+            update_data['password'] = make_password(password)  
+        
+        try:
+            if update_data:  # Solo actualizar si hay datos
+                if crud_user.update_user(email, **update_data):
+                    user = crud_user.get_user(email)
+                    if not user:
+                        messages.error(request, "El usuario no existe")
+                        return redirect('login')
+                    plan = crud_plan.get_plan(email)
+                    horas = int(plan.hours)
+                    minutos = int(round((plan.hours - horas) * 60))
+                    tiempo = f"{horas}:{minutos:02d}"
+                    request.session.update({
+                        'email': user.email,
+                        'username': user.username,
+                        'name': user.name,
+                        'email_recover': user.email_recover,
+                        'firstlastname': user.firstlastname,
+                        'secondlastname': user.secondlastname,
+                        'hours': tiempo,
+                        'plan': plan.type_plan
+                    })
+                    return redirect('account')
                 
-            if user:
-                request.session['email'] = user[0]
-                request.session['username'] = user[2]
-                request.session['name'] = user[3]
-                request.session['password'] = user[4]
-                request.session['email_recover'] = user[5]
-                request.session['firstlastname'] = user[7]
-                request.session['secondlastname'] = user[8]
-
-                return redirect('account')
-            else:
-                messages.error(request, "No se pudo actualizar el perfil")
-                return redirect('dashboard')
-        else:
-            messages.error(request, "Las contraseñas no coinciden")
-            return redirect('account')
-    else:
-            return redirect('dashboard')
+            return redirect('accountEdit')
+        except Exception as e:
+            return redirect('accountEdit')
+            
+    return redirect('dashboard')
 
 def save_parameters(request):
     if request.method == 'POST':

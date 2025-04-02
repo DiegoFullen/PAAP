@@ -69,6 +69,7 @@ def update_user(email, **kwargs):
         return user
     except User.DoesNotExist:
         return None
+
     
 #ELIMINAR UN USUARIO
 def delete_user(email):

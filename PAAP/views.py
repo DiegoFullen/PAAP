@@ -141,6 +141,7 @@ def resources_view(request):
 def account_view(request):
    # Recuperar los datos de la sesión
     email = request.session.get('email')
+    email_recover = request.session.get('email_recover')
     username = request.session.get('username')
     name = request.session.get('name')
     password = request.session.get('password') # Recuperar la contraseña
@@ -156,6 +157,7 @@ def account_view(request):
     # Pasar las variables al contexto de la plantilla
     return render(request, 'account.html', {
         'email': email,
+        'email_recover':email_recover,
         'username': username,
         'name': name,
         'password': password,  # Enviar la contraseña

@@ -4,6 +4,7 @@ from django.utils import timezone
 from datetime import timedelta 
 from gestion_usuarios import crud_temporal,crud_user,crud_plan,crud_dataset,crud_model, crud_hiperparameters_tree, crud_hiperparameters_KNN, crud_hiperparameters_RF
 from django.contrib.auth.hashers import make_password
+from gestion_usuarios.models import User
 
 #Funciones de CRUD
 
@@ -46,8 +47,38 @@ def update_user_password(password, email ,token,created_at):
     else:
         return False    
 
-
-
+def update_user(email, **kwargs):
+    """
+    Actualiza los campos del usuario que no estén vacíos.
+    
+    Args:
+        email (str): Email del usuario a actualizar (identificador)
+        **kwargs: Campos a actualizar (username, password, name, lastname, etc.)
+        
+    Returns:
+        bool: True si la actualización fue exitosa, False en caso contrario
+    """
+    from .models import User  # Asegúrate de importar tu modelo User
+    
+    try:
+        user = User.objects.get(email=email)
+        update_fields = []
+        
+        for field, value in kwargs.items():
+            if value is not None and value != '':  # Solo actualizar si el valor no es None ni vacío
+                if field == 'password':
+                    # Si es password, lo ciframos antes de guardar
+                    user.set_password(value)
+                else:
+                    setattr(user, field, value)
+                update_fields.append(field)
+        
+        if update_fields:  # Solo guardar si hay campos para actualizar
+            user.save(update_fields=update_fields)
+        
+        return True
+    except User.DoesNotExist:
+        return False
 
 def search_models(email):
     modelos = crud_model.get_user_models(email)
@@ -85,29 +116,4 @@ def save_hiperparameters_RF(email,model_id,type,prime_stack,n_estimators,criteri
         return True
     else: return False
 
-def select_hiperparametros(id_dataset):
-     with connection.cursor() as cursor:
-        # Consulta SQL con JOIN
-        cursor.execute(
-            """
-            SELECT * FROM hiperparametros WHERE id_dataset = %s
-            """,
-            [id_dataset]  # Filtra por el email del usuario
-        )
-        # Obtener todos los resultados
-        hiperparametros = cursor.fetchall()
-        return hiperparametros
-
-def select_dataset(id_dataset):
-     with connection.cursor() as cursor:
-        # Consulta SQL con JOIN
-        cursor.execute(
-            """
-            SELECT * FROM gestion_usuarios_dataset WHERE id_dataset = %s
-            """,
-            [id_dataset]  # Filtra por el email del usuario
-        )
-        # Obtener todos los resultados
-        data_dataset = cursor.fetchall()
-        return data_dataset
      
