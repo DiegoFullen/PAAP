@@ -144,8 +144,8 @@
                                         style="background-color: rgb(240, 240, 240); border-color: lightgray; color:gray"
                                         aria-disabled="true">Editar</a>
 
-                                    <a href="" class="btn btn-primary btn ml-4 disabled" role="button"
-                                        style="background-color: rgb(240, 240, 240); border-color: lightgray; color:gray"
+                                    <a  class="btn btn-primary ml-4" role="button" id="btnEraseAccount"
+                                        style="background-color: rgb(240, 240, 240); border-color: lightgray; color: black"
                                         aria-disabled="true">Borrar Cuenta</a>
                                 </div>
                             </div>
@@ -171,10 +171,10 @@
                         <dialog id="dialog">
                             <h5 class="montserrat">Cerrar Sesión</h5>
                             <p>Está por abandonar la plaforma ¿Desea continuar?</p>
-    
+
                             <div class="controlPanel">
-                            <button type="button" class="btn btn-outline-primary" id="optAccept">Aceptar</button>
-                            <button type="button" class="btn btn-outline-dark" id="optCancel">Cancelar</button>
+                                <button type="button" class="btn btn-outline-primary" id="optAccept">Aceptar</button>
+                                <button type="button" class="btn btn-outline-dark" id="optCancel">Cancelar</button>
                             </div>
                         </dialog>
 
@@ -188,6 +188,19 @@
                                         Cambios</button> <a href="account.php" id="optCancelar"
                                         class="btn btn-danger btn mr-5" role="button" aria-disabled="true">Cancelar</a>
                                 </div>
+                            </div>
+                        </dialog>
+
+                        <!-- Alert para confirmación de eliminar cuenta -->
+                        <dialog class="alertConfirm_account alertDialog">
+                            <h5 class="montserrat">Confirmación Eliminar Cuenta</h5>
+                            <p>Está por eliminar su cuenta de nuestros sistemas. Sus horas, modelos y datos serán eliminados por completo.<br>
+                                (Su correo electrónico se mantendrá en registro para verificación de acceso previo) <br>
+                                <br>ESTE PROCESO ES PERMANENTE ¿DESEA CONTINUAR?</p>
+
+                            <div class="controlPanel">
+                                <button type="button" class="btn btn-outline-primary" id="eraseAccept">Aceptar</button>
+                                <button type="button" class="btn btn-outline-danger" id="eraseDeny">Cancelar</button>
                             </div>
                         </dialog>
 

@@ -11,12 +11,16 @@ const btnValidate = $d.getElementById("confirmButton");
 const inputPassword = $d.getElementById("accountPassword");
 const requiertList = $d.querySelectorAll(".requirements li")
 
+const btnEraseAccount = document.getElementById("btnEraseAccount");
+const confirmErase = document.querySelector("dialog.alertConfirm_account");
+const eraseAccept = document.getElementById("eraseAccept");
+const eraseDeny = document.getElementById("eraseDeny");
 
 btnMensaje.addEventListener("click", () => {
     //dialogElement.showModal();
 });
 
-btnConfirmar.addEventListener("click", ()=> {
+btnConfirmar.addEventListener("click", () => {
     dialogElements.showModal();
 });
 
@@ -24,6 +28,18 @@ btnCancel.addEventListener("click", () => {
     dialogElement.close();
 });
 
+btnEraseAccount.addEventListener("click", () => {
+    confirmErase.showModal();
+});
+
+eraseAccept.addEventListener("click", () => {
+    confirmErase.close();
+});
+
+eraseDeny.addEventListener("click", () => {
+    confirmErase.close();
+});
+  
 
 const requirments = [
     { regex: /.{8,}/, index: 0 },
@@ -71,12 +87,12 @@ btnValidate.addEventListener("click", function (event) {
             event.preventDefault();
             window.alert("Ingrese una contraseña valida");
         }
-    } 
+    }
     else if (isNotEmpty(valuePassword) || isNotEmpty(valueRepeat)) {
         event.preventDefault();
         window.alert("Error, está intentado cambiar la contraseña dejando un campo vacio");
     }
-    else{
+    else {
 
     }
 });
