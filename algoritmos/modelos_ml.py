@@ -10,9 +10,15 @@ import pandas as pd
 import joblib
 import os
 
+from django.conf import settings
+
+email = "pruba@prueba.com"
+model_name = "Modelo Prueba"
+dataset_name = "diabetes.csv"
+
 # ---------------- Rutas -------------------------
-DATASET_PATH = '../algoritmos/dataset/dataset.csv'
-MODELS_PATH = '../algoritmos/models/'
+DATASET_PATH = os.path.join(settings.MEDIA_ROOT, 'file',email, model_name, dataset_name)
+MODELS_PATH = '../algoritmos/file/'
 
 # ---------------- Dataset -----------------------
 def prepare_dataset(path_dataset, objective, encode_categorical=True):
@@ -33,6 +39,37 @@ def prepare_dataset(path_dataset, objective, encode_categorical=True):
     class_names = sorted(map(str, y.unique())) if task_type == 'classification' else None
     
     return X, y, feature_names, class_names, task_type
+
+class ModelosML:
+    def knn_clasificacion(self, **kwargs):
+        dataset_path = kwargs.pop('dataset_path', DATASET_PATH)
+        objective = kwargs.pop('objective', 'target')  # Default target column
+        
+        # Assume kwargs contain KNN parameters
+        model = KNNClassification()
+        # Override model parameters with kwargs
+        for key, value in kwargs.items():
+            if hasattr(model.model, key):
+                setattr(model.model, key, value)
+        
+        # Train and evaluate
+        X, y, feature_names, class_names, _ = prepare_dataset(dataset_path, objective)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+        model.train(X_train, y_train)
+        
+        # Get evaluation metrics
+        y_pred = model.model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        cm = confusion_matrix(y_test, y_pred)
+        
+        # Save model
+        model.save_model()
+        
+        return {
+            "accuracy": float(accuracy),
+            "confusion_matrix": cm.tolist()
+        }
+    
 
 # Clase base para los modelos
 class BaseModel:
