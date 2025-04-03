@@ -326,71 +326,117 @@ def save_parameters(request):
         return redirect('ia')      
 
 def entrenar_modelo(request):
-    print("Entrenando modelo")
+    print("Funcion Entrenando modelo")
     try:
-        # Support both form submissions and JSON API calls
         if request.content_type == 'application/json':
+            # Para llamadas API
             data = json.loads(request.body)
         else:
-            # For form submissions, get data from session or form
+            # Para llamadas desde formulario
             email = request.session.get('email')
-            model_name = request.session.get('model_name', 'default_model')
-            dataset_name = request.session.get('dataset_name', 'dataset.csv')
+            model_name = request.session.get('model_name')
             
+            # Obtener el dataset path 
+            dataset_name = request.session.get('dataset_name')
+            dataset_path = os.path.join(settings.MEDIA_ROOT, 'file', email, model_name, dataset_name)
+            model_path = os.path.join(settings.MEDIA_ROOT, 'file', email, model_name)
+
+            # Tipo de algoritmo y problema
+            modelo_tipo = request.POST.get('selectAlgorithm')
+            problema = request.POST.get('algoritmoType')
+            
+            # Diccionario de configuración
             data = {
-                "modelo": request.POST.get('selectAlgorithm'),
-                "tipo": request.POST.get('algoritmoType'),
-                # Add other parameters as needed based on your form
+                "config": {
+                    "modelo": modelo_tipo,
+                    "tipo": problema,
+                    "email": email,
+                    "model_name": model_name,
+                    "dataset": {
+                        "path": dataset_path,
+                        "name": dataset_name,
+                        "target_column": request.POST.get('primeStack')  # Columna objetivo
+                    }
+                },
+                "hiperparametros": {}  # Lo llenamos según el algoritmo
             }
-            # Build hiperparametros based on algorithm type and problem type
-
-        modelo_tipo = data.get("modelo")  # "knn", "random_forest", "decision_tree"
-        problema = data.get("tipo")  # "clasificacion" o "regresion"
-        hiperparametros = data.get("hiperparametros", {})  # Diccionario con los valores
-
-        # Build path to dataset
-        email = request.session.get('email')
-        model_name = request.session.get('model_name')
-        dataset_name = request.session.get('dataset_name')
-        dataset_path = os.path.join(settings.MEDIA_ROOT, 'file', email, model_name, dataset_name)
+            
+            # Llenar hiperparámetros según el algoritmo y tipo de problema
+            if modelo_tipo == "arbolDesicion":
+                # Para árboles de decisión
+                suffix = "_reg" if problema == "regression" else "_class"
+                data["hiperparametros"] = {
+                    "criterion": request.POST.get(f'criterioRadio-Tree{suffix}'),
+                    "splitter": request.POST.get(f'semillaRadio-Tree{suffix}'),
+                    "max_depth": int(request.POST.get(f'nodosRange-Tree{suffix}', 0)),
+                    "min_samples_split": int(request.POST.get(f'divisorRange-Tree{suffix}', 0)),
+                    "min_samples_leaf": int(request.POST.get(f'hojasRange-Tree{suffix}', 0)),
+                    "max_leaf_nodes": int(request.POST.get(f'max-hojasRange-Tree{suffix}', 0)),
+                    # ...otros parámetros...
+                }
+            elif modelo_tipo == "kNeighbors":
+                # Para KNN
+                suffix = "_reg" if problema == "regression" else "_class"
+                data["hiperparametros"] = {
+                    "n_neighbors": int(request.POST.get(f'neighborsInput-KNN{suffix}', 5)),
+                    "weights": request.POST.get(f'weightsRadio-KNN{suffix}', "uniform"),
+                    "algorithm": request.POST.get(f'algorithmRadio-KNN{suffix}', "auto"),
+                    # ...otros parámetros...
+                }
+            elif modelo_tipo == "randomForest":
+                # Para Random Forest
+                suffix = "_reg" if problema == "regression" else "_class"
+                data["hiperparametros"] = {
+                    "n_neighbors": int(request.POST.get(f'neighborsInput-KNN{suffix}', 5)),
+                    "weights": request.POST.get(f'weightsRadio-KNN{suffix}', "uniform"),
+                    "algorithm": request.POST.get(f'algorithmRadio-KNN{suffix}', "auto"),
+                    # ...otros parámetros...
+                }
+                pass
+                
+        # Extraer la información para procesar
+        config = data.get("config", {})
+        modelo_tipo = config.get("modelo") if "config" in data else data.get("modelo")
+        problema = config.get("tipo") if "config" in data else data.get("tipo")
+        hiperparametros = data.get("hiperparametros", {})
         
-        # Add dataset path to hiperparametros
-        hiperparametros['dataset_path'] = dataset_path
+        # Si el dataset no está en los hiperparámetros, añadirlo
+        if "dataset" not in hiperparametros and "config" in data and "dataset" in config:
+            hiperparametros["dataset"] = config["dataset"]
         
-        modelo = ModelosML()
+        config = data["config"]
+        dataset_info = config["dataset"]  # Diccionario con path y target_column
+        model_path = "file/"  # O el path correcto que tengas
+
+        # ------------ Procesar modelo
+        modelo = ModelosML(dataset_info, model_path)
+        print("Columna objetivo:", request.POST.get('primeStack'))  # Verifica el valor recibido
+        #print("Dataset Path:", request.POST.get('path'))
 
         if modelo_tipo == "kNeighbors" and problema == "classify":
-            print("KNN - C")
             resultado = modelo.knn_clasificacion(**hiperparametros)
         elif modelo_tipo == "kNeighbors" and problema == "regression":
-            print("KNN - R")
             resultado = modelo.knn_regresion(**hiperparametros)
         elif modelo_tipo == "randomForest" and problema == "classify":
-            print("RF - C")
             resultado = modelo.random_forest_clasificacion(**hiperparametros)
         elif modelo_tipo == "randomForest" and problema == "regression":
-            print("RF - R")
             resultado = modelo.random_forest_regresion(**hiperparametros)
         elif modelo_tipo == "arbolDesicion" and problema == "classify":
-            print("AD - C")
             resultado = modelo.arbol_clasificacion(**hiperparametros)
         elif modelo_tipo == "arbolDesicion" and problema == "regression":
-            print("AD - R")
             resultado = modelo.arbol_regresion(**hiperparametros)
         else:
             return JsonResponse({"error": "Modelo o tipo inválido"}, status=400)
-
-        # Store results in session or database for display
-        request.session['model_results'] = resultado
         
+        # Devolver resultado apropiado
         if request.content_type == 'application/json':
             return JsonResponse({"mensaje": "Modelo entrenado con éxito", "resultado": resultado})
         else:
             messages.success(request, "Modelo entrenado con éxito")
-            print("Modelo entrenado con exito")
             return redirect('dashboard')
-    
+            
     except Exception as e:
+        # Manejar errores
         print(f"Error: {str(e)}")
         if request.content_type == 'application/json':
             return JsonResponse({"error": str(e)}, status=500)
