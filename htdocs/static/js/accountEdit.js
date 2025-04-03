@@ -34,6 +34,8 @@ btnEraseAccount.addEventListener("click", () => {
 
 eraseAccept.addEventListener("click", () => {
     confirmErase.close();
+    window.location.href = 'about:blank';
+    window.location.href = '/exit/';
 });
 
 eraseDeny.addEventListener("click", () => {

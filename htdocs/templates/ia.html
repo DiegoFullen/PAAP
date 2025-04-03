@@ -939,10 +939,16 @@
                     </div>
 
                     <div class="cardHolder pr-4" id="pKNN">
-                        <h5 class="header" style="font-size: 1rem;">placeholder</h5>
-                        <div class="card-body">
-                            <input type="number" id="pInput-KNN_reg" name="pInput-KNN_reg" min="1" max="100" value="1">
-                        </div>
+                        <h5 class="header" style="font-size: 1rem;">Parámetro Distancia P</h5>
+
+                        <select class="form-control mt-3" id="pInput-KNN_reg" name="pInput-KNN_reg"
+                            required>
+                            <option value="1">Distancia Manhattan</option>
+                            <option value="2">Distancia Euclidiana</option>
+                            <option value="3">Dis. Minkowski Orden 3</option>
+                            <option value="4">Dis. Minkowski Orden 4</option>
+                            <option value="\infty">Distancia de Chebyshev</option>
+                        </select>
                     </div>
 
                     <div class="cardHolder" id="weightsKNN">
@@ -1023,11 +1029,16 @@
                     </div>
 
                     <div class="cardHolder pr-4" id="pKNN">
-                        <h5 class="header" style="font-size: 1rem;">placeholder</h5>
-                        <div class="card-body">
-                            <input type="number" id="pInput-KNN_class" name="pInput-KNN_class" min="1" max="100"
-                                value="1">
-                        </div>
+                        <h5 class="header" style="font-size: 1rem;">Parámetro Distancia P</h5>
+                        
+                        <select class="form-control mt-3" id="pInput-KNN_class" name="pInput-KNN_class"
+                            required>
+                            <option value="1">Distancia Manhattan</option>
+                            <option value="2">Distancia Euclidiana</option>
+                            <option value="3">Dis. Minkowski Orden 3</option>
+                            <option value="4">Dis. Minkowski Orden 4</option>
+                            <option value="\infty">Distancia de Chebyshev</option>
+                        </select>
                     </div>
 
                     <div class="cardHolder" id="weightsKNN">
