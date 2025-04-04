@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
 
-body{
+body {
   background-color: white;
 }
 
@@ -15,7 +15,7 @@ body{
   min-height: 100vh;
 }
 
-.montserrat{
+.montserrat {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -24,92 +24,94 @@ body{
   color: black;
 }
 
-.custom-nav{
-    /*#d0daff*/
-    background-image: linear-gradient(180deg, #F3F8FC 10%, #d0daff 100%) !important;
-    background-size: cover;
+.custom-nav {
+  /*#d0daff*/
+  background-image: linear-gradient(180deg, #F3F8FC 10%, #d0daff 100%) !important;
+  background-size: cover;
 }
 
-.nav-link{
-    padding-bottom: 10px;
-    padding-top: 10px;
-    /*width: 12rem !important;*/
-    color: #273240;
-    height: 2.9rem !important;
+.nav-link {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  /*width: 12rem !important;*/
+  color: #273240;
+  height: 2.9rem !important;
 }
 
-.nav-link:hover{
-    color: #5A6ACF !important;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow:  0px 1px gray;
-    width: 95% !important;
-}
-.nav-link:hover span{
-    color: #5A6ACF;
-    opacity: 100%;
+.nav-link:hover {
+  color: #5A6ACF !important;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 1px gray;
+  width: 95% !important;
 }
 
-.nav-link i{
-    color: #273240;
-    opacity: 60%;
+.nav-link:hover span {
+  color: #5A6ACF;
+  opacity: 100%;
 }
 
-.nav-link span{
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 500 !important;
-    font-style: normal !important;
-    color: #273240;
-    opacity: 60%;
+.nav-link i {
+  color: #273240;
+  opacity: 60%;
 }
 
-.sidebar-heading{
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 400 !important;
-    font-style: normal !important;
-    color: #082431 !important;
-    opacity: 50%;
+.nav-link span {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  color: #273240;
+  opacity: 60%;
 }
 
-#content{
-    background-color: white;
+.sidebar-heading {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #082431 !important;
+  opacity: 50%;
 }
 
-#logoDash{
-    max-width: 30%;
+#content {
+  background-color: white;
 }
 
-#btnSalir{
-    text-align: center !important;
-    width: 95%;
-    background-color: white;
-    border-radius: 8px;
-    cursor: pointer;
+#logoDash {
+  max-width: 30%;
 }
 
-#infoSet{
-    border: solid;
-    border-color: mediumblue    ;
-    border-radius: 10px;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
-    min-width: 280px;
-    align-items: center;
-    text-align: center;
-
-    padding: 20px;
-    background-color: rgba(243, 248, 252, 0.3)
+#btnSalir {
+  text-align: center !important;
+  width: 95%;
+  background-color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-#btn-download{
-    background-color: #E6E0E9;
-    border: transparent;
-}
-#btn-download i{
-    color: black;
+#infoSet {
+  border: solid;
+  border-color: mediumblue;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  min-width: 280px;
+  align-items: center;
+  text-align: center;
+
+  padding: 20px;
+  background-color: rgba(243, 248, 252, 0.3)
 }
 
-.alertDialog{
+#btn-download {
+  background-color: #E6E0E9;
+  border: transparent;
+}
+
+#btn-download i {
+  color: black;
+}
+
+.alertDialog {
   font-family: "Inter", sans-serif;
   border-color: #FBFBFB;
   border-style: solid;
@@ -118,23 +120,24 @@ body{
   position: absolute;
   margin: auto;
 }
-.alertDialog h5{
+
+.alertDialog h5 {
   font-size: 1.2em;
   margin-bottom: 8px;
 }
 
-.alertDialog p{
+.alertDialog p {
   font-size: 1em;
   margin-bottom: 10%;
 }
 
-.alertDialog .controlPanel{
+.alertDialog .controlPanel {
   width: 100%;
   display: flex;
   justify-content: right;
 }
 
-.alertDialog .controlPanel button{
+.alertDialog .controlPanel button {
   width: 25%;
   margin-left: 5px;
   margin-right: 5px;
@@ -143,80 +146,189 @@ body{
 
 
 #dialog {
-    font-family: "Inter", sans-serif;
-    border-color: #FBFBFB;
-    border-style: solid;
-    border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  border-color: #FBFBFB;
+  border-style: solid;
+  border-radius: 12px;
 
-  }
+}
 
-#dialog h5{
+#dialog h5 {
   font-size: 1.2em;
   margin-bottom: 8px;
 }
 
-#dialog p{
+#dialog p {
   font-size: 1em;
   margin-bottom: 10%;
 }
 
-#dialog .controlPanel{
+#dialog .controlPanel {
   width: 100%;
   display: flex;
   justify-content: right;
 }
 
-#dialog .controlPanel button{
+#dialog .controlPanel button {
   width: 25%;
   margin-left: 5px;
   margin-right: 5px;
   text-align: center;
 }
-  
-  #dialog[open] {
-    animation: fade-in 0.7s ease-out;
+
+#dialog[open] {
+  animation: fade-in 0.7s ease-out;
+}
+
+#dialog[open]::backdrop {
+  animation: backdrop-fade-in 0.7s ease-out forwards;
+}
+
+/* Animation keyframes */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    display: block;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+    display: block;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+    display: none;
+  }
+}
+
+@keyframes backdrop-fade-in {
+  0% {
+    background-color: rgb(0 0 0 / 0%);
+  }
+
+  100% {
+    background-color: rgb(0 0 0 / 25%);
+  }
+}
+
+.modelInfo {
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+
+  margin-top: 3.5em;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 1700px;
+}
+
+.modelInfo #formContainer {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3em;
+  grid-template-rows: minmax(50px, auto);
+  width: 100%;
+  height: max-content;
+  background-color: white; /*#E8F4FA*/
+  color: #000;
+
+  min-width: 280px;
+  overflow-y: auto;
+}
+
+.modelInfo #formContainer #graphicModel{
+  grid-row: 1/4;
+  grid-column: 1/4;
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modelInfo #formContainer #graphicModel img{
+  height: auto;
+}
+.modelInfo #formContainer #graphicModel_title{
+  grid-row: 4;
+  grid-column: 1/4;
+
+  text-align: center;
+}
+.modelInfo #formContainer #precisionModel{
+  grid-row: 1;
+  grid-column: 4/6;
+
+  text-align: center;
+}
+.modelInfo #formContainer #precisionModel .slider{
+  width: 100%;
+}
+.modelInfo #formContainer #descriptionModel{
+  grid-row: 2/4;
+  grid-column: 4/6;
+}
+
+@media (max-width: 1300px) {
+  .modelInfo #formContainer #graphicModel{
+    grid-row: 1/3;
+    grid-column: 1/4;
+  }
+
+  .modelInfo #formContainer #descriptionModel{
+    grid-row: 2/3;
+    grid-column: 4/6;
+
+    overflow-y: auto;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .modelInfo #formContainer{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    max-height: 500px;
   }
   
-  #dialog[open]::backdrop {
-    animation: backdrop-fade-in 0.7s ease-out forwards;
+  .modelInfo #formContainer #graphicModel{
+    grid-row: 1/4;
+    grid-column: 1/4;
   }
+
+  .modelInfo #formContainer #graphicModel_title{
+    grid-row: 4;
+    grid-column: 1/4;
   
-  /* Animation keyframes */
-  
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-      transform: scaleY(0);
-      display: none;
-    }
-  
-    100% {
-      opacity: 1;
-      transform: scaleY(1);
-      display: block;
-    }
+    text-align: center;
   }
+
+  .modelInfo #formContainer #precisionModel{
+    grid-row: 5;
+    grid-column: 1/4;
   
-  @keyframes fade-out {
-    0% {
-      opacity: 1;
-      transform: scaleY(1);
-      display: block;
-    }
-  
-    100% {
-      opacity: 0;
-      transform: scaleY(0);
-      display: none;
-    }
+    text-align: center;
   }
-  
-  @keyframes backdrop-fade-in {
-    0% {
-      background-color: rgb(0 0 0 / 0%);
-    }
-  
-    100% {
-      background-color: rgb(0 0 0 / 25%);
-    }
+
+  .modelInfo #formContainer #descriptionModel{
+    grid-row: 6;
+    grid-column: 1/4;
+    max-height: none;
+    overflow: hidden;
   }
+}
