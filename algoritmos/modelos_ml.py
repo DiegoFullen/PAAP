@@ -100,7 +100,6 @@ class ModelosML:
         # Crear una instancia del modelo KNN
         model = KNNClassification()
 
-        
         # Parámetros específicos para KNN
         knn_params = {
             'n_neighbors': kwargs.get('n_neighbors', 5),
@@ -132,7 +131,7 @@ class ModelosML:
     def knn_regresion(self, **kwargs):
         # Extraer información del dataset
         dataset_info = kwargs.pop('dataset', {})
-        dataset_path = dataset_info.get('path', self.DATASET_PATH)
+        #dataset_path = dataset_info.get('path', self.DATASET_PATH)
         objective = dataset_info.get('target_column', 'target')
         
         # Crear una instancia del modelo KNN Regression
@@ -152,7 +151,7 @@ class ModelosML:
         self._update_model_params(model.model, knn_params)
         
         # Preparar datos y entrenar
-        X, y, feature_names, _, _ = prepare_dataset(dataset_path, objective)
+        X, y, feature_names, _, _ = prepare_dataset(self.dataset_path, objective)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         model.train(X_train, y_train)
         
@@ -169,7 +168,7 @@ class ModelosML:
     def arbol_clasificacion(self, **kwargs):
         # Extraer información del dataset
         dataset_info = kwargs.pop('dataset', {})
-        dataset_path = dataset_info.get('path', self.DATASET_PATH)
+        #dataset_path = dataset_info.get('path', self.DATASET_PATH)
         objective = dataset_info.get('target_column', 'target')
         
         # Crear una instancia del modelo de árbol de decisión
@@ -193,7 +192,7 @@ class ModelosML:
         self._update_model_params(model.model, tree_params)
         
         # Preparar datos y entrenar
-        X, y, feature_names, class_names, _ = prepare_dataset(dataset_path, objective)
+        X, y, feature_names, class_names, _ = prepare_dataset(self.dataset_path, objective)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         model.train(X_train, y_train)
         
@@ -201,7 +200,7 @@ class ModelosML:
         metrics = self._evaluate_classification_model(model.model, X_test, y_test)
         
         # Guardar modelo con un nombre específico
-        model_path = os.path.join(self.MODELS_PATH, f"{kwargs.get('model_name', 'tree_classification')}.pkl")
+        model_path = os.path.join(self.model_path, f"{kwargs.get('model_name', 'tree_classification')}.pkl")
         model.path_model = model_path
         model.save_model()
         
@@ -209,16 +208,33 @@ class ModelosML:
         if kwargs.get('visualize', False):
             plt.figure(figsize=(20, 10))
             tree.plot_tree(model.model, feature_names=feature_names, class_names=class_names, filled=True)
-            tree_img_path = os.path.join(self.MODELS_PATH, f"{kwargs.get('model_name', 'tree_classification')}.png")
+            tree_img_path = os.path.join(self.model_path, f"{kwargs.get('model_name', 'tree_classification')}.png")
             plt.savefig(tree_img_path)
             metrics['tree_visualization'] = tree_img_path
         
         return metrics
     
     def arbol_regresion(self, **kwargs):
+        # 0 = Squared Error || 1 = Absolute Error
+        # 2 = Friedman MSE  || 3 = Poisson
+        if (kwargs.get('criterion') == "0"):
+            criterion = "squared_error"
+        elif (kwargs.get('criterion') == "1"):
+            criterion = "absolute_error"
+        elif (kwargs.get('criterion') == "2"):
+            criterion = "friedman_mse"
+        elif (kwargs.get('criterion') == "3"):
+            criterion = "poisson"
+
+        # 0 = Mejor || 1 = Aleatorio
+        if (kwargs.get('splitter') == "0"):
+            splitter = "best"
+        elif (kwargs.get('splitter') == "1"):
+            splitter = "random"
+
         # Extraer información del dataset
         dataset_info = kwargs.pop('dataset', {})
-        dataset_path = dataset_info.get('path', self.DATASET_PATH)
+        #dataset_path = dataset_info.get('path', self.DATASET_PATH)
         objective = dataset_info.get('target_column', 'target')
         
         # Crear una instancia del modelo de árbol de regresión
@@ -226,8 +242,8 @@ class ModelosML:
         
         # Parámetros específicos para árboles de regresión
         tree_params = {
-            'criterion': kwargs.get('criterion', 'squared_error'),
-            'splitter': kwargs.get('splitter', 'best'),
+            'criterion': criterion,
+            'splitter': splitter,
             'max_depth': kwargs.get('max_depth', None),
             'min_samples_split': kwargs.get('min_samples_split', 2),
             'min_samples_leaf': kwargs.get('min_samples_leaf', 1),
@@ -241,7 +257,7 @@ class ModelosML:
         self._update_model_params(model.model, tree_params)
         
         # Preparar datos y entrenar
-        X, y, feature_names, _, _ = prepare_dataset(dataset_path, objective)
+        X, y, feature_names, _, _ = prepare_dataset(self.dataset_path, objective)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         model.train(X_train, y_train)
         
@@ -249,7 +265,7 @@ class ModelosML:
         metrics = self._evaluate_regression_model(model.model, X_test, y_test)
         
         # Guardar modelo con un nombre específico
-        model_path = os.path.join(self.MODELS_PATH, f"{kwargs.get('model_name', 'tree_regression')}.pkl")
+        model_path = os.path.join(self.model_path, f"{kwargs.get('model_name', 'tree_regression')}.pkl")
         model.path_model = model_path
         model.save_model()
         
@@ -258,7 +274,7 @@ class ModelosML:
     def random_forest_clasificacion(self, **kwargs):
         # Extraer información del dataset
         dataset_info = kwargs.pop('dataset', {})
-        dataset_path = dataset_info.get('path', self.DATASET_PATH)
+        #dataset_path = dataset_info.get('path', self.DATASET_PATH)
         objective = dataset_info.get('target_column', 'target')
         
         # Crear una instancia del modelo Random Forest
@@ -283,7 +299,7 @@ class ModelosML:
         self._update_model_params(model.model, rf_params)
         
         # Preparar datos y entrenar
-        X, y, feature_names, class_names, _ = prepare_dataset(dataset_path, objective)
+        X, y, feature_names, class_names, _ = prepare_dataset(self.dataset_path, objective)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         model.train(X_train, y_train)
         
@@ -298,7 +314,7 @@ class ModelosML:
             metrics['feature_importance'] = feature_importance
         
         # Guardar modelo con un nombre específico
-        model_path = os.path.join(self.MODELS_PATH, f"{kwargs.get('model_name', 'rf_classification')}.pkl")
+        model_path = os.path.join(self.model_path, f"{kwargs.get('model_name', 'rf_classification')}.pkl")
         model.path_model = model_path
         model.save_model()
         
@@ -307,7 +323,7 @@ class ModelosML:
     def random_forest_regresion(self, **kwargs):
         # Extraer información del dataset
         dataset_info = kwargs.pop('dataset', {})
-        dataset_path = dataset_info.get('path', self.DATASET_PATH)
+        #dataset_path = dataset_info.get('path', self.DATASET_PATH)
         objective = dataset_info.get('target_column', 'target')
         
         # Crear una instancia del modelo Random Forest Regression
@@ -331,7 +347,7 @@ class ModelosML:
         self._update_model_params(model.model, rf_params)
         
         # Preparar datos y entrenar
-        X, y, feature_names, _, _ = prepare_dataset(dataset_path, objective)
+        X, y, feature_names, _, _ = prepare_dataset(self.dataset_path, objective)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         model.train(X_train, y_train)
         
@@ -346,7 +362,7 @@ class ModelosML:
             metrics['feature_importance'] = feature_importance
         
         # Guardar modelo con un nombre específico
-        model_path = os.path.join(self.MODELS_PATH, f"{kwargs.get('model_name', 'rf_regression')}.pkl")
+        model_path = os.path.join(self.model_path, f"{kwargs.get('model_name', 'rf_regression')}.pkl")
         model.path_model = model_path
         model.save_model()
         
