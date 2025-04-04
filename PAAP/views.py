@@ -67,8 +67,8 @@ def login_view(request):
             
         # Resto de tu lógica de sesión...
         plan = crud_plan.get_plan(email)
-        horas = int(plan.hours)
-        minutos = int(round((plan.hours - horas) * 60))
+        horas = int(round(plan.hours)/60)
+        minutos = int(round((plan.hours % 60)))
         tiempo = f"{horas}:{minutos:02d}"
         
         request.session.update({

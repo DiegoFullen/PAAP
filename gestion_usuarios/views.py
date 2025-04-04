@@ -486,14 +486,22 @@ def update_hours(request):
             cursor.execute(
                 """
                 UPDATE gestion_usuarios_plan
-                SET hours = %s
+                SET hours = %s, type_plan='Premium'
                 WHERE email_id = %s
                 """,
                 [updated_hours, email]
             )
-
-        messages.success(request, f"Se han agregado {hours} horas a tu plan.")
-        return redirect('payment')
+        plan = crud_plan.get_plan(email)
+        horas = int(round(plan.hours)/60)
+        minutos = int(round((plan.hours % 60)))
+        tiempo = f"{horas}:{minutos:02d}"
+        
+        request.session.update({
+            'hours': tiempo,
+            'plan': plan.type_plan
+        })
+        #messages.success(request, f"Se han agregado {hours} horas a tu plan.")
+        return redirect('account')
 
     except Exception as e:
         print(f"Error: {e}")

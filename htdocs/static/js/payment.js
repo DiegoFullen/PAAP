@@ -24,7 +24,7 @@ if (typeof paypal !== 'undefined') {
         },
         createOrder: function(data, actions) {
             const horas = $inputHoras.value || 0;
-            const total = horas * 80;
+            const total = (horas / 60) * 80;
             return actions.order.create({
                 purchase_units: [{
                     amount: {
@@ -40,7 +40,7 @@ if (typeof paypal !== 'undefined') {
                 const horas = $inputHoras.value || 0;
 
                 // Redirecciona con las horas como un parámetro en la URL
-                window.location.href = `hours/?horas=${horas}`;
+                window.location.href = `/gestion_usuarios/dashboard/payment/hours/?horas=${horas}`;
                 alert("Pago Realizado");
             });
         },
