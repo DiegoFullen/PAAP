@@ -4321,3 +4321,1069 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'django_recaptcha'
 [2025-04-03 17:29:46 +0000] [2929] [INFO] Worker exiting (pid: 2929)
 [2025-04-03 11:29:46 -0600] [2921] [ERROR] Worker (pid:2929) exited with code 3
+[2025-04-07 06:30:39 -0600] [2488] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/tmp/gunicorn-paap.sock']
+  backlog: 2048
+  workers: 10
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/paap/PAAP/PAAP
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 0
+  group: 0
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: None
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/paap/PAAP/PAAP/logs/gunicorn.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: paap
+  default_proc_name: PAAP.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7077d4e67880>
+  on_reload: <function OnReload.on_reload at 0x7077d4e679c0>
+  when_ready: <function WhenReady.when_ready at 0x7077d4e67b00>
+  pre_fork: <function Prefork.pre_fork at 0x7077d4e67ce0>
+  post_fork: <function Postfork.post_fork at 0x7077d4e67e20>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7077d4e67f60>
+  worker_int: <function WorkerInt.worker_int at 0x7077d4e880e0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7077d4e88220>
+  pre_exec: <function PreExec.pre_exec at 0x7077d4e88360>
+  pre_request: <function PreRequest.pre_request at 0x7077d4e884a0>
+  post_request: <function PostRequest.post_request at 0x7077d4e88540>
+  child_exit: <function ChildExit.child_exit at 0x7077d4e88680>
+  worker_exit: <function WorkerExit.worker_exit at 0x7077d4e887c0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7077d4e88900>
+  on_exit: <function OnExit.on_exit at 0x7077d4e88a40>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7077d4e88c20>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2025-04-07 06:30:39 -0600] [2488] [INFO] Starting gunicorn 23.0.0
+[2025-04-07 06:30:39 -0600] [2488] [DEBUG] Arbiter booted
+[2025-04-07 06:30:39 -0600] [2488] [INFO] Listening at: unix:/tmp/gunicorn-paap.sock (2488)
+[2025-04-07 06:30:39 -0600] [2488] [INFO] Using worker: sync
+[2025-04-07 06:30:39 -0600] [2494] [INFO] Booting worker with pid: 2494
+[2025-04-07 06:30:39 -0600] [2500] [INFO] Booting worker with pid: 2500
+[2025-04-07 06:30:39 -0600] [2501] [INFO] Booting worker with pid: 2501
+[2025-04-07 06:30:39 -0600] [2511] [INFO] Booting worker with pid: 2511
+[2025-04-07 12:30:39 +0000] [2494] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:39 +0000] [2500] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:39 +0000] [2501] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:39 +0000] [2494] [INFO] Worker exiting (pid: 2494)
+[2025-04-07 12:30:39 +0000] [2500] [INFO] Worker exiting (pid: 2500)
+[2025-04-07 12:30:39 +0000] [2501] [INFO] Worker exiting (pid: 2501)
+[2025-04-07 06:30:39 -0600] [2518] [INFO] Booting worker with pid: 2518
+[2025-04-07 06:30:39 -0600] [2488] [ERROR] Worker (pid:2494) exited with code 3
+[2025-04-07 06:30:39 -0600] [2488] [ERROR] Worker (pid:2500) was sent SIGTERM!
+[2025-04-07 12:30:39 +0000] [2511] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:39 +0000] [2511] [INFO] Worker exiting (pid: 2511)
+[2025-04-07 06:30:39 -0600] [2488] [ERROR] Worker (pid:2511) exited with code 3
+[2025-04-07 12:30:39 +0000] [2518] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:39 +0000] [2518] [INFO] Worker exiting (pid: 2518)
+[2025-04-07 06:30:40 -0600] [2939] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/tmp/gunicorn-paap.sock']
+  backlog: 2048
+  workers: 10
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/paap/PAAP/PAAP
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 0
+  group: 0
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: None
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/paap/PAAP/PAAP/logs/gunicorn.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: paap
+  default_proc_name: PAAP.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7b8de5ec3880>
+  on_reload: <function OnReload.on_reload at 0x7b8de5ec39c0>
+  when_ready: <function WhenReady.when_ready at 0x7b8de5ec3b00>
+  pre_fork: <function Prefork.pre_fork at 0x7b8de5ec3ce0>
+  post_fork: <function Postfork.post_fork at 0x7b8de5ec3e20>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7b8de5ec3f60>
+  worker_int: <function WorkerInt.worker_int at 0x7b8de5ee00e0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7b8de5ee0220>
+  pre_exec: <function PreExec.pre_exec at 0x7b8de5ee0360>
+  pre_request: <function PreRequest.pre_request at 0x7b8de5ee04a0>
+  post_request: <function PostRequest.post_request at 0x7b8de5ee0540>
+  child_exit: <function ChildExit.child_exit at 0x7b8de5ee0680>
+  worker_exit: <function WorkerExit.worker_exit at 0x7b8de5ee07c0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7b8de5ee0900>
+  on_exit: <function OnExit.on_exit at 0x7b8de5ee0a40>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7b8de5ee0c20>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2025-04-07 06:30:40 -0600] [2939] [INFO] Starting gunicorn 23.0.0
+[2025-04-07 06:30:40 -0600] [2939] [DEBUG] Arbiter booted
+[2025-04-07 06:30:40 -0600] [2939] [INFO] Listening at: unix:/tmp/gunicorn-paap.sock (2939)
+[2025-04-07 06:30:40 -0600] [2939] [INFO] Using worker: sync
+[2025-04-07 06:30:40 -0600] [2940] [INFO] Booting worker with pid: 2940
+[2025-04-07 06:30:40 -0600] [2941] [INFO] Booting worker with pid: 2941
+[2025-04-07 12:30:40 +0000] [2940] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:40 +0000] [2940] [INFO] Worker exiting (pid: 2940)
+[2025-04-07 12:30:40 +0000] [2941] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:40 +0000] [2941] [INFO] Worker exiting (pid: 2941)
+[2025-04-07 06:30:40 -0600] [2939] [ERROR] Worker (pid:2940) exited with code 3
+[2025-04-07 06:30:40 -0600] [2939] [ERROR] Worker (pid:2941) was sent SIGTERM!
+[2025-04-07 06:30:41 -0600] [2939] [ERROR] Shutting down: Master
+[2025-04-07 06:30:41 -0600] [2939] [ERROR] Reason: Worker failed to boot.
+[2025-04-07 06:30:43 -0600] [3003] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/tmp/gunicorn-paap.sock']
+  backlog: 2048
+  workers: 10
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/paap/PAAP/PAAP
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 0
+  group: 0
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: None
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/paap/PAAP/PAAP/logs/gunicorn.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: paap
+  default_proc_name: PAAP.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x700022a1f880>
+  on_reload: <function OnReload.on_reload at 0x700022a1f9c0>
+  when_ready: <function WhenReady.when_ready at 0x700022a1fb00>
+  pre_fork: <function Prefork.pre_fork at 0x700022a1fce0>
+  post_fork: <function Postfork.post_fork at 0x700022a1fe20>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x700022a1ff60>
+  worker_int: <function WorkerInt.worker_int at 0x700022a400e0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x700022a40220>
+  pre_exec: <function PreExec.pre_exec at 0x700022a40360>
+  pre_request: <function PreRequest.pre_request at 0x700022a404a0>
+  post_request: <function PostRequest.post_request at 0x700022a40540>
+  child_exit: <function ChildExit.child_exit at 0x700022a40680>
+  worker_exit: <function WorkerExit.worker_exit at 0x700022a407c0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x700022a40900>
+  on_exit: <function OnExit.on_exit at 0x700022a40a40>
+  ssl_context: <function NewSSLContext.ssl_context at 0x700022a40c20>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2025-04-07 06:30:43 -0600] [3003] [INFO] Starting gunicorn 23.0.0
+[2025-04-07 06:30:43 -0600] [3003] [DEBUG] Arbiter booted
+[2025-04-07 06:30:43 -0600] [3003] [INFO] Listening at: unix:/tmp/gunicorn-paap.sock (3003)
+[2025-04-07 06:30:43 -0600] [3003] [INFO] Using worker: sync
+[2025-04-07 06:30:43 -0600] [3004] [INFO] Booting worker with pid: 3004
+[2025-04-07 06:30:43 -0600] [3005] [INFO] Booting worker with pid: 3005
+[2025-04-07 12:30:43 +0000] [3004] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:43 +0000] [3004] [INFO] Worker exiting (pid: 3004)
+[2025-04-07 06:30:43 -0600] [3003] [ERROR] Worker (pid:3004) exited with code 3
+[2025-04-07 12:30:43 +0000] [3005] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:43 +0000] [3005] [INFO] Worker exiting (pid: 3005)
+[2025-04-07 06:30:43 -0600] [3003] [ERROR] Worker (pid:3005) exited with code 3
+[2025-04-07 06:30:46 -0600] [3072] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/tmp/gunicorn-paap.sock']
+  backlog: 2048
+  workers: 10
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/paap/PAAP/PAAP
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 0
+  group: 0
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: None
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/paap/PAAP/PAAP/logs/gunicorn.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: paap
+  default_proc_name: PAAP.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x74666d08b880>
+  on_reload: <function OnReload.on_reload at 0x74666d08b9c0>
+  when_ready: <function WhenReady.when_ready at 0x74666d08bb00>
+  pre_fork: <function Prefork.pre_fork at 0x74666d08bce0>
+  post_fork: <function Postfork.post_fork at 0x74666d08be20>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x74666d08bf60>
+  worker_int: <function WorkerInt.worker_int at 0x74666d0ac0e0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x74666d0ac220>
+  pre_exec: <function PreExec.pre_exec at 0x74666d0ac360>
+  pre_request: <function PreRequest.pre_request at 0x74666d0ac4a0>
+  post_request: <function PostRequest.post_request at 0x74666d0ac540>
+  child_exit: <function ChildExit.child_exit at 0x74666d0ac680>
+  worker_exit: <function WorkerExit.worker_exit at 0x74666d0ac7c0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x74666d0ac900>
+  on_exit: <function OnExit.on_exit at 0x74666d0aca40>
+  ssl_context: <function NewSSLContext.ssl_context at 0x74666d0acc20>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2025-04-07 06:30:46 -0600] [3072] [INFO] Starting gunicorn 23.0.0
+[2025-04-07 06:30:46 -0600] [3072] [DEBUG] Arbiter booted
+[2025-04-07 06:30:46 -0600] [3072] [INFO] Listening at: unix:/tmp/gunicorn-paap.sock (3072)
+[2025-04-07 06:30:46 -0600] [3072] [INFO] Using worker: sync
+[2025-04-07 06:30:46 -0600] [3073] [INFO] Booting worker with pid: 3073
+[2025-04-07 06:30:46 -0600] [3074] [INFO] Booting worker with pid: 3074
+[2025-04-07 06:30:46 -0600] [3075] [INFO] Booting worker with pid: 3075
+[2025-04-07 12:30:46 +0000] [3073] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:46 +0000] [3073] [INFO] Worker exiting (pid: 3073)
+[2025-04-07 06:30:46 -0600] [3076] [INFO] Booting worker with pid: 3076
+[2025-04-07 06:30:46 -0600] [3072] [ERROR] Worker (pid:3073) exited with code 3
+[2025-04-07 12:30:46 +0000] [3074] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:46 +0000] [3074] [INFO] Worker exiting (pid: 3074)
+[2025-04-07 06:30:46 -0600] [3072] [ERROR] Worker (pid:3074) exited with code 3
+[2025-04-07 12:30:46 +0000] [3075] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:46 +0000] [3075] [INFO] Worker exiting (pid: 3075)
+[2025-04-07 12:30:46 +0000] [3076] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/paap/PAAP/PAAP/PAAP/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/paap/PAAP/PAAP/entorno/lib/python3.12/site-packages/django/apps/config.py", line 193, in create
+    import_module(entry)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'django_recaptcha'
+[2025-04-07 12:30:46 +0000] [3076] [INFO] Worker exiting (pid: 3076)
