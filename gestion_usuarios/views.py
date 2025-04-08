@@ -167,25 +167,30 @@ def update_profile(request):
     return redirect('dashboard')
 
 def save_parameters(request):
+    # Validar request
     if request.method == 'POST':
         email = request.session['email']
+        
         # Obtener valores del formulario
-        model = request.POST.get('modelName')
-        algorithm = request.POST.get('selectAlgorithm')
-        algorithm_type = request.POST.get('algoritmoType') #Clasificación o Regresión
-        primeStack = request.POST.get('primeStack')
-        number = crud_dataset.count_dataset(email) + 1
-        model_name = f"{email}-{number}"
+        model = request.POST.get('modelName')               # Nombre del modelo
+        algorithm = request.POST.get('selectAlgorithm')     # Tipo de algoritmo
+        algorithm_type = request.POST.get('algoritmoType')  # Clasificación o Regresión
+        primeStack = request.POST.get('primeStack')         # Columna objetivo
+        number = crud_dataset.count_dataset(email) + 1      # Asignar ID del nuevo modelo
+        model_name = f"{email}-{number}"                    # Nombre de almacenamiento servidor
         dataset_id = f"{model_name}_dataset"
         
         if algorithm_type == "regression":
             algorithm_type_b = 0
         else:
             algorithm_type_b = 1
+        # Tipo 0 Regresion
+        # Tipo 1 Clasificacion
         messages.success(request, f'{model_name} || {algorithm} || {algorithm_type} || {primeStack}')
         crud_model.create_model(model_name,dataset_id,None,None,model,algorithm,algorithm_type_b,primeStack)
         upload_date = timezone.now()
-            # Manejar la subida del archivo
+        
+        # Manejar la subida del archivo
         if request.FILES.get('file'):
             dataset = request.FILES['file']
             dataset_name = dataset.name
@@ -219,7 +224,7 @@ def save_parameters(request):
                 random_state = request.POST.get('controlInput-Tree_reg')
                 ccp_alpha = request.POST.get('ccpRange-Tree_reg')
                 envio = CRUD.save_hiperparameters_tree(email,model_name,0,primeStack,criterion,splitter,max_depth,min_samples_split,min_leaf_split,max_leaf_nodes,min_impurity_decrease,max_features, random_state,ccp_alpha, 0)
-
+                print ("Hiperparametros: ", email,model_name,0,primeStack,criterion,splitter,max_depth,min_samples_split,min_leaf_split,max_leaf_nodes,min_impurity_decrease,max_features, random_state,ccp_alpha, 0)
                 if envio:
                     messages.success(request, f'Hiperparametros Cargados con Exito') 
                     return entrenar_modelo(request)   
@@ -345,7 +350,7 @@ def entrenar_modelo(request):
             modelo_tipo = request.POST.get('selectAlgorithm')
             problema = request.POST.get('algoritmoType')
             
-            # Diccionario de configuración
+            # Diccionario de configuracion
             data = {
                 "config": {
                     "modelo": modelo_tipo,
@@ -358,22 +363,57 @@ def entrenar_modelo(request):
                         "target_column": request.POST.get('primeStack')  # Columna objetivo
                     }
                 },
-                "hiperparametros": {}  # Lo llenamos según el algoritmo
+                "hiperparametros": {}  # Se llenan segun el algoritmo
             }
             
-            # Llenar hiperparámetros según el algoritmo y tipo de problema
+            # --------------- Para árboles de decisión ---------------
             if modelo_tipo == "arbolDesicion":
-                # Para árboles de decisión
                 suffix = "_reg" if problema == "regression" else "_class"
-                data["hiperparametros"] = {
-                    "criterion": request.POST.get(f'criterioRadio-Tree{suffix}'),
-                    "splitter": request.POST.get(f'semillaRadio-Tree{suffix}'),
-                    "max_depth": int(request.POST.get(f'nodosRange-Tree{suffix}', 0)),
-                    "min_samples_split": int(request.POST.get(f'divisorRange-Tree{suffix}', 0)),
-                    "min_samples_leaf": int(request.POST.get(f'hojasRange-Tree{suffix}', 0)),
-                    "max_leaf_nodes": int(request.POST.get(f'max-hojasRange-Tree{suffix}', 0)),
-                    # ...otros parámetros...
-                }
+                if suffix == "-reg":
+                    criterion_map = {
+                        "0": "squared_error",
+                        "1": "absolute_error",
+                        "2": "friedman_mse",
+                        "3": "poisson"
+                    }
+
+                    splitter_map = {
+                        "0": "best",
+                        "1": "random"
+                    }
+                
+                    data["hiperparametros"] = {
+                        "criterion": criterion_map.get(request.POST.get('criterioRadio-Tree_reg'), "squared_error"),
+                        "splitter": splitter_map.get(request.POST.get('semillaRadio-Tree_reg'), "best"),
+                        "max_depth": int(request.POST.get(f'nodosRange-Tree{suffix}', 0)),
+                        "min_samples_split": int(request.POST.get(f'divisorRange-Tree{suffix}', 2)),
+                        "min_samples_leaf": int(request.POST.get(f'hojasRange-Tree{suffix}', 0)),
+                        "max_leaf_nodes": int(request.POST.get(f'max-hojasRange-Tree{suffix}', 0)),
+                    }
+                elif suffix == "_class":    
+                    criterion_map = {
+                        "0": "squared_error",
+                        "1": "absolute_error",
+                        "2": "friedman_mse",
+                        "3": "poisson"
+                    }
+
+                    splitter_map = {
+                        "0": "best",
+                        "1": "random"
+                    }
+                
+                    data["hiperparametros"] = {
+                        "criterion": criterion_map.get(request.POST.get('criterioRadio-Tree_reg'), "squared_error"),
+                        "splitter": splitter_map.get(request.POST.get('semillaRadio-Tree_reg'), "best"),
+                        "max_depth": int(request.POST.get(f'nodosRange-Tree{suffix}', 0)),
+                        "min_samples_split": int(request.POST.get(f'divisorRange-Tree{suffix}', 2)),
+                        "min_samples_leaf": int(request.POST.get(f'hojasRange-Tree{suffix}', 0)),
+                        "max_leaf_nodes": int(request.POST.get(f'max-hojasRange-Tree{suffix}', 0)),
+                    }
+            # -----------------------------------------------------------
+
+            # ------------------------ KNN ------------------------------
             elif modelo_tipo == "kNeighbors":
                 # Para KNN
                 suffix = "_reg" if problema == "regression" else "_class"
