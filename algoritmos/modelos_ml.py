@@ -17,10 +17,6 @@ import numpy as np
 from django.conf import settings
 from gestion_usuarios import crud_dataset
 
-#email = "pruba@prueba.com"
-#model_name = "Modelo Prueba"
-#dataset_name = "diabetes.csv"
-
 MODELS_PATH = "models/"
 
 # ---------------- Dataset -----------------------
@@ -45,10 +41,11 @@ def prepare_dataset(path_dataset, objective, encode_categorical=True):
 
 class ModelosML:
     def __init__(self, dataset, model_path):
-        self.dataset_path = dataset.get('path')
+        #self.dataset_path = dataset.get('path')
+        self.dataset_path = dataset
         self.model_path = model_path
         print("Dataset path: ", self.dataset_path)
-        print("Model path: ", self.dataset_path)
+        print("Model path: ", self.model_path)
 
     #DATASET_PATH = os.path.join(settings.MEDIA_ROOT, 'file',email, model_name, dataset_name)
     def _update_model_params(self, model, params):
@@ -217,20 +214,21 @@ class ModelosML:
     def arbol_regresion(self, **kwargs):
         # 0 = Squared Error || 1 = Absolute Error
         # 2 = Friedman MSE  || 3 = Poisson
-        if (kwargs.get('criterion') == "0"):
-            criterion = "squared_error"
-        elif (kwargs.get('criterion') == "1"):
-            criterion = "absolute_error"
-        elif (kwargs.get('criterion') == "2"):
-            criterion = "friedman_mse"
-        elif (kwargs.get('criterion') == "3"):
-            criterion = "poisson"
+        
+        #if (kwargs.get('criterion') == "0"):
+        #    criterion = "squared_error"
+        #elif (kwargs.get('criterion') == "1"):
+        #    criterion = "absolute_error"
+        #elif (kwargs.get('criterion') == "2"):
+        #    criterion = "friedman_mse"
+        #elif (kwargs.get('criterion') == "3"):
+        #    criterion = "poisson"
 
         # 0 = Mejor || 1 = Aleatorio
-        if (kwargs.get('splitter') == "0"):
-            splitter = "best"
-        elif (kwargs.get('splitter') == "1"):
-            splitter = "random"
+        #if (kwargs.get('splitter') == "0"):
+        #    splitter = "best"
+        #elif (kwargs.get('splitter') == "1"):
+        #    splitter = "random"
 
         # Extraer información del dataset
         dataset_info = kwargs.pop('dataset', {})
@@ -242,8 +240,8 @@ class ModelosML:
         
         # Parámetros específicos para árboles de regresión
         tree_params = {
-            'criterion': criterion,
-            'splitter': splitter,
+            'criterion': kwargs.get('criterion', "squared_error"),
+            'splitter': kwargs.get('splitter', "best"),
             'max_depth': kwargs.get('max_depth', None),
             'min_samples_split': kwargs.get('min_samples_split', 2),
             'min_samples_leaf': kwargs.get('min_samples_leaf', 1),

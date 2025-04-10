@@ -2,3 +2,4 @@ __pycache__/
 file/
 debug.log
 logs/
+gestion_usuarios/__pycache__/

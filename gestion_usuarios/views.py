@@ -331,11 +331,12 @@ def save_parameters(request):
         return redirect('ia')      
 
 def entrenar_modelo(request):
-    print("Funcion Entrenando modelo")
     try:
         if request.content_type == 'application/json':
             # Para llamadas API
             data = json.loads(request.body)
+            print("DATA JSON:", data)
+
         else:
             # Para llamadas desde formulario
             email = request.session.get('email')
@@ -366,10 +367,10 @@ def entrenar_modelo(request):
                 "hiperparametros": {}  # Se llenan segun el algoritmo
             }
             
-            # --------------- Para árboles de decisión ---------------
+            # --------------- Arboles de decisión ---------------
             if modelo_tipo == "arbolDesicion":
                 suffix = "_reg" if problema == "regression" else "_class"
-                if suffix == "-reg":
+                if suffix == "_reg":
                     criterion_map = {
                         "0": "squared_error",
                         "1": "absolute_error",
@@ -381,7 +382,7 @@ def entrenar_modelo(request):
                         "0": "best",
                         "1": "random"
                     }
-                
+
                     data["hiperparametros"] = {
                         "criterion": criterion_map.get(request.POST.get('criterioRadio-Tree_reg'), "squared_error"),
                         "splitter": splitter_map.get(request.POST.get('semillaRadio-Tree_reg'), "best"),
@@ -417,12 +418,24 @@ def entrenar_modelo(request):
             elif modelo_tipo == "kNeighbors":
                 # Para KNN
                 suffix = "_reg" if problema == "regression" else "_class"
+
+                algorithm_map = {
+                    "automatic": "auto",
+                    "1": "ball_tree",
+                    "2": "kd_tree",
+                    "3": "brute",
+                }
+                    
                 data["hiperparametros"] = {
                     "n_neighbors": int(request.POST.get(f'neighborsInput-KNN{suffix}', 5)),
                     "weights": request.POST.get(f'weightsRadio-KNN{suffix}', "uniform"),
-                    "algorithm": request.POST.get(f'algorithmRadio-KNN{suffix}', "auto"),
-                    # ...otros parámetros...
+                    "algorithm": algorithm_map.get(request.POST.get(f'algorithmRadio-KNN{suffix}', "auto")),
+                    "leaf_size": int(request.POST.get(f'lifeSizeInput-KNN{suffix}', 2)),
+                    "p" : int(request.POST.get(f'pInput-KNN{suffix}', 0)),
+                    "metric" : request.POST.get(f'metricaRadio-KNN{suffix}', "euclidean"),
                 }
+                
+            # ---------------------Random Forest ------------------------------------------
             elif modelo_tipo == "randomForest":
                 # Para Random Forest
                 suffix = "_reg" if problema == "regression" else "_class"
@@ -433,7 +446,8 @@ def entrenar_modelo(request):
                     # ...otros parámetros...
                 }
                 pass
-                
+            # ------------------------------------------------------------------------------
+
         # Extraer la información para procesar
         config = data.get("config", {})
         modelo_tipo = config.get("modelo") if "config" in data else data.get("modelo")
@@ -445,13 +459,12 @@ def entrenar_modelo(request):
             hiperparametros["dataset"] = config["dataset"]
         
         config = data["config"]
-        dataset_info = config["dataset"]  # Diccionario con path y target_column
-        model_path = "file/"  # O el path correcto que tengas
+        #dataset_info = config["dataset"]  # Diccionario con path y target_column
 
         # ------------ Procesar modelo
-        modelo = ModelosML(dataset_info, model_path)
+        print("Procesando modelo")
+        modelo = ModelosML(dataset_path, model_path)
         print("Columna objetivo:", request.POST.get('primeStack'))  # Verifica el valor recibido
-        #print("Dataset Path:", request.POST.get('path'))
 
         if modelo_tipo == "kNeighbors" and problema == "classify":
             resultado = modelo.knn_clasificacion(**hiperparametros)
