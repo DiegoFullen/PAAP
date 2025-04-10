@@ -416,7 +416,6 @@ def entrenar_modelo(request):
 
             # ------------------------ KNN ------------------------------
             elif modelo_tipo == "kNeighbors":
-                # Para KNN
                 suffix = "_reg" if problema == "regression" else "_class"
 
                 algorithm_map = {
@@ -434,17 +433,27 @@ def entrenar_modelo(request):
                     "p" : int(request.POST.get(f'pInput-KNN{suffix}', 0)),
                     "metric" : request.POST.get(f'metricaRadio-KNN{suffix}', "euclidean"),
                 }
-                
-            # ---------------------Random Forest ------------------------------------------
+            # --------------------------------------------------------------
+
+            # ---------------------Random Forest ---------------------------
             elif modelo_tipo == "randomForest":
-                # Para Random Forest
                 suffix = "_reg" if problema == "regression" else "_class"
-                data["hiperparametros"] = {
-                    "n_neighbors": int(request.POST.get(f'neighborsInput-KNN{suffix}', 5)),
-                    "weights": request.POST.get(f'weightsRadio-KNN{suffix}', "uniform"),
-                    "algorithm": request.POST.get(f'algorithmRadio-KNN{suffix}', "auto"),
-                    # ...otros parámetros...
-                }
+
+                if suffix == "_reg":
+                    
+                    data["hiperparametros"] = {
+                        "n_neighbors": int(request.POST.get(f'neighborsInput-KNN{suffix}', 5)),
+                        "weights": request.POST.get(f'weightsRadio-KNN{suffix}', "uniform"),
+                        "algorithm": request.POST.get(f'algorithmRadio-KNN{suffix}', "auto"),
+                        # ...otros parámetros...
+                    }
+                elif suffix == "_class":
+                    data["hiperparametros"] = {
+                        "n_neighbors": int(request.POST.get(f'neighborsInput-KNN{suffix}', 5)),
+                        "weights": request.POST.get(f'weightsRadio-KNN{suffix}', "uniform"),
+                        "algorithm": request.POST.get(f'algorithmRadio-KNN{suffix}', "auto"),
+                        # ...otros parámetros...
+                    }
                 pass
             # ------------------------------------------------------------------------------
 
