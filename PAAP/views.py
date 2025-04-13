@@ -6,6 +6,8 @@ from django.db import connection
 from django.contrib import messages
 import requests
 from django.conf import settings
+import os
+from PAAP.settings import BASE_DIR
 
 
 #FUNCIONES PARA LA CARGA DEL INICIO DE LA PAGINA (ANTES DE REGISTRARSE)
@@ -116,15 +118,33 @@ def dashboard_view(request):
     if not email:
         return redirect('login')
     
-    modelos = CRUD.search_models(email)  # Esto devuelve diccionarios
+    modelos = CRUD.search_models(email)
     
-    # Procesar cada modelo (que es un diccionario)
+    # Procesar cada modelo
     for modelo in modelos:
         modelo['type_cr'] = "Regresión" if modelo['type_cr'] == 0 else "Clasificación"
         modelo['type'] = "Árboles de Decisión" if modelo['type'] == "arbolDesicion" else "K-Nearest Neighbors" if modelo['type'] == "kNeighbors" else "Random Forest"
-    
-    context = {'modelos': modelos, 'email': email}
+        
+        # Procesar solo las rutas de imágenes
+    for modelo in modelos:
+        model_dir = os.path.join('file', email, str(modelo['id_model']))
+        model_dir = os.path.normpath(model_dir).replace('\\', '/')
+        modelo['image_urls'] = []
+        
+        absolute_dir = os.path.join(settings.BASE_DIR, model_dir)
+        if os.path.exists(absolute_dir):
+            for img in os.listdir(absolute_dir):
+                if img.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+                    modelo['image_urls'].append(
+                        f"{settings.MODELS_MEDIA_URL}{email}/{modelo['id_model']}/{img}"
+                    )
+        print(modelo['image_urls'])
+    context = {
+        'modelos': modelos, 
+        'email': email
+    }
     return render(request, 'dashboard.html', context)
+
 #Función para la vista del entrenamiento de IA
 def ia_view(request):
     email = request.session.get('email')

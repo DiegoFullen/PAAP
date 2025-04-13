@@ -95,6 +95,8 @@ TEMPLATES = [
 
 
 STATIC_URL = '/static/'
+MODELS_MEDIA_URL = '/file/'  # Prefijo URL personalizado
+MODELS_MEDIA_ROOT = os.path.join(BASE_DIR, 'file')  # Ruta directa a tus imágenes
 
 # Si necesitas configurar una ruta absoluta para archivos estáticos (opcional):
 STATICFILES_DIRS = [

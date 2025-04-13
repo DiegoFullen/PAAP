@@ -78,23 +78,57 @@ eraseDeny.addEventListener("click", () => {
 
 document.getElementById('selectModel').addEventListener('change', function() {
   const selectedOption = this.options[this.selectedIndex];
-  if (!selectedOption.value) {
+  const modelId = selectedOption ? selectedOption.value : null;
+  
+  // 1. Ocultar todos los modelos primero
+  document.querySelectorAll('.modelInfo').forEach(model => {
+      model.style.display = 'none';
+  });
+
+  // 2. Resetear información si no hay selección
+  if (!modelId) {
       document.getElementById('displayModelName').textContent = '';
       document.getElementById('displayDatasetName').textContent = 'Dataset';
       document.getElementById('displayModelType').textContent = 'Algoritmo';
       document.getElementById('displayModelTypeTraining').textContent = 'Reg/Cla';
       return;
   }
-  const modelName= selectedOption.getAttribute('data-model-name');
+
+  // 3. Actualizar información del modelo seleccionado
+  const modelName = selectedOption.getAttribute('data-model-name');
   const datasetName = selectedOption.getAttribute('data-dataset-name');
   const modelType = selectedOption.getAttribute('data-model-type');
   const modelTypeTraining = selectedOption.getAttribute('data-model-training');
+  
   document.getElementById('displayModelName').textContent = modelName;
   document.getElementById('displayDatasetName').textContent = datasetName;
   document.getElementById('displayModelType').textContent = modelType;
   document.getElementById('displayModelTypeTraining').textContent = modelTypeTraining;
-  const modelId = selectedOption.value;
-  console.log("Modelo seleccionado ID:", modelId);
+
+  // 4. Mostrar TODOS los bloques del modelo seleccionado (puede haber múltiples imágenes)
+  const modelsToShow = document.querySelectorAll(`.modelInfo[data-model-id="${modelId}"]`);
+  
+  if (modelsToShow.length > 0) {
+      modelsToShow.forEach(model => {
+          model.style.display = 'block';
+          
+          // Opcional: Scroll al primer elemento del modelo
+          if (model === modelsToShow[0]) {
+              model.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+      });
+  } else {
+      console.warn(`No se encontraron bloques para el modelo ID: ${modelId}`);
+  }
+
+  // 5. Debug (opcional)
+  console.log(`Modelo seleccionado: 
+      ID: ${modelId}
+      Nombre: ${modelName}
+      Dataset: ${datasetName}
+      Tipo: ${modelType}
+      Entrenamiento: ${modelTypeTraining}
+      Bloques encontrados: ${modelsToShow.length}`);
 });
 
 document.getElementById('btnErase').addEventListener('click', function() {

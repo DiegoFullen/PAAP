@@ -126,7 +126,7 @@ class Hiperparameters_RandomForest(models.Model):
     max_depth = models.FloatField()
     min_samples_split = models.FloatField()
     min_samples_leaft = models.FloatField()
-    max_features = models.FloatField()
+    max_features = models.CharField(max_length=50)
     bootstrap = models.BooleanField(default=True)
     oob_score = models.IntegerField()
     max_samples = models.FloatField(null=True)

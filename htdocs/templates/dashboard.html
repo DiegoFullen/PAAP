@@ -210,34 +210,38 @@
                         </div>
                     </dialog>
 
-                    <div class="modelInfo">
-                        <div id="formContainer">
+                    {% for modelo in modelos %}
+                        {% for image_url in modelo.image_urls %}
+                            <div class="modelInfo" data-model-id="{{ modelo.id_model }}" style="display: none;">
+                                <div id="formContainer">
+                                    <div id="graphicModel">
+                                        <img src="{{ image_url }}" alt="Gráfica Modelo" class="img-fluid">
+                                    </div>
+                                    <!-- TODO LO DEMÁS PERMANECE EXACTAMENTE IGUAL -->
+                                    <div id="graphicModel_title">
+                                        <h1 class="montserrat">Nombre del Modelo</h1>
+                                    </div>
 
-                            <div id="graphicModel">
-                                <img src="{% static 'resources/img/grafica_barras.png'%}" alt="Gráfica Modelo" class="img-fluid">
-                            </div>
+                                    {% if forloop.first %}
+                                    <div id="precisionModel">
+                                        <label for="precisionModel_value">Precisión del Modelo: <span id="valuePrecision"></span>%</label><br>
+                                        <input type="range" name="precisionModel_value" id="precisionModel_value" class="slider" disabled value="{{precision}}">
+                                    </div>
+                                    {% endif %}
 
-                            <div id="graphicModel_title">
-                                <h1 class="montserrat">Nombre del Modelo</h1>
+                                    <div id="descriptionModel">
+                                        <h1 class="montserrat">Descripción</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque purus orci, faucibus ac lectus quis, 
+                                            gravida auctor purus. Praesent eget dignissim metus. Sed ornare, urna id venenatis bibendum, ex erat 
+                                            lacinia quam, viverra rhoncus nisl magna non lorem. Duis non nisl ut ante pharetra tristique. Pellentesque iaculis, 
+                                            ipsum quis porta cursus, dui nisi feugiat dolor, sed hendrerit sapien odio vitae sapien. Nullam lacinia orci et massa 
+                                            fringilla rhoncus. Praesent vel lacus sollicitudin, sollicitudin nunc quis, tempus augue. Nulla facilisi. Pellentesque.
+                                            Sed venenatis, nunc eu convallis mattis, nibh est tempor enim, eget feugiat neque nulla a velit.</p>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div id="precisionModel">
-                                <label for="precisionModel_value">Precisión del Modelo: <span id="valuePrecision"></span>%</label><br>
-                                <input type="range" name="precisionModel_value" id="precisionModel_value" class="slider" disabled value="{{precision}}">
-                            </div>
-
-                            <div id="descriptionModel">
-                                <h1 class="montserrat">Descripción</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque purus orci, faucibus ac lectus quis, 
-                                    gravida auctor purus. Praesent eget dignissim metus. Sed ornare, urna id venenatis bibendum, ex erat 
-                                    lacinia quam, viverra rhoncus nisl magna non lorem. Duis non nisl ut ante pharetra tristique. Pellentesque iaculis, 
-                                    ipsum quis porta cursus, dui nisi feugiat dolor, sed hendrerit sapien odio vitae sapien. Nullam lacinia orci et massa 
-                                    fringilla rhoncus. Praesent vel lacus sollicitudin, sollicitudin nunc quis, tempus augue. Nulla facilisi. Pellentesque.
-                                     Sed venenatis, nunc eu convallis mattis, nibh est tempor enim, eget feugiat neque nulla a velit.</p>
-                            </div>
-                            
-                        </div>
-                    </div>
+                        {% endfor %}
+                    {% endfor %}
 
                 </div>
                 <!-- /.container-fluid -->

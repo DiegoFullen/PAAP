@@ -15,6 +15,7 @@ from django.shortcuts import render, redirect
 from gestion_usuarios.models import User, Model,Dataset,Hiperparameters_KNN,Hiperparameters_RandomForest,Hiperparameters_Tree
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
+from datetime import datetime
 
 # Clases IA
 from algoritmos.modelos_ml import ModelosML 
@@ -172,12 +173,12 @@ def save_parameters(request):
         email = request.session['email']
         
         # Obtener valores del formulario
-        model = request.POST.get('modelName')               # Nombre del modelo
-        algorithm = request.POST.get('selectAlgorithm')     # Tipo de algoritmo
-        algorithm_type = request.POST.get('algoritmoType')  # Clasificación o Regresión
-        primeStack = request.POST.get('primeStack')         # Columna objetivo
-        number = crud_dataset.count_dataset(email) + 1      # Asignar ID del nuevo modelo
-        model_name = f"{email}-{number}"                    # Nombre de almacenamiento servidor
+        model = request.POST.get('modelName')                 # Nombre del modelo
+        algorithm = request.POST.get('selectAlgorithm')       # Tipo de algoritmo
+        algorithm_type = request.POST.get('algoritmoType')    # Clasificación o Regresión
+        primeStack = request.POST.get('primeStack')           # Columna objetivo
+        current_time = datetime.now().strftime("%Y%m%d%H%M")  # Asignar ID del nuevo modelo
+        model_name = f"{current_time}"                        # Nombre de almacenamiento servidor
         dataset_id = f"{model_name}_dataset"
         
         if algorithm_type == "regression":
