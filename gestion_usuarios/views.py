@@ -546,14 +546,24 @@ def update_hours(request):
             updated_hours = current_hours + hours
 
             # Actualizar las horas en la base de datos
-            cursor.execute(
-                """
-                UPDATE gestion_usuarios_plan
-                SET hours = %s, type_plan='Premium'
-                WHERE email_id = %s
-                """,
-                [updated_hours, email]
-            )
+            if request.session.get('plan') == "Escolar":
+                cursor.execute(
+                    """
+                    UPDATE gestion_usuarios_plan
+                    SET hours = %s
+                    WHERE email_id = %s
+                    """,
+                    [updated_hours, email]
+                )
+            else:
+                cursor.execute(
+                    """
+                    UPDATE gestion_usuarios_plan
+                    SET hours = %s, type_plan='Premium'
+                    WHERE email_id = %s
+                    """,
+                    [updated_hours, email]
+                )
         plan = crud_plan.get_plan(email)
         horas = int(round(plan.hours)/60)
         minutos = int(round((plan.hours % 60)))

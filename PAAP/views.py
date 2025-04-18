@@ -173,7 +173,6 @@ def account_view(request):
     # Verificar si el usuario está autenticado
     if not email:
         return redirect('login')
-
     # Pasar las variables al contexto de la plantilla
     return render(request, 'account.html', {
         'email': email,

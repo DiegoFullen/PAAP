@@ -9,7 +9,7 @@ from gestion_usuarios import CRUD, crud_temporal,crud_user
 
 def send_verification_email(email, name, verification_url):
     subject = "Verificación de correo"
-    from_email = "angelohaziel2002l@gmail.com"
+    from_email = "paap_oficial@paap-ia.com.mx"
     recipient_list = [email]
     image_path = os.path.join(settings.BASE_DIR, "static/resources/img/logotipoColor.png")
     pdf_url = "http://127.0.0.1:8000/static/resources/Aviso_de_Privacidad_2025.pdf"
@@ -134,7 +134,7 @@ def send_email_recover(request, mail, retrieveEmail):
         if token_recover:
             recovery_url = request.build_absolute_uri(f"/passwordRetrive/{token_recover}")
             subject = "Verificación de correo"
-            from_email = "angelohaziel2002l@gmail.com"
+            from_email = "paap_oficial@paap-ia.com.mx"
             recipient_list = [retrieveEmail]
             html_content = f"""
                             <!DOCTYPE html>

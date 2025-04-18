@@ -29,8 +29,12 @@ def add_new_user(created_at, token):
     if timezone.now() <= created_at + timedelta(minutes=15):
             user = crud_user.transfer_temporal_to_user(token)
             if user:
-                crud_plan.create_plan(0,"Integrado", user.email)
-                return True
+                if user.email.endswith("@ceti.mx"):
+                    crud_plan.create_plan(0,"Escolar", user.email)
+                    return True
+                else:
+                    crud_plan.create_plan(0,"Integrado", user.email)
+                    return True
             else:
                  crud_user.delete_user(user.email)
                  return False
@@ -116,4 +120,23 @@ def save_hiperparameters_RF(email,model_id,type,prime_stack,n_estimators,criteri
         return True
     else: return False
 
-     
+def reduce_hours(minutes, email):
+    try:
+        plan = crud_plan.get_plan(email)
+        if plan is None:  # Verificación más explícita
+            print(f"No se encontró plan para el email: {email}")
+            return False
+            
+        hours = plan.hours - minutes
+        
+        # FORMA CORRECTA de llamar a update_plan:
+        updated_plan = crud_plan.update_plan(
+            email_id=email,  # Primer parámetro NOMBRADO
+            hours=hours      # Segundo parámetro como parte de kwargs
+        )
+        
+        return updated_plan is not None
+        
+    except Exception as e:
+        print(f"Error inesperado: {str(e)}")
+        return False

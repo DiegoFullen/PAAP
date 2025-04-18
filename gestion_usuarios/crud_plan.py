@@ -22,9 +22,9 @@ def get_all_plans():
     return Plan.objects.all()
 
 # Actualizar un plan
-def update_plan(id, **kwargs):
+def update_plan(email_id, **kwargs):
     try:
-        plan = Plan.objects.get(id=id)
+        plan = Plan.objects.get(email_id=email_id)
         for key, value in kwargs.items():
             setattr(plan, key, value)
         plan.save()
