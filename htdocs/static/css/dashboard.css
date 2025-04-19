@@ -283,7 +283,7 @@ body {
 }
 
 .modelInfo #formContainer #precisionModel .slider::-webkit-slider-runnable-track{
-  height: 12px;
+  height: 18px;
   background: linear-gradient(to right, #3351e8 60%, #ddd 60%);
   border-radius: 8px;
 }
