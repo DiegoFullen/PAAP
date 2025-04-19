@@ -276,9 +276,26 @@ body {
 
   text-align: center;
 }
+
 .modelInfo #formContainer #precisionModel .slider{
-  width: 100%;
+  appearance: none;
+  background: transparent;
 }
+
+.modelInfo #formContainer #precisionModel .slider::-webkit-slider-runnable-track{
+  height: 12px;
+  background: linear-gradient(to right, #3351e8 60%, #ddd 60%);
+  border-radius: 8px;
+}
+
+.modelInfo #formContainer #precisionModel .slider:-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+}
+
 .modelInfo #formContainer #descriptionModel{
   grid-row: 2/4;
   grid-column: 4/6;
