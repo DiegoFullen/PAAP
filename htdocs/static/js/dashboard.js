@@ -60,10 +60,6 @@ const confirmErase = document.querySelector("dialog.alertDialog");
 const eraseAccept = document.getElementById("eraseAccept");
 const eraseDeny = document.getElementById("eraseDeny");
 
-btnCancelar.addEventListener("click", () => {
-  dialogElem.close();
-});
-
 btnErase.addEventListener("click", () => {
   confirmErase.showModal();
 });
